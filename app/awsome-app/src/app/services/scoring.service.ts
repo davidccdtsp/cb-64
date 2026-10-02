@@ -1,4 +1,4 @@
-import { Injectable, inject, signal } from '@angular/core';
+import { Injectable, inject, signal, untracked } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AnyScore, Candidate, Scenario } from '../model/candidatos-model';
 import { LicenseFamily } from '../model/catalog-model';
@@ -270,6 +270,12 @@ export class ScoringService {
    */
   weightsForm(domain: Domain): WeightsForm {
     this.formsEpoch(); // una importación de configuración recrea los formularios abiertos
+    // Solo `formsEpoch` y el dominio invalidan un `computed` que use esto: leer los pesos o el tratamiento de criterios sin
+    // puntuación aquí lo haría recrear el formulario con cada cambio del propio usuario, mientras lo está editando.
+    return untracked(() => this.buildWeightsForm(domain));
+  }
+
+  private buildWeightsForm(domain: Domain): WeightsForm {
     const groups: Record<string, FormGroup<WeightControls>> = {};
     for (const a of this.attributesOf(domain)) {
       if (a.type !== AttributeType.informativo) {
