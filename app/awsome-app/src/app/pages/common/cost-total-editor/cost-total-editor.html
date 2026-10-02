@@ -1,0 +1,16 @@
+<div class="totals">
+  @for (s of scenarios; track s) {
+    @let e = cost.monthly(candidateId(), s);
+    <app-cost-input
+      [label]="'Escenario ' + s + ' · EUR/mes'"
+      [value]="e?.manual ? eur(e!.mid) : null"
+      [placeholder]="e ? (e.mid | eur) : 'N/D'"
+      [resettable]="!!e?.manual"
+      (commit)="set(s, $event)"
+    />
+  }
+</div>
+<p class="hint">
+  Puedes escribir un coste total propio, por ejemplo uno buscado en la web del fabricante, para compararlo
+  con el resto. Se usa en la nota de coste y se pierde al recargar la página.
+</p>

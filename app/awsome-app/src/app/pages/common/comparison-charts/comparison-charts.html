@@ -1,0 +1,42 @@
+@if (rows().length) {
+  <section class="charts">
+    <figure>
+      <figcaption>Nota por dimensión (0-100)</figcaption>
+      <div class="canvas"><canvas #radar role="img" aria-label="Radar de notas por dimensión de los candidatos comparados"></canvas></div>
+    </figure>
+    <figure>
+      <figcaption>Coste frente a puntuación</figcaption>
+      <div class="canvas"><canvas #scatter role="img" aria-label="Coste mensual frente a puntuación de los candidatos comparados"></canvas></div>
+    </figure>
+  </section>
+  <details>
+    <summary>Ver los datos de los gráficos</summary>
+    <table>
+      <thead>
+        <tr>
+          <th>Candidato</th><th>Coste/mes (EUR)</th><th>Puntuación</th>
+          @for (d of dimensions(); track d.id) {
+            <th [title]="d.name">{{ d.id.split('-').pop() }}</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (r of rows(); track r.candidate.id) {
+          <tr>
+            <td>{{ r.candidate.name }}</td>
+            <td>{{ r.eur | number: '1.0-0' }}</td>
+            <td>{{ r.candidate.totalScore | number: '1.0-1' }}</td>
+            @for (d of dimensions(); track d.id) {
+              <td>{{ r.candidate.dimensionScores?.[d.id] !== undefined ? (r.candidate.dimensionScores![d.id] | number: '1.0-0') : '—' }}</td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  </details>
+}
+@if (excluded()) {
+  <p class="note">No se dibujan {{ excluded() }} candidato(s) sin coste o sin puntuación.</p>
+} @else if (!rows().length) {
+  <p class="note">Ningún candidato comparado tiene coste y puntuación para dibujar los gráficos.</p>
+}

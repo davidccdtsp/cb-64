@@ -1,0 +1,17 @@
+table { width: 100%; }
+.scroll { overflow-x: auto; }
+tr.mat-mdc-row { cursor: pointer; }
+tr.mat-mdc-row:hover { background: var(--mat-sys-surface-container); }
+tr.mat-mdc-row[style*="background-color"]:hover { filter: brightness(.94); }
+th[title] { cursor: help; }
+// botón de editar el coste, compacto para no agrandar las filas
+.edit {
+  --mat-icon-button-state-layer-size: 28px;
+  --mat-icon-button-icon-size: 18px;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  margin-left: .25rem;
+  vertical-align: middle;
+}
+.edit mat-icon { font-size: 18px; width: 18px; height: 18px; line-height: 18px; }

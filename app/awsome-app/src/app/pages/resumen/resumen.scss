@@ -1,0 +1,13 @@
+.intro { color: var(--mat-sys-on-surface-variant); margin-top: 0; }
+mat-accordion { display: block; margin-bottom: 1rem; }
+.area { margin-bottom: .5rem; }
+.params, .area { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; }
+.hint { color: var(--mat-sys-on-surface-variant); font-size: .875rem; font-weight: normal; }
+.profile { margin-top: .5rem; }
+.profile .mat-expansion-panel-body > * { margin-bottom: .75rem; }
+.profile-head { display: flex; align-items: center; gap: .5rem; }
+.wide { width: 100%; max-width: 48rem; }
+.profile h3 { margin: .25rem 0 0; font-size: 1rem; }
+.weights { display: flex; flex-wrap: wrap; gap: .5rem; }
+.weights mat-form-field { width: 6.5rem; }
+.export { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }

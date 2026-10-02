@@ -1,0 +1,25 @@
+<header>
+  <button #menuButton class="menu-button" type="button" aria-label="Menú" aria-controls="menu" [attr.aria-expanded]="menuOpen()" (click)="menuOpen() ? closeMenu() : openMenu()">
+    <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+  </button>
+  {{ title() }}
+</header>
+@if (menuOpen()) {
+  <button class="backdrop" type="button" tabindex="-1" aria-label="Cerrar el menú" (click)="closeMenu()"></button>
+}
+<aside #panel id="menu" [class.open]="menuOpen()">
+  <h2>{{ title() }}</h2>
+  <nav>
+    @for (item of menu; track item.path) {
+      <a [routerLink]="item.path" [queryParams]="params()" routerLinkActive="active" (click)="menuOpen.set(false)">{{ item.label }}</a>
+    }
+  </nav>
+</aside>
+<main [attr.inert]="menuOpen() ? '' : null">
+  @if (loaded()) {
+    <router-outlet />
+  } @else {
+    <div role="status" aria-live="polite"><mat-spinner aria-label="Cargando datos" /></div>
+  }
+</main>
+<footer [attr.inert]="menuOpen() ? '' : null">© {{ year }} {{ title() }}</footer>

@@ -1,0 +1,5 @@
+.hint { color: var(--mat-sys-on-surface-variant); font-size: .875rem; margin: 0 0 1rem; }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.name { flex: 1; }
+mat-slider { width: 14rem; }
+.value { min-width: 1.5rem; text-align: right; font-weight: 600; }

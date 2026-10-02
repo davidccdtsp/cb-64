@@ -1,0 +1,6 @@
+extra/*
+**/__pycache__/
+
+# Prueba local con Docker
+Dockerfile.local
+.dockerignore

@@ -1,0 +1,18 @@
+<div class="header">
+  <h2 mat-dialog-title>Coste · {{ name() }}</h2>
+  <button mat-icon-button mat-dialog-close aria-label="Cerrar">
+    <mat-icon fontSet="material-symbols-outlined">close</mat-icon>
+  </button>
+</div>
+<mat-dialog-content>
+  <app-scenario-select />
+  @if (hasModel()) {
+    <app-cost-calculator [candidateId]="candidateId" />
+  } @else {
+    <h4>Coste total mensual</h4>
+    <app-cost-total-editor [candidateId]="candidateId" />
+  }
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cerrar</button>
+</mat-dialog-actions>

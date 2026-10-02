@@ -1,0 +1,139 @@
+<app-breadcrumbs [items]="crumbs()" (navigate)="selected.set(null)" />
+
+@if (selected(); as candidate) {
+  <app-candidate-card [candidate]="candidate" />
+} @else {
+  <div class="top">
+    <h1>Catálogo</h1>
+    <app-config-menu />
+  </div>
+  <mat-accordion>
+    <mat-expansion-panel expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Perfil, filtros y requisitos eliminatorios</mat-panel-title>
+      </mat-expansion-panel-header>
+  <section>
+  <h2>Pesos</h2>
+  <app-weights-actions [domain]="domain()" costNotice />
+  </section>
+  <section>
+  <h2>Perfil de filtro</h2>
+  <div class="profile-row">
+    <mat-form-field subscriptSizing="dynamic">
+      <mat-label>Perfil</mat-label>
+      <mat-select [value]="profile()" (selectionChange)="applyProfile($event.value)">
+        <mat-option value="">Ninguno</mat-option>
+        @for (p of profiles(); track p.id) {
+          <mat-option [value]="p.id">{{ p.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <button mat-stroked-button (click)="reset()">Restablecer filtros</button>
+    <button mat-stroked-button [disabled]="!profile()" (click)="saveProfile()" title="El perfil elegido pasa a tener los filtros actuales">Guardar filtros en el perfil</button>
+    <button mat-stroked-button [disabled]="!profile() || !isPredefined()" (click)="restoreProfile()" title="Solo los perfiles predefinidos se pueden restaurar">Restaurar perfil</button>
+    <button mat-stroked-button (click)="newProfile()" title="Crea un perfil con los filtros actuales">Nuevo perfil</button>
+  </div>
+  </section>
+  <section>
+  <h2>Filtros</h2>
+  <div class="filters">
+  <mat-form-field>
+    <mat-label>Área</mat-label>
+    <mat-select [value]="area()" (selectionChange)="setArea($event.value)">
+      <mat-option value="datos">Datos</mat-option>
+      <mat-option value="martech">Martech</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Categoría</mat-label>
+    <mat-select [value]="category()" (selectionChange)="category.set($event.value)">
+      <mat-option value="">Todas</mat-option>
+      @for (c of categories(); track c.id) {
+        <mat-option [value]="c.id" [title]="c.description">{{ c.id }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Tipo</mat-label>
+    <mat-select [value]="type()" (selectionChange)="type.set($event.value)">
+      <mat-option value="">Todos</mat-option>
+      @for (t of options().types; track t) {
+        <mat-option [value]="t">{{ t }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Licencia</mat-label>
+    <mat-select [value]="license()" (selectionChange)="license.set($event.value)">
+      <mat-option value="">Todas</mat-option>
+      @for (l of options().licenses; track l) {
+        <mat-option [value]="l">{{ l }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Despliegue</mat-label>
+    <mat-select multiple [value]="deployment()" (selectionChange)="deployment.set($event.value)">
+      @for (d of options().deployments; track d) {
+        <mat-option [value]="d">{{ d }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  </div>
+  </section>
+  <section>
+  <h2>Requisitos eliminatorios</h2>
+  <div class="filters">
+    <app-deployment-select [area]="area()" />
+    <app-scenario-select />
+  </div>
+  </section>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <div class="toggles">
+    <mat-slide-toggle [checked]="showDimensions()" (change)="showDimensions.set($event.checked)">Mostrar las dimensiones</mat-slide-toggle>
+    <mat-slide-toggle [checked]="hideHeatmap()" (change)="hideHeatmap.set($event.checked)">Ocultar mapa de calor</mat-slide-toggle>
+  </div>
+
+  <app-candidate-table
+    [rows]="candidates()"
+    [columns]="columns()"
+    [dimensions]="dimensions()"
+    editableCost
+    [heat]="hideHeatmap() ? null : rowHeat"
+    (rowSelect)="selected.set($event)"
+    (editCost)="editCost($event)"
+  />
+
+  @if (!hideHeatmap()) {
+  <section class="legend" aria-label="Leyenda del mapa de calor">
+    <h2>Mapa de calor</h2>
+    <table class="matrix">
+      <caption>Percentil de nota (columnas) y de coste (filas) respecto a todo el dominio</caption>
+      <thead>
+        <tr>
+          <th scope="col">Coste \ Nota</th>
+          @for (l of legendScores; track l) {
+            <th scope="col">{{ l }}</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of legend; track row.label) {
+          <tr>
+            <th scope="row">{{ row.label }}</th>
+            @for (color of row.cells; track $index) {
+              <td [style.background-color]="color"></td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+    <p>
+      Cada fila se colorea según la coordenada que ocupa en la matriz: el percentil de su nota y el de su coste entre todos los candidatos
+      del dominio (no solo los de las filas visibles). Rojo = mejor (nota alta y coste bajo), verde = peor. P0–20 de coste es el 20 % más barato.
+      Los percentiles cambian con los pesos, el escenario y los requisitos eliminatorios, no con los filtros. Las filas sin coste no tienen color.
+    </p>
+  </section>
+  }
+}

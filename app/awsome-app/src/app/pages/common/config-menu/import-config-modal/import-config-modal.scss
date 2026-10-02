@@ -1,0 +1,10 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: .5rem;
+  background: var(--mat-sys-surface-container);
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+}
+.actions { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0; }
+.hint { color: var(--mat-sys-on-surface-variant); font-size: .875rem; }

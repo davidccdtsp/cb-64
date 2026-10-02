@@ -1,0 +1,93 @@
+<div class="top">
+  <h1>Resumen ejecutivo</h1>
+  <app-config-menu />
+</div>
+
+<p class="intro">
+  Define los perfiles de necesidad y los parámetros del documento y expórtalo en Markdown: tablas con los mejores candidatos de cada perfil y de
+  cada categoría, calculadas con la configuración actual de la aplicación.
+</p>
+
+<mat-accordion>
+  <mat-expansion-panel expanded>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Parámetros del documento</mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="params">
+      <app-scenario-select />
+      <mat-form-field>
+        <mat-label>Candidatos por perfil y categoría</mat-label>
+        <input matInput type="number" min="1" max="20" step="1" [value]="summary.topN()" (change)="setTopN($any($event.target).value)" />
+      </mat-form-field>
+      <mat-slide-toggle [checked]="summary.includeCategories()" (change)="summary.includeCategories.set($event.checked)">Incluir el líder por categoría</mat-slide-toggle>
+    </div>
+    <p class="hint">
+      Los pesos y la obligatoriedad de los criterios, el tratamiento de los criterios sin puntuación y los pesos de dimensión que no cambie un perfil son
+      los de la aplicación (se editan en Catálogo, Listado o Comparador). Los cambios de esta página se pierden al recargar.
+    </p>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel expanded>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Perfiles de necesidad</mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="area">
+      <mat-form-field>
+        <mat-label>Área</mat-label>
+        <mat-select [value]="area()" (selectionChange)="area.set($event.value)">
+          <mat-option value="datos">Datos</mat-option>
+          <mat-option value="martech">Martech</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-stroked-button type="button" (click)="summary.add(area())">Añadir perfil</button>
+    </div>
+
+    <mat-accordion multi>
+    @for (p of profiles(); track p.id) {
+      <mat-expansion-panel class="profile">
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{ p.name }}</mat-panel-title>
+          <mat-panel-description>{{ describe(p) }}</mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="profile-head">
+          <mat-form-field subscriptSizing="dynamic">
+            <mat-label>Nombre del perfil</mat-label>
+            <input matInput [value]="p.name" (change)="summary.update(area(), p.id, { name: $any($event.target).value })" />
+          </mat-form-field>
+          <button mat-icon-button type="button" aria-label="Eliminar el perfil" title="Eliminar el perfil" (click)="summary.remove(area(), p.id)">
+            <mat-icon fontSet="material-symbols-outlined">delete</mat-icon>
+          </button>
+        </div>
+        <mat-form-field class="wide" subscriptSizing="dynamic">
+          <mat-label>Qué prioriza (vacío: se genera a partir de los pesos)</mat-label>
+          <input matInput [value]="p.description" [placeholder]="describe(p)" (change)="summary.update(area(), p.id, { description: $any($event.target).value })" />
+        </mat-form-field>
+        <mat-form-field class="wide" subscriptSizing="dynamic">
+          <mat-label>Despliegue obligatorio (al menos uno)</mat-label>
+          <mat-select multiple [value]="p.requiredDeployments" (selectionChange)="summary.update(area(), p.id, { requiredDeployments: $event.value })">
+            @for (d of deployments(); track d) {
+              <mat-option [value]="d">{{ d }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <h3>Peso de las dimensiones <span class="hint">(vacío: el de la configuración)</span></h3>
+        <div class="weights">
+          @for (d of dimensions(); track d.id) {
+            <mat-form-field subscriptSizing="dynamic">
+              <mat-label [title]="d.name">{{ d.id }}</mat-label>
+              <input matInput type="number" min="0" step="1" [value]="p.dimensionWeights[d.id] ?? ''" [placeholder]="'' + d.weight" (change)="setWeight(p, d.id, $any($event.target).value)" />
+            </mat-form-field>
+          }
+        </div>
+      </mat-expansion-panel>
+    } @empty {
+      <p>No hay perfiles en esta área: añade uno para incluirlo en el documento.</p>
+    }
+    </mat-accordion>
+  </mat-expansion-panel>
+</mat-accordion>
+
+<div class="export">
+  <button mat-flat-button type="button" (click)="download()">Exportar Markdown</button>
+  <button mat-stroked-button type="button" (click)="copy()">Copiar al portapapeles</button>
+</div>

@@ -1,0 +1,32 @@
+<div class="actions">
+  <button mat-stroked-button (click)="editDimensionWeights()">Pesos de dimensión</button>
+  <button mat-flat-button (click)="editWeights()">Modificar pesos</button>
+</div>
+
+<div class="mandatory">
+  <span class="label" id="mandatory-label">Criterios obligatorios</span>
+  @if (mandatory().length) {
+    <mat-chip-set aria-labelledby="mandatory-label">
+      @for (a of mandatory(); track a.id) {
+        <mat-chip [title]="a.question" (removed)="remove(a.id)">
+          {{ a.name }}
+          <button matChipRemove [attr.aria-label]="'Quitar «' + a.name + '» de los obligatorios'">
+            <mat-icon fontSet="material-symbols-outlined">cancel</mat-icon>
+          </button>
+        </mat-chip>
+      }
+    </mat-chip-set>
+  } @else {
+    <span class="none">Ninguno</span>
+  }
+</div>
+
+@if (costNotice() && costOptional()) {
+  <p class="callout" role="note">
+    <mat-icon fontSet="material-symbols-outlined" aria-hidden="true">info</mat-icon>
+    <span>
+      El criterio de coste (<strong>{{ cost()!.id }}</strong>, {{ cost()!.name }}) no está marcado como obligatorio: se mostrarán también
+      los candidatos sin precio, que quedan sin nota de coste.
+    </span>
+  </p>
+}

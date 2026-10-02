@@ -1,0 +1,23 @@
+.row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.name { flex: 1; }
+mat-checkbox { min-width: 10rem; }
+mat-slider { width: 12rem; }
+.value { min-width: 1.5rem; text-align: right; font-weight: 600; }
+
+// 4 columnas como máximo; cada columna mide al menos 16rem, así que baja a 3, 2 o 1 al estrechar la pantalla
+.multi {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(max(16rem, (100% - 3rem) / 4), 1fr));
+  gap: 1rem 1rem;
+}
+.multi { gap: .25rem 1rem; }
+.multi .row { flex-wrap: wrap; gap: 0 .5rem; }
+.multi .name { flex-basis: 100%; font-size: .8125rem; line-height: 1.2; color: #4b5563; }
+.multi mat-checkbox {
+  min-width: 0;
+  --mat-checkbox-label-text-size: .75rem;
+  --mat-checkbox-state-layer-size: 28px;
+}
+// altura nativa del slider (48px, con la pista y el círculo centrados); el margen negativo compensa para que la fila siga compacta
+.multi mat-slider { flex: 1; min-width: 6rem; height: 48px; margin: -8px 0; }
+.missing { display: block; max-width: 22rem; margin-bottom: 1rem; }
