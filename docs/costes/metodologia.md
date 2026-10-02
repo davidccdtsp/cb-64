@@ -84,7 +84,7 @@ Para cada candidato y escenario (S/M/L), en este orden de prioridad:
 2. **Modelo de precios de la ficha** (§8.3): la app calcula el coste con los parámetros del escenario y los precios unitarios de la ficha, y el usuario puede cambiar cualquiera de ellos. Solo lo tienen unos pocos candidatos (§8.2).
 3. **Total de la tabla de la ficha** (`## 2.`): lo extrae `generar_costes.py` (campo `totales` del JSON) como `{min, max, moneda}`, o `N/D` si la celda no es una cifra. Cubre los 26 candidatos con alguna cifra (13 de datos y 13 de martech).
 
-La app **muestra siempre los costes en euros**. Internamente compara en USD (las fichas en EUR se pasan a USD con un tipo de cambio editable, por defecto 1 EUR = 1,10 USD, supuesto del consultor) y el pipe `eur` convierte a euros al pintar cualquier importe. La calculadora de una ficha enseña sus precios unitarios en la moneda de la fuente y los resultados en euros.
+La app **muestra siempre los costes en euros**. Internamente compara en USD (las fichas en EUR se pasan a USD con un tipo de cambio configurable en `config.json` de la app (`usdPerEur`), por defecto 1 EUR = 1,10 USD, supuesto del consultor) y el pipe `eur` convierte a euros al pintar cualquier importe. La calculadora de una ficha enseña sus precios unitarios en la moneda de la fuente y los resultados en euros.
 
 ### 8.2 Por qué solo unos pocos candidatos tienen modelo
 

@@ -53,7 +53,8 @@ La app no tiene backend: carga al arrancar JSON estáticos de `public/` (`rubric
 ```json
 {
   "title": "Awsome App",
-  "catalogMaxRows": 100
+  "catalogMaxRows": 100,
+  "usdPerEur": 1.1
 }
 ```
 
@@ -61,6 +62,7 @@ La app no tiene backend: carga al arrancar JSON estáticos de `public/` (`rubric
 |---|---|---|
 | `title` | `"Awsome App"` | Título de la aplicación: cabecera, menú, pie y pestaña del navegador. Debe ser un texto no vacío. |
 | `catalogMaxRows` | `100` | Máximo de candidatos que muestra la página Catálogo (los de mejor nota; los candidatos sin puntuación nunca se muestran). Debe ser un entero mayor que 0. |
+| `usdPerEur` | `1.1` | Tipo de cambio: dólares por 1 euro. La app compara en USD y el pipe `eur` convierte con este valor todos los importes que muestra (y los que se escriben a mano en euros). Debe ser un número mayor que 0. Es un supuesto del consultor, no una cotización: ajústalo a la fecha del estudio. |
 
 Si el fichero no existe, no es JSON válido, o una clave falta o no cumple lo indicado, esa clave usa su valor por defecto y la aplicación arranca igual. Un cambio en el fichero se aplica al recargar la página.
 

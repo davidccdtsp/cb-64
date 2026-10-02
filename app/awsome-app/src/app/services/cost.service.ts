@@ -1,6 +1,7 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { CostParam, ParamRange, ParamValue, Scenario, ScenarioParam } from '../model/candidatos-model';
 import { Area, areaOf } from '../model/domain-model';
+import { AppConfigService } from './app-config.service';
 import { DataService } from './data.service';
 import { evaluate } from './expression';
 
@@ -52,8 +53,8 @@ export class CostService {
   private readonly data = inject(DataService);
 
   readonly scenario = signal<Scenario>('M');
-  /** Supuesto editable para comparar fichas en EUR y en USD (docs/costes/metodologia.md §7.5). */
-  readonly usdPerEur = signal(1.1);
+  /** Tipo de cambio para comparar fichas en EUR y en USD (docs/costes/metodologia.md §8.1); lo fija `config.json`. */
+  readonly usdPerEur = inject(AppConfigService).usdPerEur;
   /** Coste total (USD/mes) fijado a mano, por candidato y escenario. */
   private readonly manual = signal<Record<string, number>>({});
   /** Valores de parámetros cambiados por el usuario: de escenario (`s|área|id|escenario`) o de modelo (`m|candidato|id|escenario`). */
