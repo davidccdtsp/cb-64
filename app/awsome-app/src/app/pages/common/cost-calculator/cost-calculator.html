@@ -8,39 +8,26 @@
   <h5>Supuestos del escenario (comunes a los candidatos de su área)</h5>
   <div class="params">
     @for (p of scenarioParams(); track p.param.id) {
-      <mat-form-field subscriptSizing="dynamic">
-        <mat-label>{{ p.param.name }}{{ p.param.unit ? ' (' + p.param.unit + ')' : '' }}</mat-label>
-        <input matInput type="number" min="0" step="any" [value]="p.min" (change)="setScenarioParam(p.param.id, $any($event.target).value)" />
-        @if (p.overridden) {
-          <button matIconSuffix mat-icon-button type="button" aria-label="Restablecer al valor de la ficha" (click)="setScenarioParam(p.param.id, '')">
-            <mat-icon fontSet="material-symbols-outlined">undo</mat-icon>
-          </button>
-        }
-      </mat-form-field>
+      <app-cost-input
+        [label]="p.param.name + (p.param.unit ? ' (' + p.param.unit + ')' : '')"
+        [value]="p.min"
+        [resettable]="p.overridden"
+        (commit)="setScenarioParam(p.param.id, $event)"
+      />
     }
   </div>
 
   <h5>Precios y supuestos del candidato ({{ calc.currency }})</h5>
   <div class="params">
     @for (p of modelParams(); track p.param.id) {
-      <mat-form-field subscriptSizing="dynamic">
-        <mat-label>{{ p.param.name }}{{ p.param.unit ? ' (' + p.param.unit + ')' : '' }}</mat-label>
-        <input
-          matInput
-          type="number"
-          min="0"
-          step="any"
-          [value]="p.overridden || p.min === p.max ? p.min : ''"
-          [placeholder]="p.min + ' – ' + p.max"
-          [title]="p.param.source ? 'Fuente: ' + p.param.source : 'Supuesto del consultor'"
-          (change)="setModelParam(p.param.id, $any($event.target).value)"
-        />
-        @if (p.overridden) {
-          <button matIconSuffix mat-icon-button type="button" aria-label="Restablecer al valor de la ficha" (click)="setModelParam(p.param.id, '')">
-            <mat-icon fontSet="material-symbols-outlined">undo</mat-icon>
-          </button>
-        }
-      </mat-form-field>
+      <app-cost-input
+        [label]="p.param.name + (p.param.unit ? ' (' + p.param.unit + ')' : '')"
+        [value]="p.overridden || p.min === p.max ? p.min : null"
+        [placeholder]="p.min + ' – ' + p.max"
+        [hint]="p.param.source ? 'Fuente: ' + p.param.source : 'Supuesto del consultor'"
+        [resettable]="p.overridden"
+        (commit)="setModelParam(p.param.id, $event)"
+      />
     }
   </div>
 

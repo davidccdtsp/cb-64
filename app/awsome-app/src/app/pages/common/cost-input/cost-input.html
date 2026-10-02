@@ -1,0 +1,22 @@
+<mat-form-field subscriptSizing="dynamic">
+  <mat-label>{{ label() }}</mat-label>
+  <input
+    #field
+    matInput
+    type="number"
+    min="0"
+    step="any"
+    inputmode="decimal"
+    [formControl]="control"
+    [placeholder]="placeholder()"
+    [title]="hint()"
+    (keydown)="block($event)"
+    (change)="apply(field)"
+  />
+  @if (resettable()) {
+    <button matIconSuffix mat-icon-button type="button" aria-label="Restablecer al valor de la ficha" (click)="reset()">
+      <mat-icon fontSet="material-symbols-outlined">undo</mat-icon>
+    </button>
+  }
+  <mat-error>Debe ser un número mayor o igual que 0.</mat-error>
+</mat-form-field>

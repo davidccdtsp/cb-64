@@ -1,24 +1,13 @@
 <div class="totals">
   @for (s of scenarios; track s) {
     @let e = cost.monthly(candidateId(), s);
-    <mat-form-field subscriptSizing="dynamic">
-      <mat-label>Escenario {{ s }} · EUR/mes</mat-label>
-      <input
-        matInput
-        type="number"
-        min="0"
-        step="any"
-        [value]="e?.manual ? eur(e!.mid) : ''"
-        [placeholder]="e ? (e.mid | eur) : 'N/D'"
-        (change)="set(s, $any($event.target).value)"
-      />
-      @if (e?.manual) {
-        <button matIconSuffix mat-icon-button type="button" aria-label="Restablecer al valor de la ficha"
-          (click)="cost.setManual(candidateId(), s, undefined)">
-          <mat-icon fontSet="material-symbols-outlined">undo</mat-icon>
-        </button>
-      }
-    </mat-form-field>
+    <app-cost-input
+      [label]="'Escenario ' + s + ' · EUR/mes'"
+      [value]="e?.manual ? eur(e!.mid) : null"
+      [placeholder]="e ? (e.mid | eur) : 'N/D'"
+      [resettable]="!!e?.manual"
+      (commit)="set(s, $event)"
+    />
   }
 </div>
 <p class="hint">

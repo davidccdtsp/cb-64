@@ -87,18 +87,20 @@ Esfuerzo estimado: **S** (< 1 h), **M** (media jornada), **L** (más de una jorn
 - **Cambio propuesto:** tests de componente con `TestBed` y datos reales mínimos para `catalogo` (filtros, perfiles, restablecer), `import-config-modal` (con un fichero válido, uno inválido y el CSV de A2) y `cost-total-editor` (conversión EUR↔USD). Un par de pruebas de accesibilidad con `axe` en las páginas principales.
 - **Esfuerzo:** M.
 
-### M8. Los campos de coste se desincronizan si el valor escrito no es válido
+### M8. Los campos de coste se desincronizan si el valor escrito no es válido — ✅ resuelto
 
 - **Dónde:** [cost-calculator.html](../app/awsome-app/src/app/pages/common/cost-calculator/cost-calculator.html), [cost-total-editor.html](../app/awsome-app/src/app/pages/common/cost-total-editor/cost-total-editor.html) (`[value]="..." (change)="..."`).
 - **Problema:** el valor es un enlace de una sola dirección. Si el usuario escribe un número negativo o texto, el servicio lo ignora, pero el campo conserva lo escrito y muestra un valor que no es el que se está usando. Lo mismo pasa tras «restablecer» si el valor mostrado coincide con el anterior.
 - **Cambio propuesto:** usar `FormControl` por parámetro (como en el formulario de pesos) con validadores `min(0)` y mensaje de error, o devolver el valor aplicado al campo después del `change`.
+- **Corrección (vigente, reverificada en el navegador):** nuevo componente `app-cost-input` con un `FormControl` y `Validators.min(0)`; los tres editores de coste (supuestos del escenario, precios del candidato y totales a mano) lo usan. Un valor no válido muestra «Debe ser un número mayor o igual que 0» y no se aplica; tras confirmar, el campo vuelve a mostrar el valor en uso (también si coincide con el anterior o tras restablecer). Se bloquean las teclas `-`, `+`, `e` y `E`. **No se limitó a enteros:** 39 de los 142 parámetros de los modelos (p. ej. `fte` 0,3 o `precio_tib` 6,25) y un supuesto de escenario (0,05 TB/día) llevan decimales, y los totales se escriben en euros con céntimos.
 - **Esfuerzo:** S-M.
 
-### M9. El formulario de pesos del comparador puede recrearse mientras se edita
+### M9. El formulario de pesos del comparador puede recrearse mientras se edita — ✅ resuelto
 
 - **Dónde:** [comparador.ts:81](../app/awsome-app/src/app/pages/comparador/comparador.ts#L81) (`weightsForm = computed(() => this.scoring.weightsForm(...))`) y [scoring.service.ts:291](../app/awsome-app/src/app/services/scoring.service.ts#L291) (`this._missingScore()` leído dentro de `weightsForm`).
 - **Problema:** `weightsForm()` lee la señal `_missingScore` dentro del `computed`. Cuando el usuario cambia «Criterio sin puntuación», `applyForm` actualiza esa señal, el `computed` se invalida y se construye un `FormGroup` nuevo mientras el usuario sigue interactuando con el anterior (se pierde el foco y el estado `dirty`). No lo he reproducido en el navegador; sale del análisis del código.
 - **Cambio propuesto:** leer el valor inicial con `untracked(() => this._missingScore())` dentro de `weightsForm`, de modo que el `computed` solo dependa de `formsEpoch` y del dominio.
+- **Corrección:** `weightsForm` lee `formsEpoch` y construye todo el formulario dentro de `untracked`. Era algo peor de lo descrito: tras M3 los atributos son reactivos, así que cada cambio de peso o de obligatoriedad también recreaba el formulario. Test `scoring.weights-form.spec.ts` (falla sin la corrección).
 - **Esfuerzo:** S.
 
 ---
