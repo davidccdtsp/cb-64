@@ -34,7 +34,7 @@ export class ListadoPage {
   protected readonly area = signal<Area>('datos');
   protected readonly category = signal('');
   protected readonly selected = signal<Candidate | null>(null);
-  protected readonly columns = ['name', 'category', 'type', 'license', 'lastRevisionDater', 'priceModel', 'cost', 'totalScore'];
+  protected readonly columns = ['name', 'category', 'type', 'license', 'lastRevisionDate', 'priceModel', 'cost', 'totalScore'];
   protected readonly sort = signal<Sort>({ active: '', direction: '' });
   protected readonly categories = computed(() => this.data.categories(this.area()));
   private readonly ranked = computed(() =>

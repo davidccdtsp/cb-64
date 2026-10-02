@@ -17,8 +17,8 @@ export interface RowHeat {
 
 /**
  * Tabla de candidatos del Catálogo y del Listado. Las columnas se eligen por nombre (`name`, `category`, `type`, `license`,
- * `lastRevisionDater`, `priceModel`, `cost`, `totalScore`) o por id de dimensión (las de `dimensions`). Opcionalmente
- * ordena, deja editar el coste y colorea las filas. Pinchar una fila emite `select`.
+ * `lastRevisionDate`, `priceModel`, `cost`, `totalScore`) o por id de dimensión (las de `dimensions`). Opcionalmente
+ * ordena, deja editar el coste y colorea las filas. Pinchar una fila emite `rowSelect`.
  */
 @Component({
   selector: 'app-candidate-table',
@@ -40,7 +40,7 @@ export class CandidateTable {
   /** Color de cada fila; sin función, sin color. */
   readonly heat = input<((c: Candidate) => RowHeat) | null>(null);
 
-  readonly select = output<Candidate>();
+  readonly rowSelect = output<Candidate>();
   readonly sortChange = output<Sort>();
   readonly editCost = output<string>();
 

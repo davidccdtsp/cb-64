@@ -1,13 +1,13 @@
 <header>
-  <button class="menu-button" type="button" aria-label="Menú" aria-controls="menu" [attr.aria-expanded]="menuOpen()" (click)="menuOpen.set(!menuOpen())">
+  <button #menuButton class="menu-button" type="button" aria-label="Menú" aria-controls="menu" [attr.aria-expanded]="menuOpen()" (click)="menuOpen() ? closeMenu() : openMenu()">
     <span class="material-symbols-outlined" aria-hidden="true">menu</span>
   </button>
   {{ title() }}
 </header>
 @if (menuOpen()) {
-  <div class="backdrop" (click)="menuOpen.set(false)"></div>
+  <button class="backdrop" type="button" tabindex="-1" aria-label="Cerrar el menú" (click)="closeMenu()"></button>
 }
-<aside id="menu" [class.open]="menuOpen()">
+<aside #panel id="menu" [class.open]="menuOpen()">
   <h2>{{ title() }}</h2>
   <nav>
     @for (item of menu; track item.path) {
@@ -15,11 +15,11 @@
     }
   </nav>
 </aside>
-<main>
+<main [attr.inert]="menuOpen() ? '' : null">
   @if (loaded()) {
     <router-outlet />
   } @else {
-    <mat-spinner />
+    <div role="status" aria-live="polite"><mat-spinner aria-label="Cargando datos" /></div>
   }
 </main>
-<footer>© 2026 {{ title() }}</footer>
+<footer [attr.inert]="menuOpen() ? '' : null">© {{ year }} {{ title() }}</footer>

@@ -11,14 +11,20 @@ describe('licenseFamily', () => {
     expect(licenseFamily('PostgreSQL License (núcleo)')).toBe('Open source');
     expect(licenseFamily('Elastic-2.0 (source-available); enterprise propietario')).toBe('Source-available');
     expect(licenseFamily('propietaria')).toBe('Propietaria');
+    expect(licenseFamily('LGPL-2.1')).toBe('Open source');
+    expect(licenseFamily('BSL-1.1')).toBe('Source-available');
+    expect(licenseFamily('Propietaria (no se permite admitir copias)')).toBe('Propietaria'); // «mit» dentro de otra palabra no cuenta
   });
 });
 
 const base = { reliability: 'alta', urls: [] };
 const candidate = (id: string, scores: Candidate['scores']): Candidate => ({
   id, name: id, domain: Domain.data, category: 'x', type: '', license: '', deployment: [],
-  lastRevisionDater: new Date(), scores,
+  lastRevisionDate: new Date(), scores,
 });
+
+/** Nota de un candidato dentro de su dominio (el ranking que ve la aplicación). */
+const scoreOf = (svc: ScoringService, id: string) => svc.ranking({ domain: Domain.data }).find((c) => c.id === id)?.totalScore;
 
 describe('ScoringService', () => {
   const updateAttributes = vi.fn();
@@ -89,10 +95,10 @@ describe('ScoringService', () => {
 
   it('aplica la fórmula y trata como nula la puntuación sin criterios', () => {
     const svc = TestBed.inject(ScoringService);
-    expect(svc.score('a')).toBeCloseTo(86.67, 1);
-    expect(svc.score('vacio')).toBeUndefined();
-    expect(svc.score('falta')).toBeUndefined();
-    expect(svc.score('no')).toBeUndefined();
+    expect(scoreOf(svc, 'a')).toBeCloseTo(86.67, 1);
+    expect(scoreOf(svc, 'vacio')).toBeUndefined();
+    expect(scoreOf(svc, 'falta')).toBeUndefined();
+    expect(scoreOf(svc, 'no')).toBeUndefined();
     expect(svc.ranking()[0].id).toBe('a');
   });
 
@@ -126,12 +132,12 @@ describe('ScoringService', () => {
     const svc = TestBed.inject(ScoringService);
     // 'a' tiene p=4 (peso 2) y b=Sí (peso 1); 'n' (peso 2, N/D) y el coste 'c' (peso 3, sin cifra) valen 2
     svc.setMissingScore(2);
-    expect(svc.score('a')).toBeCloseTo((100 * (2 * 4 + 1 * 5 + 2 * 2 + 3 * 2)) / (5 * 8), 1);
+    expect(scoreOf(svc, 'a')).toBeCloseTo((100 * (2 * 4 + 1 * 5 + 2 * 2 + 3 * 2)) / (5 * 8), 1);
     // un N/A no aplica y se queda fuera
     const n = candidates[0].scores.find((s) => s.id === 'n') as TextScore;
     n.text = 'N/A';
     try {
-      expect(svc.score('a')).toBeCloseTo((100 * (2 * 4 + 1 * 5 + 3 * 2)) / (5 * 6), 1);
+      expect(scoreOf(svc, 'a')).toBeCloseTo((100 * (2 * 4 + 1 * 5 + 3 * 2)) / (5 * 6), 1);
     } finally {
       n.text = 'N/D'; // los candidatos se comparten entre pruebas
     }
@@ -141,9 +147,9 @@ describe('ScoringService', () => {
     const svc = TestBed.inject(ScoringService);
     svc.setMissingScore('mean');
     // 'a': p=4 (2), b=Sí (1), n sin nota → media 4 (2); el coste 'c' no tiene media (nadie tiene coste) y se excluye
-    expect(svc.score('a')).toBeCloseTo((100 * (2 * 4 + 1 * 5 + 2 * 4)) / (5 * 5), 1);
+    expect(scoreOf(svc, 'a')).toBeCloseTo((100 * (2 * 4 + 1 * 5 + 2 * 4)) / (5 * 5), 1);
     // quienes ya tienen nota no cambian: m1 = (8 + 5 + 6) / 25
-    expect(svc.score('m1')).toBeCloseTo((100 * (2 * 4 + 1 * 5 + 2 * 3)) / (5 * 5), 1);
+    expect(scoreOf(svc, 'm1')).toBeCloseTo((100 * (2 * 4 + 1 * 5 + 2 * 3)) / (5 * 5), 1);
   });
 
   it('applyForm aplica el tratamiento solo si el usuario lo ha tocado', () => {
@@ -175,15 +181,15 @@ describe('ScoringService', () => {
     dims = [{ id: 'd1', weight: 3 }, { id: 'd2', weight: 1 }];
     // m1: nota_d1 = 100 × (2×4 + 1×5) / 15 = 86,67; nota_d2 = 100 × (2×3) / 10 = 60 → (3 × 86,67 + 1 × 60) / 4 = 80
     // (la fórmula plana daría 76: aquí manda el peso de dimensión, no la suma de los pesos de sus criterios)
-    expect(svc.score('m1')).toBeCloseTo(80, 1);
+    expect(scoreOf(svc, 'm1')).toBeCloseTo(80, 1);
     // a: n es N/D, d2 no tiene criterios aplicables y no entra en el denominador → solo cuenta d1
-    expect(svc.score('a')).toBeCloseTo(86.67, 1);
+    expect(scoreOf(svc, 'a')).toBeCloseTo(86.67, 1);
     // con peso 0, d2 tampoco cuenta
     dims = [{ id: 'd1', weight: 3 }, { id: 'd2', weight: 0 }];
-    expect(svc.score('m1')).toBeCloseTo(86.67, 1);
+    expect(scoreOf(svc, 'm1')).toBeCloseTo(86.67, 1);
     // si el peso de dimensión sube, la dimensión pesa más aunque tenga los mismos criterios
     dims = [{ id: 'd1', weight: 1 }, { id: 'd2', weight: 3 }];
-    expect(svc.score('m1')).toBeCloseTo((86.67 + 3 * 60) / 4, 1);
+    expect(scoreOf(svc, 'm1')).toBeCloseTo((86.67 + 3 * 60) / 4, 1);
   });
 
   it('el formulario de pesos de dimensión parte de los pesos actuales y los guarda vía DataService', () => {
@@ -218,11 +224,11 @@ describe('ScoringService', () => {
     try {
       const svc = TestBed.inject(ScoringService);
       // a: coste mínimo → nota 5. (2×4 + 1×5 + 3×5) / (5 × 6) = 93,33
-      expect(svc.score('a')).toBeCloseTo(93.33, 1);
+      expect(scoreOf(svc, 'a')).toBeCloseTo(93.33, 1);
       // c2: 5 × 100/200 = 2,5. (2×4 + 1×5 + 3×2,5) / 30 = 68,33
-      expect(svc.score('c2')).toBeCloseTo(68.33, 1);
+      expect(scoreOf(svc, 'c2')).toBeCloseTo(68.33, 1);
       // sin coste, el criterio de coste se excluye y el resto puntúa como siempre
-      expect(svc.score('no')).toBeUndefined();
+      expect(scoreOf(svc, 'no')).toBeUndefined();
     } finally {
       delete costTable['a'];
       delete costTable['c2'];
@@ -248,7 +254,7 @@ describe('ScoringService', () => {
     const by = (list: { id: string; totalScore?: number }[], id: string) => list.find((c) => c.id === id)!;
     // m1: nota_d1 = 86,67 y nota_d2 = 60; con d2 pesando 3 → (86,67 + 3 × 60) / 4
     expect(by(svc.ranking({}, { dimensionWeights: { d2: 3, d1: 1 } }), 'm1').totalScore).toBeCloseTo((86.67 + 3 * 60) / 4, 1);
-    expect(svc.score('m1')).toBeCloseTo(80, 1); // la configuración no cambia
+    expect(scoreOf(svc, 'm1')).toBeCloseTo(80, 1); // la configuración no cambia
     // un despliegue obligatorio solo para este cálculo
     expect(by(svc.ranking({}, { requiredDeployments: ['self-hosted'] }), 'a').totalScore).toBeUndefined();
     expect(svc.requiredDeployments()).toEqual([]);

@@ -39,7 +39,7 @@ describe('DataService con JSON degradados', () => {
     http.expectOne('escenarios.json').flush({ datos: { parametros: [] } }); // falta martech
     const c = data.candidate('a')!;
     expect(c.deployment).toEqual([]);
-    expect(Number.isNaN(c.lastRevisionDater.getTime())).toBe(false);
+    expect(Number.isNaN(c.lastRevisionDate.getTime())).toBe(false);
     expect(data.attribute('D-01')).toMatchObject({ mandatory: false, weight: undefined });
     expect(data.costs('a')?.tables).toEqual([]);
     expect(data.dimensions('martech')).toEqual([]);

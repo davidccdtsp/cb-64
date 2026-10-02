@@ -32,6 +32,8 @@ npm install
 npx ng serve            # http://localhost:4200
 npx ng build            # compilación de producción en dist/
 npx ng test --watch=false
+npm run lint            # ESLint (angular-eslint, con reglas de accesibilidad de plantillas)
+npm run format:check    # Prettier; `npm run format` reformatea src/
 ```
 
 Tests con Vitest (`ng test`). Angular 22 con componentes standalone, señales y Angular Material; los gráficos usan Chart.js y el estado del arte se renderiza con `marked`.

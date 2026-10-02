@@ -62,7 +62,7 @@ export class CatalogoPage {
   /** Oculta el mapa de calor (color de las filas por nota y coste, y su leyenda); por defecto se ve. */
   protected readonly hideHeatmap = signal(false);
   protected readonly columns = computed(() => [
-    'name', 'category', 'type', 'license', 'lastRevisionDater', 'priceModel', 'cost', 'totalScore',
+    'name', 'category', 'type', 'license', 'lastRevisionDate', 'priceModel', 'cost', 'totalScore',
     ...(this.showDimensions() ? this.dimensions().map((d) => d.id) : []),
   ]);
   protected readonly candidates = computed(() =>

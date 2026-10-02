@@ -15,9 +15,9 @@
     <th mat-header-cell mat-sort-header [disabled]="!sortable()" *matHeaderCellDef>Licencia</th>
     <td mat-cell *matCellDef="let c">{{ c.license }}</td>
   </ng-container>
-  <ng-container matColumnDef="lastRevisionDater">
+  <ng-container matColumnDef="lastRevisionDate">
     <th mat-header-cell mat-sort-header [disabled]="!sortable()" *matHeaderCellDef>Revisión</th>
-    <td mat-cell *matCellDef="let c">{{ c.lastRevisionDater | date: 'yyyy-MM-dd' }}</td>
+    <td mat-cell *matCellDef="let c">{{ c.lastRevisionDate | date: 'yyyy-MM-dd' }}</td>
   </ng-container>
   <ng-container matColumnDef="priceModel">
     <th mat-header-cell *matHeaderCellDef>Modelo de precios</th>
@@ -54,5 +54,5 @@
   }
 
   <tr mat-header-row *matHeaderRowDef="columns()"></tr>
-  <tr mat-row *matRowDef="let row; columns: columns()" (click)="select.emit(row)" [style.background-color]="heatOf(row)?.color ?? null" [title]="heatOf(row)?.title ?? null"></tr>
+  <tr mat-row *matRowDef="let row; columns: columns()" (click)="rowSelect.emit(row)" [style.background-color]="heatOf(row)?.color ?? null" [title]="heatOf(row)?.title ?? null"></tr>
 </table></div>

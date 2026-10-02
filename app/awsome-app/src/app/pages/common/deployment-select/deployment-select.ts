@@ -1,10 +1,14 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { Area, domainOf } from '../../../model/domain-model';
 import { DataService } from '../../../services/data.service';
 import { ScoringService } from '../../../services/scoring.service';
 
-/** Requisito eliminatorio de despliegue, compartido por todas las páginas (ScoringService.requiredDeployments). */
+/**
+ * Requisito eliminatorio de despliegue, compartido por todas las páginas (ScoringService.requiredDeployments). Con `area`
+ * solo ofrece los despliegues de los candidatos de esa área.
+ */
 @Component({
   selector: 'app-deployment-select',
   imports: [MatFormFieldModule, MatSelectModule],
@@ -22,5 +26,9 @@ import { ScoringService } from '../../../services/scoring.service';
 export class DeploymentSelect {
   protected readonly scoring = inject(ScoringService);
   private readonly data = inject(DataService);
-  protected readonly deployments = computed(() => [...new Set(this.data.candidates().flatMap((c) => c.deployment))].sort());
+  readonly area = input<Area>();
+  protected readonly deployments = computed(() => {
+    const area = this.area();
+    return [...new Set(this.data.candidates(area ? { domain: domainOf(area) } : {}).flatMap((c) => c.deployment))].sort();
+  });
 }

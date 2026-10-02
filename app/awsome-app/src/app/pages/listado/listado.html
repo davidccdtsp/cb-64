@@ -40,14 +40,14 @@
       <section>
         <h2>Requisitos eliminatorios</h2>
         <div class="filters">
-          <app-deployment-select />
+          <app-deployment-select [area]="area()" />
           <app-scenario-select />
         </div>
       </section>
     </mat-expansion-panel>
   </mat-accordion>
 
-  <app-candidate-table [rows]="page()" [columns]="columns" sortable (sortChange)="sort.set($event)" (select)="selected.set($event)" />
+  <app-candidate-table [rows]="page()" [columns]="columns" sortable (sortChange)="sort.set($event)" (rowSelect)="selected.set($event)" />
   <mat-paginator
     [length]="candidates().length"
     [pageSize]="pageSize()"

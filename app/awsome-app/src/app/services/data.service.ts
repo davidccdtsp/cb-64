@@ -217,7 +217,7 @@ export class DataService {
       type: c.tipo,
       license: c.licencia,
       deployment: Array.isArray(c.despliegue) ? c.despliegue : [],
-      lastRevisionDater: this.validDate(c.fecha_revision),
+      lastRevisionDate: this.validDate(c.fecha_revision),
       // una puntuación sin nota, valor ni texto es nula: no se incluye
       scores: (c.puntuaciones ?? []).flatMap((p): AnyScore[] => {
         const base = { id: p.id, reliability: p.confianza, urls: (p.fuentes ?? []).map((f) => f.url) };

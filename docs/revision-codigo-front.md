@@ -107,39 +107,41 @@ Esfuerzo estimado: **S** (< 1 h), **M** (media jornada), **L** (más de una jorn
 
 ## 4. Prioridad baja
 
+Reverificadas el 2026-10-02; todas seguían vigentes salvo B18, que no es un fallo. Estado:
+
 ### Accesibilidad
 
-| Nº | Dónde | Problema | Cambio |
+| Nº | Dónde | Problema | Estado |
 |---|---|---|---|
-| B1 | [breadcrumbs.ts:12](../app/awsome-app/src/app/pages/common/breadcrumbs/breadcrumbs.ts#L12) | `<a href="#">` con `preventDefault`: es un botón disfrazado de enlace | Usar `<button type="button">` con estilo de enlace |
-| B2 | [layout.html:22](../app/awsome-app/src/app/layout/layout.html#L22) | `<mat-spinner />` sin texto accesible | `aria-label="Cargando datos"` y `role="status"` en el contenedor |
-| B3 | [weights-form.html](../app/awsome-app/src/app/pages/common/weights-form/weights-form.html) | El `mat-slider` no está asociado al nombre del criterio | `aria-label` en el `input matSliderThumb` con el nombre del criterio |
-| B4 | [layout.html](../app/awsome-app/src/app/layout/layout.html) / [layout.scss](../app/awsome-app/src/app/layout/layout.scss) | El menú móvil no mueve el foco al abrirse ni lo devuelve; el contenido no se marca `inert` | Gestionar el foco y poner `inert` en `main` con el menú abierto |
-| B5 | [layout.ts](../app/awsome-app/src/app/layout/layout.ts) | Todas las páginas comparten el título de pestaña | Poner `title` en cada ruta de `app.routes.ts` |
+| B1 | `breadcrumbs.ts` | `<a href="#">` con `preventDefault`: un botón disfrazado de enlace | ✅ `<button type="button">` con aspecto de enlace |
+| B2 | `layout.html` | `mat-spinner` sin texto accesible | ✅ `role="status"` en el contenedor y `aria-label="Cargando datos"` |
+| B3 | `weights-form.html` | El slider no está asociado al nombre del criterio | ✅ `aria-label` con el nombre del criterio en el control del slider |
+| B4 | `layout.*` | El menú móvil no mueve el foco ni marca el resto como inerte | ✅ al abrir, el foco pasa al primer enlace y `main` y el pie quedan `inert`; al cerrar con Escape o fuera, el foco vuelve al botón. La capa de fondo es ahora un botón no tabulable. Hizo falta quitar la transición de `visibility` al abrir, porque en el primer fotograma el menú seguía oculto y el foco no podía entrar |
+| B5 | `app.routes.ts` | Todas las páginas comparten el título de pestaña | ✅ `title` por ruta y `PageTitleStrategy`: «Catálogo · Awsome App» |
 
 ### Código y consistencia
 
-| Nº | Dónde | Problema | Cambio |
+| Nº | Dónde | Problema | Estado |
 |---|---|---|---|
-| B6 | [candidatos-model.ts:11](../app/awsome-app/src/app/model/candidatos-model.ts#L11) | `lastRevisionDater` (errata) en el modelo y en tres ficheros | Renombrar a `lastRevisionDate` |
-| B7 | [config-transfer.service.ts](../app/awsome-app/src/app/services/config-transfer.service.ts) | Seis `any` en la lectura de JSON y CSV | Tipar con una interfaz de entrada (`unknown` + comprobaciones) |
-| B8 | [scoring.service.ts:127](../app/awsome-app/src/app/services/scoring.service.ts#L127) | `score(candidateId)` no la usa ninguna página ni componente | Eliminarla o usarla |
-| B9 | [scoring.service.ts:96](../app/awsome-app/src/app/services/scoring.service.ts#L96) | Un comentario JSDoc sobre `missingScore` está colgado encima de `_requiredDeployments` | Moverlo a `_missingScore` |
-| B10 | [candidatos-model.ts](../app/awsome-app/src/app/model/candidatos-model.ts) | `Candidate.weight` no se usa en ningún sitio | Eliminar el campo |
-| B11 | [scoring.service.ts:49](../app/awsome-app/src/app/services/scoring.service.ts#L49) | `licenseFamily` usa expresiones sin delimitar (`bsl`, `mpl`, `gpl`): una licencia con «simple» o «bsl» dentro de otra palabra se clasificaría mal | Delimitar con `\b` y probar con las licencias reales del catálogo |
-| B12 | [deployment-select.ts](../app/awsome-app/src/app/pages/common/deployment-select/deployment-select.ts) | Las opciones salen de los candidatos de las dos áreas, incluso en una página que muestra una sola | Filtrar por el área activa |
-| B13 | [index.html:5](../app/awsome-app/src/index.html#L5), [app-config.service.ts:5](../app/awsome-app/src/app/services/app-config.service.ts#L5) | «AwsomeApp» y «Awsome App» (¿«Awesome»?) y año fijo en el pie (`© 2026`) | Unificar el nombre y generar el año |
+| B6 | `candidatos-model.ts` y 12 ficheros más | `lastRevisionDater` (errata) | ✅ renombrado a `lastRevisionDate` |
+| B7 | `config-transfer.service.ts` | Seis `any` en la lectura de JSON y CSV | ✅ `unknown` con dos ayudantes (`obj`, `list`); sin `any`. Un perfil `null` en un JSON importado ya no rompe la lectura |
+| B8 | `scoring.service.ts` | `score(candidateId)` solo la usaban los tests | ✅ eliminada; los tests usan el ranking, que es lo que ve la aplicación |
+| B9 | `scoring.service.ts` | JSDoc de `missingScore` sobre `_requiredDeployments` | ✅ movido a `_missingScore` |
+| B10 | `candidatos-model.ts` | `Candidate.weight` sin uso | ✅ eliminado |
+| B11 | `scoring.service.ts` | `licenseFamily` sin delimitar: `mit` dentro de «admitir» daba «Open source» | ✅ expresiones con `\b`; ahora `LGPL` cuenta como open source y `BSL`/`BUSL` como source-available. Tests nuevos. Las licencias reales del catálogo se clasifican igual |
+| B12 | `deployment-select.ts` | Las opciones salían de las dos áreas | ✅ entrada opcional `area`; Catálogo, Listado y Comparador la pasan (el Resumen no usa el selector). Test nuevo |
+| B13 | `index.html`, `layout.html` | «AwsomeApp» frente a «Awsome App» y año fijo | ✅ mismo nombre en todas partes (se mantiene la grafía «Awsome») y año generado |
 
 ### Interfaz y herramientas
 
-| Nº | Dónde | Problema | Cambio |
+| Nº | Dónde | Problema | Estado |
 |---|---|---|---|
-| B14 | [layout.scss:6](../app/awsome-app/src/app/layout/layout.scss#L6) | `font-family: system-ui` en `:host` anula la Roboto del tema Material para todo el contenido | Quitarlo y heredar de `body` |
-| B15 | [layout.scss](../app/awsome-app/src/app/layout/layout.scss) | Colores en hexadecimal (`#1f2937`, `#e5e7eb`...) en lugar de las variables `--mat-sys-*`; `color-scheme: light` fijo | Pasar a variables del tema; valorar modo oscuro |
-| B16 | [import-config-modal.ts:27](../app/awsome-app/src/app/pages/common/config-menu/import-config-modal/import-config-modal.ts#L27) | `URL.revokeObjectURL` inmediatamente después de `click()`: algunos navegadores cancelan la descarga | Revocar con `setTimeout` |
-| B17 | `package.json` | Hay `prettier` pero no `lint`/`format`, y no hay ESLint | Añadir `ng lint` (`angular-eslint`) y un script `format` |
-| B18 | [angular.json](../app/awsome-app/angular.json) | El presupuesto inicial se avisa a 540 kB y el bundle inicial pesa ~521 kB | Revisar qué entra en el inicial antes de añadir librerías (Angular Material domina) |
-| B19 | `.top`, `.actions`, `.filters` | Estilos repetidos en los `.scss` de cada página | Moverlos a `styles.scss` o a una clase compartida |
+| B14 | `layout.scss` | `font-family: system-ui` anulaba la Roboto del tema | ✅ eliminado |
+| B15 | `layout.scss` | Colores en hexadecimal | ✅ variables `--mat-sys-*` (el menú usa `inverse-surface`, el activo `primary`). El modo oscuro no se activa: `color-scheme: light` sigue fijo porque el mapa de calor y los gráficos usan colores propios |
+| B16 | `import-config-modal.ts` | `revokeObjectURL` inmediato tras `click()` | ✅ con `setTimeout` |
+| B17 | `package.json` | Sin lint ni formato | ✅ `ng lint` con angular-eslint (reglas de accesibilidad de plantillas incluidas; pasa sin errores) y scripts `format` / `format:check`. No se ha ejecutado `format` sobre el código para no generar un cambio masivo |
+| B18 | `angular.json` | Presupuesto inicial avisa a 540 kB y el bundle pesa ~524 kB | ➖ sin cambios: es una advertencia de vigilancia, no un fallo |
+| B19 | `.top`, `.filters` | Estilos repetidos en los `.scss` de cada página | ✅ movidos a `styles.scss`. `section` y `mat-accordion` siguen locales: sus márgenes difieren y un selector global afectaría a otros componentes |
 
 ### Rendimiento (solo a vigilar)
 

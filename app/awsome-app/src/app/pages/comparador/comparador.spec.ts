@@ -10,7 +10,7 @@ import { ComparadorPage } from './comparador';
 
 const cand = (id: string, category: string): Candidate => ({
   id, name: id, domain: Domain.data, category, type: '', license: '', deployment: [],
-  lastRevisionDater: new Date(), scores: [],
+  lastRevisionDate: new Date(), scores: [],
 });
 
 describe('ComparadorPage', () => {

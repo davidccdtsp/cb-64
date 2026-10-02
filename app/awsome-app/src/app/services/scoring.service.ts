@@ -17,7 +17,11 @@ export type MissingScore = number | 'mean' | undefined;
 
 
 /** Valores del formulario de pesos para un criterio. */
-export type WeightValues = { id: string; weight: number; mandatory: boolean };
+export interface WeightValues {
+  id: string;
+  weight: number;
+  mandatory: boolean;
+}
 
 
 export interface CatalogFilter {
@@ -31,8 +35,8 @@ export interface CatalogFilter {
 
 /** Familia de una licencia a partir de su texto libre: source-available (Elastic, SLULA…), open source (Apache, MIT, GPL…) o propietaria. */
 export function licenseFamily(license: string): LicenseFamily {
-  if (/elastic|slula|bsl|sspl|source-available/i.test(license)) return 'Source-available';
-  if (/apache|mit\b|gpl|bsd|postgresql|mpl/i.test(license)) return 'Open source';
+  if (/\b(elastic|slula|bsl|busl|sspl)\b|source-available/i.test(license)) return 'Source-available';
+  if (/\b(apache|mit|[al]?gpl|bsd|postgresql|mpl)\b/i.test(license)) return 'Open source';
   return 'Propietaria';
 }
 
@@ -88,12 +92,6 @@ export class ScoringService {
   private readonly data = inject(DataService);
   private readonly cost = inject(CostService);
 
-  /**
-   * Qué se asigna en el cálculo a los criterios numéricos o booleanos con peso que no tienen valor
-   * (ausentes o "N/D"): una nota fija de 0 a 5, la media de las notas conocidas de ese criterio entre los
-   * candidatos del grupo (si ninguno tiene nota, el criterio se excluye) o `undefined` para excluirlos.
-   * Los "N/A" no aplican y siguen fuera.
-   */
   /** Despliegues exigidos (requisito eliminatorio): el candidato debe ofrecer al menos uno; vacío = sin requisito. */
   private readonly _requiredDeployments = signal<string[]>([]);
   readonly requiredDeployments = this._requiredDeployments.asReadonly();
@@ -105,6 +103,12 @@ export class ScoringService {
   /** Sube cuando cambia la configuración desde fuera de los formularios (importación): los formularios deben recrearse. */
   readonly formsEpoch = signal(0);
 
+  /**
+   * Qué se asigna en el cálculo a los criterios numéricos o booleanos con peso que no tienen valor
+   * (ausentes o "N/D"): una nota fija de 0 a 5, la media de las notas conocidas de ese criterio entre los
+   * candidatos del grupo (si ninguno tiene nota, el criterio se excluye) o `undefined` para excluirlos.
+   * Los "N/A" no aplican y siguen fuera.
+   */
   private readonly _missingScore = signal<MissingScore>(undefined);
   readonly missingScore = this._missingScore.asReadonly();
 
@@ -114,15 +118,6 @@ export class ScoringService {
       throw new RangeError(`missingScore debe ser undefined, 'mean' o un número entre 0 y 5: ${value}`);
     }
     this._missingScore.set(value);
-  }
-
-  /**
-   * Puntuación 0-100 de un candidato, o undefined si no tiene ninguna dimensión con criterios aplicables
-   * o incumple un requisito eliminatorio. Ver el cálculo en la documentación de la clase.
-   */
-  score(candidateId: string): number | undefined {
-    const candidate = this.data.candidates().find((c) => c.id === candidateId);
-    return candidate && this.compute(candidate, this.context(this.data.candidates({ domain: candidate.domain }), {})).total;
   }
 
   /** Candidatos del dominio/categoría con `totalScore` poblado, de mayor a menor puntuación. */

@@ -8,8 +8,7 @@ export interface Candidate {
   type: string;
   license: string;
   deployment: string[];
-  lastRevisionDater: Date;
-  weight?: number;
+  lastRevisionDate: Date;
   scores: AnyScore[];
   /** 0-100; lo rellena ScoringService. Undefined si no hay criterios aplicables. */
   totalScore?: number;

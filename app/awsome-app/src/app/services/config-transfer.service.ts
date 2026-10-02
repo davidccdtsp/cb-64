@@ -5,11 +5,11 @@ import { CostService } from './cost.service';
 import { DataService } from './data.service';
 import { ScoringService } from './scoring.service';
 import { SummaryService } from './summary.service';
-import { CatalogProfile } from '../model/catalog-model';
+import { CatalogProfile, LicenseFamily } from '../model/catalog-model';
 import { ConfigSnapshot } from '../model/config-model';
 import { Area } from '../model/domain-model';
 import { MissingChoice } from '../model/weights-model';
-import { SummaryConfig } from '../model/summary-model';
+import { SummaryConfig, SummaryProfile } from '../model/summary-model';
 
 
 const AREAS: Area[] = ['datos', 'martech'];
@@ -121,26 +121,34 @@ export class ConfigTransferService {
   }
 
   private parseJson(text: string): ConfigSnapshot {
-    let o: any;
+    let o: unknown;
     try {
       o = JSON.parse(text);
     } catch {
       throw new Error('El fichero no es un JSON válido.');
     }
-    if (o?.version !== 1 || !o.settings || !o.attributes || !o.dimensions || !o.profiles) throw new Error('El JSON no es una configuración exportada por esta aplicación.');
-    return this.normalize(o);
+    const j = obj(o);
+    if (j['version'] !== 1 || !j['settings'] || !j['attributes'] || !j['dimensions'] || !j['profiles']) {
+      throw new Error('El JSON no es una configuración exportada por esta aplicación.');
+    }
+    return this.normalize(j);
   }
 
-  private normalizeSummary(o: any): SummaryConfig | undefined {
-    if (!o || typeof o !== 'object') return undefined;
-    const profiles = (area: Area) =>
-      (Array.isArray(o.profiles?.[area]) ? o.profiles[area] : []).map((p: any) => ({
-        id: String(p.id), name: String(p.name ?? p.id), description: String(p.description ?? ''),
-        dimensionWeights: Object.fromEntries(Object.entries<any>(p.dimensionWeights ?? {}).filter(([, w]) => Number.isFinite(Number(w)) && Number(w) >= 0).map(([id, w]) => [id, Number(w)])),
-        requiredDeployments: Array.isArray(p.requiredDeployments) ? p.requiredDeployments.map(String) : [],
-      }));
-    const topN = Math.floor(Number(o.topN));
-    return { topN: topN >= 1 && topN <= 20 ? topN : 4, includeCategories: o.includeCategories !== false, profiles: { datos: profiles('datos'), martech: profiles('martech') } };
+  private normalizeSummary(v: unknown): SummaryConfig | undefined {
+    if (!v || typeof v !== 'object') return undefined;
+    const o = obj(v);
+    const profiles = (area: Area): SummaryProfile[] =>
+      list(obj(o['profiles'])[area]).map((raw) => {
+        const p = obj(raw);
+        const weights = Object.entries(obj(p['dimensionWeights'])).filter(([, w]) => Number.isFinite(Number(w)) && Number(w) >= 0);
+        return {
+          id: String(p['id']), name: String(p['name'] ?? p['id']), description: String(p['description'] ?? ''),
+          dimensionWeights: Object.fromEntries(weights.map(([id, w]) => [id, Number(w)])),
+          requiredDeployments: list(p['requiredDeployments']).map(String),
+        };
+      });
+    const topN = Math.floor(Number(o['topN']));
+    return { topN: topN >= 1 && topN <= 20 ? topN : 4, includeCategories: o['includeCategories'] !== false, profiles: { datos: profiles('datos'), martech: profiles('martech') } };
   }
 
   private parseCsv(text: string): ConfigSnapshot {
@@ -172,7 +180,9 @@ export class ConfigTransferService {
         if (!p) s.profiles[area].push((p = { id: pid, name: pid, filters: { category: '', type: '', license: '', deployment: [] } }));
         if (field === 'name') p.name = value;
         else if (field === 'deployment') p.filters.deployment = split(value);
-        else if (field === 'category' || field === 'type' || field === 'license') (p.filters as any)[field] = value;
+        else if (field === 'category') p.filters.category = value;
+        else if (field === 'type') p.filters.type = value;
+        else if (field === 'license') p.filters.license = value as LicenseFamily | '';
       } else if (kind) {
         throw new Error(`Tipo de fila desconocido en el CSV: ${kind}`);
       }
@@ -180,31 +190,40 @@ export class ConfigTransferService {
     return s;
   }
 
-  /** Deja solo los campos esperados de un JSON importado. */
-  private normalize(o: any): ConfigSnapshot {
+  /** Deja solo los campos esperados de un JSON importado. Los valores se validan después, en `validate`. */
+  private normalize(o: Json): ConfigSnapshot {
+    const settings = obj(o['settings']);
     const profiles = (area: Area): CatalogProfile[] =>
-      (Array.isArray(o.profiles[area]) ? o.profiles[area] : []).map((p: any) => ({
-        id: String(p.id), name: String(p.name ?? p.id),
-        filters: {
-          category: String(p.filters?.category ?? ''), type: String(p.filters?.type ?? ''), license: String(p.filters?.license ?? '') as any,
-          deployment: Array.isArray(p.filters?.deployment) ? p.filters.deployment.map(String) : [],
-        },
-      }));
+      list(obj(o['profiles'])[area]).map((raw) => {
+        const p = obj(raw);
+        const f = obj(p['filters']);
+        return {
+          id: String(p['id']), name: String(p['name'] ?? p['id']),
+          filters: {
+            category: String(f['category'] ?? ''), type: String(f['type'] ?? ''), license: String(f['license'] ?? '') as LicenseFamily | '',
+            deployment: list(f['deployment']).map(String),
+          },
+        };
+      });
     return {
       version: 1,
       settings: {
-        missing: o.settings.missing,
-        requiredDeployments: Array.isArray(o.settings.requiredDeployments) ? o.settings.requiredDeployments.map(String) : [],
-        scenario: o.settings.scenario,
+        missing: settings['missing'] as MissingChoice,
+        requiredDeployments: list(settings['requiredDeployments']).map(String),
+        scenario: settings['scenario'] as Scenario,
       },
-      attributes: Object.fromEntries(Object.entries<any>(o.attributes).map(([id, a]) => [id, { weight: Number(a?.weight), mandatory: a?.mandatory }])),
-      dimensions: Object.fromEntries(Object.entries<any>(o.dimensions).map(([id, w]) => [id, Number(w)])),
+      attributes: Object.fromEntries(Object.entries(obj(o['attributes'])).map(([id, a]) => [id, { weight: Number(obj(a)['weight']), mandatory: obj(a)['mandatory'] as boolean }])),
+      dimensions: Object.fromEntries(Object.entries(obj(o['dimensions'])).map(([id, w]) => [id, Number(w)])),
       profiles: { datos: profiles('datos'), martech: profiles('martech') },
-      summary: this.normalizeSummary(o.summary),
+      summary: this.normalizeSummary(o['summary']),
     };
   }
 }
 
+type Json = Record<string, unknown>;
+/** Un objeto (no nulo ni lista) o, si el valor es otra cosa, uno vacío: los JSON importados no son de fiar. */
+const obj = (v: unknown): Json => (v && typeof v === 'object' && !Array.isArray(v) ? (v as Json) : {});
+const list = (v: unknown): unknown[] => (Array.isArray(v) ? v : []);
 const split = (v: string): string[] => (v ? v.split('|') : []);
 const csvCell = (v: string): string => (/[",\n]/.test(v) ? `"${v.replace(/"/g, '""')}"` : v);
 

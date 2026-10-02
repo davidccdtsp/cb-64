@@ -15,7 +15,7 @@
         form().controls.weights.controls[id].controls.mandatory.value ? 'Obligatorio' : 'No obligatorio'
       }}</mat-checkbox>
       <mat-slider min="0" max="3" step="1" discrete>
-        <input matSliderThumb [formControl]="form().controls.weights.controls[id].controls.weight" />
+        <input matSliderThumb [attr.aria-label]="data.attribute(id)?.name" [formControl]="form().controls.weights.controls[id].controls.weight" />
       </mat-slider>
       <span class="value">{{ form().controls.weights.controls[id].controls.weight.value }}</span>
     </div>

@@ -24,7 +24,7 @@ export class ImportConfigModal {
     a.href = url;
     a.download = `configuracion.${format}`;
     a.click();
-    URL.revokeObjectURL(url);
+    setTimeout(() => URL.revokeObjectURL(url), 1000); // revocar de inmediato cancela la descarga en algunos navegadores
   }
 
   protected async import(input: HTMLInputElement): Promise<void> {

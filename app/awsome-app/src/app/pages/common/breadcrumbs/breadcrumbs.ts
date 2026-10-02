@@ -9,13 +9,17 @@ import { Component, input, output } from '@angular/core';
         @if (last) {
           <span aria-current="page">{{ item }}</span>
         } @else {
-          <a href="#" (click)="$event.preventDefault(); navigate.emit($index)">{{ item }}</a>
+          <button type="button" class="link" (click)="navigate.emit($index)">{{ item }}</button>
           <span class="sep">›</span>
         }
       }
     </nav>
   `,
-  styles: 'nav { margin-bottom: 1rem; } .sep { margin: 0 .5rem; }',
+  styles: `
+    nav { margin-bottom: 1rem; }
+    .sep { margin: 0 .5rem; }
+    .link { padding: 0; border: 0; background: none; font: inherit; color: var(--mat-sys-primary); text-decoration: underline; cursor: pointer; }
+  `,
 })
 export class Breadcrumbs {
   readonly items = input.required<string[]>();

@@ -15,7 +15,7 @@ import { MatInputModule } from '@angular/material/input';
       <p>El perfil se crea con los filtros actuales del catálogo.</p>
       <mat-form-field>
         <mat-label>Nombre del perfil</mat-label>
-        <input matInput [ngModel]="name()" (ngModelChange)="name.set($event)" (keydown.enter)="save()" autofocus />
+        <input matInput [ngModel]="name()" (ngModelChange)="name.set($event)" (keydown.enter)="save()" />
       </mat-form-field>
     </mat-dialog-content>
     <mat-dialog-actions>

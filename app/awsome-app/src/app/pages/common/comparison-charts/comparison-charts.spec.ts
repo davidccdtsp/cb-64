@@ -6,7 +6,7 @@ import { ComparisonCharts } from './comparison-charts';
 
 const cand = (id: string, totalScore?: number): Candidate => ({
   id, name: id, domain: Domain.data, category: 'x', type: '', license: '', deployment: [],
-  lastRevisionDater: new Date(), scores: [], totalScore,
+  lastRevisionDate: new Date(), scores: [], totalScore,
 });
 
 describe('ComparisonCharts', () => {

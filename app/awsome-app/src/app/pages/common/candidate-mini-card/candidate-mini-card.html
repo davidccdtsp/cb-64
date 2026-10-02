@@ -22,7 +22,7 @@
       <dt>Tipo</dt><dd>{{ candidate().type }}</dd>
       <dt>Licencia</dt><dd>{{ candidate().license }}</dd>
       <dt>Despliegue</dt><dd>{{ candidate().deployment.join(', ') }}</dd>
-      <dt>Revisión</dt><dd>{{ candidate().lastRevisionDater | date: 'yyyy-MM-dd' }}</dd>
+      <dt>Revisión</dt><dd>{{ candidate().lastRevisionDate | date: 'yyyy-MM-dd' }}</dd>
     </dl>
   </mat-card-content>
   <mat-card-actions align="end">
