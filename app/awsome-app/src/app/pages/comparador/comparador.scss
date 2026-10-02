@@ -1,0 +1,13 @@
+.filters { display: flex; flex-wrap: wrap; gap: 1rem; }
+// 4 tarjetas como máximo por fila; bajan a 3, 2 o 1 al estrechar la pantalla
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(max(14rem, (100% - 3rem) / 4), 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+mat-accordion { display: block; margin-bottom: 1.5rem; }
+table.criterion { border-collapse: collapse; margin-bottom: 1.5rem; }
+table.criterion th, table.criterion td { padding: .25rem .75rem; text-align: left; }
+.top { display: flex; justify-content: space-between; align-items: center; }
+.reset { margin-bottom: 1rem; }

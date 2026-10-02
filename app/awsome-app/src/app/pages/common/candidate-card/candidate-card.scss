@@ -1,0 +1,27 @@
+dl { display: grid; grid-template-columns: max-content 1fr; gap: .25rem 1rem; }
+dt { font-weight: 600; }
+dd { margin: 0; }
+table { width: 100%; }
+td { padding-block: .5rem; }
+a { text-decoration: none; }
+.question { color: var(--mat-sys-on-surface-variant); }
+.nota { font-weight: 600; }
+tr.sin-fuentes { opacity: .5; font-style: italic; }
+h4 { margin: 1rem 0 .5rem; }
+.group { font-weight: 600; background: var(--mat-sys-surface-container); }
+.si { color: #2e7d32; }
+.no { color: #c62828; }
+.links { margin: 0 0 .5rem; padding-left: 1.25rem; }
+.consulted { color: var(--mat-sys-on-surface-variant); }
+// iconos de enlace de la tabla de puntuaciones: pequeños y en gris
+td a mat-icon { font-size: 16px; width: 16px; height: 16px; line-height: 16px; color: var(--mat-sys-on-surface-variant); }
+td a:hover mat-icon { color: var(--mat-sys-primary); }
+// parte superior: datos a la izquierda y, a la derecha, puntuación y radar en línea; en pantallas estrechas se apila
+.top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 28rem); gap: 1.5rem; align-items: center; margin-bottom: 1rem; }
+.summary { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-evenly; gap: .5rem 1rem; min-width: 0; padding-right: 1.5rem; }
+.total { display: flex; flex-direction: column; align-items: center; }
+.total .value { font-size: 3rem; font-weight: 600; line-height: 1.1; }
+.total .caption { color: var(--mat-sys-on-surface-variant); font-size: .8rem; text-align: center; }
+.excluded { color: var(--mat-sys-error); margin: 0; text-align: center; flex-basis: 100%; }
+app-candidate-radar, .radar-placeholder { display: block; width: 13rem; height: 13rem; }
+@media (max-width: 768px) { .top { grid-template-columns: minmax(0, 1fr); } .summary { justify-content: center; padding-right: 0; } }

@@ -1,0 +1,59 @@
+<app-breadcrumbs [items]="crumbs()" (navigate)="selected.set(null)" />
+
+@if (selected(); as candidate) {
+  <app-candidate-card [candidate]="candidate" />
+} @else {
+  <div class="top">
+    <h1>Listado</h1>
+    <app-config-menu />
+  </div>
+  <mat-accordion>
+    <mat-expansion-panel expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Pesos, filtros y requisitos eliminatorios</mat-panel-title>
+      </mat-expansion-panel-header>
+      <section>
+        <h2>Pesos</h2>
+        <app-weights-actions [domain]="domain()" />
+      </section>
+      <section>
+        <h2>Filtros</h2>
+        <div class="filters">
+          <mat-form-field>
+            <mat-label>Área</mat-label>
+            <mat-select [value]="area()" (selectionChange)="area.set($event.value); category.set('')">
+              <mat-option value="datos">Datos</mat-option>
+              <mat-option value="martech">Martech</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Categoría</mat-label>
+            <mat-select [value]="category()" (selectionChange)="category.set($event.value)">
+              <mat-option value="">Todas</mat-option>
+              @for (c of categories(); track c.id) {
+                <mat-option [value]="c.id" [title]="c.description">{{ c.id }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </section>
+      <section>
+        <h2>Requisitos eliminatorios</h2>
+        <div class="filters">
+          <app-deployment-select />
+          <app-scenario-select />
+        </div>
+      </section>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <app-candidate-table [rows]="page()" [columns]="columns" sortable (sortChange)="sort.set($event)" (select)="selected.set($event)" />
+  <mat-paginator
+    [length]="candidates().length"
+    [pageSize]="pageSize()"
+    [pageSizeOptions]="pageSizes"
+    [pageIndex]="pageIdx()"
+    (page)="setPage($event)"
+    aria-label="Paginación del listado"
+  />
+}

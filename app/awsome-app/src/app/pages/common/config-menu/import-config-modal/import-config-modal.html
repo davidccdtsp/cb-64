@@ -1,0 +1,24 @@
+<div class="header">
+  <h2 mat-dialog-title>Importar / exportar configuración</h2>
+  <button mat-icon-button mat-dialog-close aria-label="Cerrar">
+    <mat-icon fontSet="material-symbols-outlined">close</mat-icon>
+  </button>
+</div>
+<mat-dialog-content>
+  <p>
+    Aquí se <strong>exporta</strong> e <strong>importa la configuración</strong> de la aplicación: pesos y obligatoriedad de los
+    criterios, pesos de las dimensiones, tratamiento de los criterios sin puntuación, despliegue obligatorio, escenario de coste y
+    perfiles del catálogo. El formato (JSON o CSV) se elige al exportar y, al importar, por la extensión del fichero.
+  </p>
+  <div class="actions">
+    <button mat-stroked-button (click)="export('json')">Exportar JSON</button>
+    <button mat-stroked-button (click)="export('csv')">Exportar CSV</button>
+    <button mat-flat-button (click)="file.click()">Importar fichero</button>
+    <input #file type="file" accept=".json,.csv" hidden (change)="import(file)" />
+  </div>
+  <p class="hint">
+    Los perfiles y parámetros del <strong>Resumen ejecutivo</strong> solo se incluyen en el <strong>JSON</strong>, no en el CSV. Al importar un fichero sin ellos
+    (un CSV o un JSON antiguo) los del Resumen no se modifican.
+  </p>
+  <p class="hint">Si algún identificador del fichero no coincide con los datos actuales no se aplica nada y se muestra el error.</p>
+</mat-dialog-content>

@@ -1,0 +1,27 @@
+<div class="totals">
+  @for (s of scenarios; track s) {
+    @let e = cost.monthly(candidateId(), s);
+    <mat-form-field subscriptSizing="dynamic">
+      <mat-label>Escenario {{ s }} · EUR/mes</mat-label>
+      <input
+        matInput
+        type="number"
+        min="0"
+        step="any"
+        [value]="e?.manual ? eur(e!.mid) : ''"
+        [placeholder]="e ? (e.mid | eur) : 'N/D'"
+        (change)="set(s, $any($event.target).value)"
+      />
+      @if (e?.manual) {
+        <button matIconSuffix mat-icon-button type="button" aria-label="Restablecer al valor de la ficha"
+          (click)="cost.setManual(candidateId(), s, undefined)">
+          <mat-icon fontSet="material-symbols-outlined">undo</mat-icon>
+        </button>
+      }
+    </mat-form-field>
+  }
+</div>
+<p class="hint">
+  Puedes escribir un coste total propio, por ejemplo uno buscado en la web del fabricante, para compararlo
+  con el resto. Se usa en la nota de coste y se pierde al recargar la página.
+</p>

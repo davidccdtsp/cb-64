@@ -1,0 +1,1957 @@
+[
+  {
+    "candidato": "apache-doris",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "No aplica — sin oferta gestionada oficial del proyecto; el coste depende íntegramente de la infraestructura elegida por el cliente",
+    "moneda": "EUR",
+    "tablas": [
+      {
+        "titulo": "",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Infraestructura (estimado/mes)": "180 – 260 €",
+            "Operación (estimado/mes)": "≈ 104 €",
+            "TCO mensual estimado": "≈ 284 – 364 €"
+          },
+          {
+            "Escenario": "M",
+            "Infraestructura (estimado/mes)": "1.400 – 1.900 €",
+            "Operación (estimado/mes)": "≈ 1.248 €",
+            "TCO mensual estimado": "≈ 2.650 – 3.150 €"
+          },
+          {
+            "Escenario": "L",
+            "Infraestructura (estimado/mes)": "9.000 – 13.000 €",
+            "Operación (estimado/mes)": "≈ 6.240 €",
+            "TCO mensual estimado": "≈ 15.240 – 19.240 €"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 284.0,
+        "max": 364.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 284 – 364 €"
+      },
+      "M": {
+        "min": 2650.0,
+        "max": 3150.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 2.650 – 3.150 €"
+      },
+      "L": {
+        "min": 15240.0,
+        "max": 19240.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 15.240 – 19.240 €"
+      }
+    },
+    "enlaces": [],
+    "modelo": {
+      "moneda": "EUR",
+      "parametros": [
+        {
+          "id": "infraestructura",
+          "nombre": "Infraestructura: cómputo, almacenamiento y red (estimación del consultor)",
+          "unidad": "EUR/mes",
+          "valor": {
+            "S": {
+              "min": 180,
+              "max": 260
+            },
+            "M": {
+              "min": 1400,
+              "max": 1900
+            },
+            "L": {
+              "min": 9000,
+              "max": 13000
+            }
+          }
+        },
+        {
+          "id": "fte",
+          "nombre": "Dedicación de operación (estimación del consultor)",
+          "unidad": "FTE",
+          "valor": {
+            "S": 0.1,
+            "M": 0.3,
+            "L": 0.75
+          }
+        },
+        {
+          "id": "tarifa_hora",
+          "nombre": "Tarifa de un perfil SRE/DBA senior (supuesto del consultor)",
+          "unidad": "EUR/h",
+          "valor": 65
+        },
+        {
+          "id": "horas_base",
+          "nombre": "Horas base de operación al mes (las de la tabla de la ficha)",
+          "unidad": "h/mes",
+          "valor": {
+            "S": 16,
+            "M": 64,
+            "L": 128
+          }
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "OSS autogestionado (TCO)",
+          "componentes": [
+            {
+              "nombre": "Infraestructura",
+              "formula": "infraestructura"
+            },
+            {
+              "nombre": "Operación",
+              "formula": "fte * tarifa_hora * horas_base"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "apache-druid",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "No aplica — sin oferta gestionada oficial del proyecto",
+    "moneda": "EUR",
+    "tablas": [
+      {
+        "titulo": "",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Infraestructura (estimado/mes)": "200 – 300 €",
+            "Operación (estimado/mes)": "≈ 156 € (0,15 FTE)",
+            "TCO mensual estimado": "≈ 356 – 456 €"
+          },
+          {
+            "Escenario": "M",
+            "Infraestructura (estimado/mes)": "1.600 – 2.200 €",
+            "Operación (estimado/mes)": "≈ 1.560 € (0,375 FTE)",
+            "TCO mensual estimado": "≈ 3.160 – 3.760 €"
+          },
+          {
+            "Escenario": "L",
+            "Infraestructura (estimado/mes)": "10.000 – 14.000 €",
+            "Operación (estimado/mes)": "≈ 7.800 € (0,9375 FTE)",
+            "TCO mensual estimado": "≈ 17.800 – 21.800 €"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 356.0,
+        "max": 456.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 356 – 456 €"
+      },
+      "M": {
+        "min": 3160.0,
+        "max": 3760.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 3.160 – 3.760 €"
+      },
+      "L": {
+        "min": 17800.0,
+        "max": 21800.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 17.800 – 21.800 €"
+      }
+    },
+    "enlaces": [],
+    "modelo": {
+      "moneda": "EUR",
+      "parametros": [
+        {
+          "id": "infraestructura",
+          "nombre": "Infraestructura: cómputo, almacenamiento y red (estimación del consultor)",
+          "unidad": "EUR/mes",
+          "valor": {
+            "S": {
+              "min": 200,
+              "max": 300
+            },
+            "M": {
+              "min": 1600,
+              "max": 2200
+            },
+            "L": {
+              "min": 10000,
+              "max": 14000
+            }
+          }
+        },
+        {
+          "id": "fte",
+          "nombre": "Dedicación de operación (estimación del consultor)",
+          "unidad": "FTE",
+          "valor": {
+            "S": 0.15,
+            "M": 0.375,
+            "L": 0.9375
+          }
+        },
+        {
+          "id": "tarifa_hora",
+          "nombre": "Tarifa de un perfil SRE/DBA senior (supuesto del consultor)",
+          "unidad": "EUR/h",
+          "valor": 65
+        },
+        {
+          "id": "horas_base",
+          "nombre": "Horas base de operación al mes (las de la tabla de la ficha)",
+          "unidad": "h/mes",
+          "valor": {
+            "S": 16,
+            "M": 64,
+            "L": 128
+          }
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "OSS autogestionado (TCO)",
+          "componentes": [
+            {
+              "nombre": "Infraestructura",
+              "formula": "infraestructura"
+            },
+            {
+              "nombre": "Operación",
+              "formula": "fte * tarifa_hora * horas_base"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "apache-pinot",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "No aplica al self-hosted; no se ha verificado en esta revisión una tarifa pública desglosada de StarTree Cloud",
+    "moneda": "EUR",
+    "tablas": [
+      {
+        "titulo": "",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Infraestructura (estimado/mes)": "200 – 300 €",
+            "Operación (estimado/mes)": "≈ 156 €",
+            "TCO mensual estimado": "≈ 356 – 456 €"
+          },
+          {
+            "Escenario": "M",
+            "Infraestructura (estimado/mes)": "1.600 – 2.200 €",
+            "Operación (estimado/mes)": "≈ 1.560 €",
+            "TCO mensual estimado": "≈ 3.160 – 3.760 €"
+          },
+          {
+            "Escenario": "L",
+            "Infraestructura (estimado/mes)": "10.000 – 14.000 €",
+            "Operación (estimado/mes)": "≈ 7.800 €",
+            "TCO mensual estimado": "≈ 17.800 – 21.800 €"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 356.0,
+        "max": 456.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 356 – 456 €"
+      },
+      "M": {
+        "min": 3160.0,
+        "max": 3760.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 3.160 – 3.760 €"
+      },
+      "L": {
+        "min": 17800.0,
+        "max": 21800.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 17.800 – 21.800 €"
+      }
+    },
+    "enlaces": [],
+    "modelo": {
+      "moneda": "EUR",
+      "parametros": [
+        {
+          "id": "infraestructura",
+          "nombre": "Infraestructura: cómputo, almacenamiento y red (estimación del consultor)",
+          "unidad": "EUR/mes",
+          "valor": {
+            "S": {
+              "min": 200,
+              "max": 300
+            },
+            "M": {
+              "min": 1600,
+              "max": 2200
+            },
+            "L": {
+              "min": 10000,
+              "max": 14000
+            }
+          }
+        },
+        {
+          "id": "fte",
+          "nombre": "Dedicación de operación (estimación del consultor)",
+          "unidad": "FTE",
+          "valor": {
+            "S": 0.15,
+            "M": 0.375,
+            "L": 0.9375
+          }
+        },
+        {
+          "id": "tarifa_hora",
+          "nombre": "Tarifa de un perfil SRE/DBA senior (supuesto del consultor)",
+          "unidad": "EUR/h",
+          "valor": 65
+        },
+        {
+          "id": "horas_base",
+          "nombre": "Horas base de operación al mes (las de la tabla de la ficha)",
+          "unidad": "h/mes",
+          "valor": {
+            "S": 16,
+            "M": 64,
+            "L": 128
+          }
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "OSS autogestionado (TCO)",
+          "componentes": [
+            {
+              "nombre": "Infraestructura",
+              "formula": "infraestructura"
+            },
+            {
+              "nombre": "Operación",
+              "formula": "fte * tarifa_hora * horas_base"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "apache-spark-sql",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "No aplica — sin oferta gestionada propia del proyecto; el coste depende de la infraestructura o servicio gestionado elegido (Databricks, EMR, Dataproc, ya evaluados aparte)",
+    "moneda": "EUR",
+    "tablas": [
+      {
+        "titulo": "",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Cómputo estimado/mes": "150 – 220 €",
+            "Operación (estimado/mes)": "≈ 104 €",
+            "TCO mensual estimado": "≈ 254 – 324 €"
+          },
+          {
+            "Escenario": "M",
+            "Cómputo estimado/mes": "1.200 – 1.700 €",
+            "Operación (estimado/mes)": "≈ 1.248 €",
+            "TCO mensual estimado": "≈ 2.450 – 2.950 €"
+          },
+          {
+            "Escenario": "L",
+            "Cómputo estimado/mes": "8.000 – 12.000 €",
+            "Operación (estimado/mes)": "≈ 6.240 €",
+            "TCO mensual estimado": "≈ 14.240 – 18.240 €"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 254.0,
+        "max": 324.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 254 – 324 €"
+      },
+      "M": {
+        "min": 2450.0,
+        "max": 2950.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 2.450 – 2.950 €"
+      },
+      "L": {
+        "min": 14240.0,
+        "max": 18240.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 14.240 – 18.240 €"
+      }
+    },
+    "enlaces": [],
+    "modelo": {
+      "moneda": "EUR",
+      "parametros": [
+        {
+          "id": "infraestructura",
+          "nombre": "Cómputo, sin almacenamiento propio (estimación del consultor)",
+          "unidad": "EUR/mes",
+          "valor": {
+            "S": {
+              "min": 150,
+              "max": 220
+            },
+            "M": {
+              "min": 1200,
+              "max": 1700
+            },
+            "L": {
+              "min": 8000,
+              "max": 12000
+            }
+          }
+        },
+        {
+          "id": "fte",
+          "nombre": "Dedicación de operación (estimación del consultor)",
+          "unidad": "FTE",
+          "valor": {
+            "S": 0.1,
+            "M": 0.3,
+            "L": 0.75
+          }
+        },
+        {
+          "id": "tarifa_hora",
+          "nombre": "Tarifa de un perfil SRE/DBA senior (supuesto del consultor)",
+          "unidad": "EUR/h",
+          "valor": 65
+        },
+        {
+          "id": "horas_base",
+          "nombre": "Horas base de operación al mes (las de la tabla de la ficha)",
+          "unidad": "h/mes",
+          "valor": {
+            "S": 16,
+            "M": 64,
+            "L": 128
+          }
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "OSS autogestionado (TCO)",
+          "componentes": [
+            {
+              "nombre": "Infraestructura",
+              "formula": "infraestructura"
+            },
+            {
+              "nombre": "Operación",
+              "formula": "fte * tarifa_hora * horas_base"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "bigquery",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "us-central1 / europe-west1 (las tarifas listadas de referencia coinciden en USD para ambas regiones base; otras regiones pueden tener recargos)",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "",
+        "filas": [
+          {
+            "Escenario": "S",
+            "TiB escaneados/mes": "≈ 1,5",
+            "Coste consulta estimado/mes": "≈ 3 USD (tras 1 TiB gratuito)",
+            "Almacenamiento estimado/mes": "≈ 20 USD (1 TB)",
+            "Coste mensual estimado": "≈ 23 USD"
+          },
+          {
+            "Escenario": "M",
+            "TiB escaneados/mes": "≈ 30",
+            "Coste consulta estimado/mes": "≈ 181 USD",
+            "Almacenamiento estimado/mes": "≈ 400 USD (20 TB)",
+            "Coste mensual estimado": "≈ 581 USD"
+          },
+          {
+            "Escenario": "L",
+            "TiB escaneados/mes": "≈ 300",
+            "Coste consulta estimado/mes": "≈ 1.869 USD",
+            "Almacenamiento estimado/mes": "≈ 4.000 USD (200 TB)",
+            "Coste mensual estimado": "≈ 5.869 USD"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 23.0,
+        "max": 23.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 23 USD"
+      },
+      "M": {
+        "min": 581.0,
+        "max": 581.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 581 USD"
+      },
+      "L": {
+        "min": 5869.0,
+        "max": 5869.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 5.869 USD"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "bq-pricing-page",
+        "titulo": "Google Cloud, «BigQuery pricing»",
+        "url": "https://cloud.google.com/bigquery/pricing",
+        "consultado": "2026-10-02"
+      }
+    ],
+    "modelo": {
+      "moneda": "USD",
+      "parametros": [
+        {
+          "id": "precio_tib",
+          "nombre": "Precio por TiB escaneado (on-demand)",
+          "unidad": "USD/TiB",
+          "valor": 6.25,
+          "fuente": "bq-pricing-page"
+        },
+        {
+          "id": "tib_gratis_mes",
+          "nombre": "TiB de consulta gratuitos al mes",
+          "unidad": "TiB",
+          "valor": 1,
+          "fuente": "bq-pricing-page"
+        },
+        {
+          "id": "precio_gb_mes_logico_activo",
+          "nombre": "Almacenamiento lógico activo",
+          "unidad": "USD/GB-mes",
+          "valor": 0.02,
+          "fuente": "bq-pricing-page"
+        },
+        {
+          "id": "precio_gb_mes_logico_largo_plazo",
+          "nombre": "Almacenamiento lógico a largo plazo",
+          "unidad": "USD/GB-mes",
+          "valor": 0.01,
+          "fuente": "bq-pricing-page"
+        },
+        {
+          "id": "precio_gb_mes_fisico_activo",
+          "nombre": "Almacenamiento físico activo",
+          "unidad": "USD/GB-mes",
+          "valor": 0.04,
+          "fuente": "bq-pricing-page"
+        },
+        {
+          "id": "precio_gb_mes_fisico_largo_plazo",
+          "nombre": "Almacenamiento físico a largo plazo",
+          "unidad": "USD/GB-mes",
+          "valor": 0.02,
+          "fuente": "bq-pricing-page"
+        },
+        {
+          "id": "dias_mes",
+          "nombre": "Días de consulta por mes",
+          "unidad": "días",
+          "valor": 30
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "On-demand",
+          "componentes": [
+            {
+              "nombre": "Consultas (TiB escaneados)",
+              "formula": "max(0, tb_escaneados_dia * dias_mes - tib_gratis_mes) * precio_tib"
+            },
+            {
+              "nombre": "Almacenamiento activo",
+              "formula": "tb_almacenados * 1000 * precio_gb_mes_logico_activo"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "clickhouse",
+    "fecha_revision": "2026-09-29",
+    "region_referencia": "AWS us-east-1 (N. Virginia) — no se ha localizado una tabla de tarifas específica y desglosada por unidad para una región UE en la documentación pública; ClickHouse Cloud documenta que el precio 'varía por región y proveedor cloud' sin publicar la tabla completa por región. Se usa us-east-1 como referencia porque es la única con cifras desglosadas por unidad en la documentación oficial, y se advierte de esta limitación.",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Infraestructura (estimado/mes)": "180 – 260 €",
+            "Operación (estimado/mes)": "≈ 104 € (0,1 FTE × 65 €/h × 16 h/mes)",
+            "TCO mensual estimado": "≈ 284 – 364 €",
+            "TCO anual estimado": "≈ 3.400 – 4.370 €"
+          },
+          {
+            "Escenario": "M",
+            "Infraestructura (estimado/mes)": "1.400 – 1.900 €",
+            "Operación (estimado/mes)": "≈ 1.248 € (0,3 FTE × 65 €/h × 64 h/mes)",
+            "TCO mensual estimado": "≈ 2.650 – 3.150 €",
+            "TCO anual estimado": "≈ 31.800 – 37.800 €"
+          },
+          {
+            "Escenario": "L",
+            "Infraestructura (estimado/mes)": "9.000 – 13.000 €",
+            "Operación (estimado/mes)": "≈ 6.240 € (0,75 FTE × 65 €/h × 128 h/mes)",
+            "TCO mensual estimado": "≈ 15.240 – 19.240 €",
+            "TCO anual estimado": "≈ 182.900 – 230.900 €"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 284.0,
+        "max": 364.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 284 – 364 €"
+      },
+      "M": {
+        "min": 2650.0,
+        "max": 3150.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 2.650 – 3.150 €"
+      },
+      "L": {
+        "min": 15240.0,
+        "max": 19240.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 15.240 – 19.240 €"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "ch-docs-pricing-overview",
+        "titulo": "ClickHouse Docs, «Pricing — Billing overview»",
+        "url": "https://clickhouse.com/docs/cloud/manage/billing/overview",
+        "consultado": "2026-09-29"
+      },
+      {
+        "id": "ch-pricing-page",
+        "titulo": "ClickHouse Inc., «ClickHouse Cloud Pricing»",
+        "url": "https://clickhouse.com/pricing",
+        "consultado": "2026-09-29"
+      },
+      {
+        "id": "ch-docs-byoc-architecture",
+        "titulo": "ClickHouse Docs, «BYOC — Architecture»",
+        "url": "https://clickhouse.com/docs/cloud/reference/byoc/architecture",
+        "consultado": "2026-09-29"
+      },
+      {
+        "id": "ch-blog-byoc-aws",
+        "titulo": "ClickHouse, «Building ClickHouse BYOC (Bring Your Own Cloud) on AWS»",
+        "url": "https://clickhouse.com/blog/building-clickhouse-byoc-on-aws",
+        "consultado": "2026-09-29"
+      }
+    ],
+    "modelo": {
+      "moneda": "EUR",
+      "parametros": [
+        {
+          "id": "infraestructura",
+          "nombre": "Infraestructura: cómputo, almacenamiento y red (estimación del consultor)",
+          "unidad": "EUR/mes",
+          "valor": {
+            "S": {
+              "min": 180,
+              "max": 260
+            },
+            "M": {
+              "min": 1400,
+              "max": 1900
+            },
+            "L": {
+              "min": 9000,
+              "max": 13000
+            }
+          }
+        },
+        {
+          "id": "fte",
+          "nombre": "Dedicación de operación (estimación del consultor)",
+          "unidad": "FTE",
+          "valor": {
+            "S": 0.1,
+            "M": 0.3,
+            "L": 0.75
+          }
+        },
+        {
+          "id": "tarifa_hora",
+          "nombre": "Tarifa de un perfil SRE/DBA senior (supuesto del consultor)",
+          "unidad": "EUR/h",
+          "valor": 65
+        },
+        {
+          "id": "horas_base",
+          "nombre": "Horas base de operación al mes (las de la tabla de la ficha)",
+          "unidad": "h/mes",
+          "valor": {
+            "S": 16,
+            "M": 64,
+            "L": 128
+          }
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "OSS autogestionado (TCO)",
+          "componentes": [
+            {
+              "nombre": "Infraestructura",
+              "formula": "infraestructura"
+            },
+            {
+              "nombre": "Operación",
+              "formula": "fte * tarifa_hora * horas_base"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "databricks",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Azure/AWS región UE (agregadores citan explícitamente una tarifa diferenciada para regiones UE, sin especificar cuál; no se ha localizado en esta revisión una región UE concreta con tarifa oficial desglosada)",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "",
+        "filas": [
+          {
+            "Escenario": "S",
+            "DBU estimados/mes": "≈ 200",
+            "Coste cómputo estimado/mes": "140 – 182 USD",
+            "Almacenamiento (cloud subyacente)": "≈ 23 USD (1 TB)",
+            "Coste mensual estimado": "≈ 163 – 205 USD"
+          },
+          {
+            "Escenario": "M",
+            "DBU estimados/mes": "≈ 3.000",
+            "Coste cómputo estimado/mes": "2.100 – 2.730 USD",
+            "Almacenamiento (cloud subyacente)": "≈ 460 USD (20 TB)",
+            "Coste mensual estimado": "≈ 2.560 – 3.190 USD"
+          },
+          {
+            "Escenario": "L",
+            "DBU estimados/mes": "≈ 25.000",
+            "Coste cómputo estimado/mes": "17.500 – 22.750 USD",
+            "Almacenamiento (cloud subyacente)": "≈ 4.600 USD (200 TB)",
+            "Coste mensual estimado": "≈ 22.100 – 27.350 USD"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 163.0,
+        "max": 205.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 163 – 205 USD"
+      },
+      "M": {
+        "min": 2560.0,
+        "max": 3190.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 2.560 – 3.190 USD"
+      },
+      "L": {
+        "min": 22100.0,
+        "max": 27350.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 22.100 – 27.350 USD"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "db-pricing-page",
+        "titulo": "Databricks Inc., «Databricks Pricing»",
+        "url": "https://www.databricks.com/product/pricing",
+        "consultado": "2026-10-02"
+      },
+      {
+        "id": "db-pricing-3p",
+        "titulo": "Mammoth Analytics, «Databricks Pricing: $0.07–$0.70 a DBU, Plus Your Cloud Bill»",
+        "url": "https://mammoth.io/blog/databricks-pricing/",
+        "consultado": "2026-10-02"
+      }
+    ],
+    "modelo": {
+      "moneda": "USD",
+      "parametros": [
+        {
+          "id": "dbu_mes",
+          "nombre": "DBU de SQL Serverless al mes (estimación del consultor)",
+          "unidad": "DBU",
+          "valor": {
+            "S": 200,
+            "M": 3000,
+            "L": 25000
+          }
+        },
+        {
+          "id": "precio_dbu_us",
+          "nombre": "Precio por DBU, SQL Serverless, región EE. UU.",
+          "unidad": "USD/DBU",
+          "valor": 0.7,
+          "fuente": "db-pricing-3p"
+        },
+        {
+          "id": "precio_dbu_ue",
+          "nombre": "Precio por DBU, SQL Serverless, región UE",
+          "unidad": "USD/DBU",
+          "valor": 0.91,
+          "fuente": "db-pricing-page"
+        },
+        {
+          "id": "precio_tb_cloud",
+          "nombre": "Almacenamiento en el cloud subyacente (objeto estándar, supuesto del consultor)",
+          "unidad": "USD/TB-mes",
+          "valor": 23
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "SQL Serverless, región EE. UU.",
+          "componentes": [
+            {
+              "nombre": "Cómputo (DBU)",
+              "formula": "dbu_mes * precio_dbu_us"
+            },
+            {
+              "nombre": "Almacenamiento (cloud subyacente)",
+              "formula": "tb_almacenados * precio_tb_cloud"
+            }
+          ]
+        },
+        {
+          "nombre": "SQL Serverless, región UE",
+          "componentes": [
+            {
+              "nombre": "Cómputo (DBU)",
+              "formula": "dbu_mes * precio_dbu_ue"
+            },
+            {
+              "nombre": "Almacenamiento (cloud subyacente)",
+              "formula": "tb_almacenados * precio_tb_cloud"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "dremio",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "N/D — no se ha localizado en esta revisión el detalle de regiones/tarifas UE de Dremio Cloud",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste Dremio Cloud estimado/mes": "≈ 215 USD",
+            "TCO self-hosted equivalente (alternativa)": "≈ 250 – 350 €"
+          },
+          {
+            "Escenario": "M",
+            "Coste Dremio Cloud estimado/mes": "≈ 1.996 USD",
+            "TCO self-hosted equivalente (alternativa)": "≈ 2.500 – 3.000 €"
+          },
+          {
+            "Escenario": "L",
+            "Coste Dremio Cloud estimado/mes": "≈ 13.816 USD",
+            "TCO self-hosted equivalente (alternativa)": "≈ 15.000 – 19.000 €"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 215.0,
+        "max": 215.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 215 USD"
+      },
+      "M": {
+        "min": 1996.0,
+        "max": 1996.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 1.996 USD"
+      },
+      "L": {
+        "min": 13816.0,
+        "max": 13816.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 13.816 USD"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "dremio-pricing",
+        "titulo": "Dremio Inc., «Pricing»",
+        "url": "https://www.dremio.com/pricing/",
+        "consultado": "2026-10-02"
+      },
+      {
+        "id": "dremio-open-source-page",
+        "titulo": "Dremio Inc., «Open Source — Accelerate Data Analytics»",
+        "url": "https://www.dremio.com/open-source/",
+        "consultado": "2026-09-29"
+      }
+    ],
+    "modelo": {
+      "moneda": "USD",
+      "parametros": [
+        {
+          "id": "dcu_activos",
+          "nombre": "DCU de los motores activos (estimación del consultor: tamaño del motor × nodos)",
+          "unidad": "DCU",
+          "valor": {
+            "S": 4,
+            "M": 16,
+            "L": 64
+          }
+        },
+        {
+          "id": "precio_dcu",
+          "nombre": "Precio por DCU (pago por uso)",
+          "unidad": "USD/DCU",
+          "valor": 0.2,
+          "fuente": "dremio-pricing"
+        },
+        {
+          "id": "precio_tb_cloud",
+          "nombre": "Almacenamiento en el cloud propio (objeto estándar, supuesto del consultor)",
+          "unidad": "USD/TB-mes",
+          "valor": 23
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "Dremio Cloud, pago por uso",
+          "componentes": [
+            {
+              "nombre": "Cómputo (DCU-hora)",
+              "formula": "dcu_activos * horas_activas_dia * 30 * precio_dcu"
+            },
+            {
+              "nombre": "Almacenamiento (cloud propio)",
+              "formula": "tb_almacenados * precio_tb_cloud"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "duckdb",
+    "fecha_revision": "2026-09-29",
+    "region_referencia": "No aplica — motor embebido, sin infraestructura de servidor propia",
+    "moneda": "EUR",
+    "tablas": [
+      {
+        "titulo": "",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste directo de DuckDB": "0 € (licencia)",
+            "Nota": "Cabe cómodamente en una máquina de coste marginal frente al resto de la infraestructura del escenario."
+          },
+          {
+            "Escenario": "M",
+            "Coste directo de DuckDB": "0 € (licencia)",
+            "Nota": "Uso probable como motor de consultas puntuales sobre una porción de los datos, no como warehouse central."
+          },
+          {
+            "Escenario": "L",
+            "Coste directo de DuckDB": "0 € (licencia)",
+            "Nota": "Fuera de su caso de uso principal como motor único; normalmente se usaría junto a, no en lugar de, un motor distribuido."
+          }
+        ]
+      }
+    ],
+    "totales": {},
+    "enlaces": []
+  },
+  {
+    "candidato": "firebolt",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "N/D — no se ha localizado en esta revisión un desglose de precio por región en la página oficial",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Nodos S": "1 (8h/día)",
+            "Cómputo estimado/mes": "≈ 221 USD",
+            "Almacenamiento estimado/mes": "≈ 26 USD (1 TB)",
+            "Coste mensual estimado": "≈ 247 USD"
+          },
+          {
+            "Escenario": "M",
+            "Nodos S": "4 (16h/día)",
+            "Cómputo estimado/mes": "≈ 1.766 USD",
+            "Almacenamiento estimado/mes": "≈ 528 USD (20 TB)",
+            "Coste mensual estimado": "≈ 2.294 USD"
+          },
+          {
+            "Escenario": "L",
+            "Nodos S": "16 (24h/día)",
+            "Cómputo estimado/mes": "≈ 10.598 USD",
+            "Almacenamiento estimado/mes": "≈ 5.280 USD (200 TB)",
+            "Coste mensual estimado": "≈ 15.878 USD"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 247.0,
+        "max": 247.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 247 USD"
+      },
+      "M": {
+        "min": 2294.0,
+        "max": 2294.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 2.294 USD"
+      },
+      "L": {
+        "min": 15878.0,
+        "max": 15878.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 15.878 USD"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "fb-docs-architecture",
+        "titulo": "Firebolt Docs, «Architecture»",
+        "url": "https://docs.firebolt.io/overview/architecture-overview",
+        "consultado": "2026-09-29"
+      }
+    ],
+    "modelo": {
+      "moneda": "USD",
+      "parametros": [
+        {
+          "id": "nodos",
+          "nombre": "Nodos S del motor, activos en las horas activas (estimación del consultor)",
+          "unidad": "nodos",
+          "valor": {
+            "S": 1,
+            "M": 4,
+            "L": 16
+          }
+        },
+        {
+          "id": "precio_nodo_hora",
+          "nombre": "Nodo S (ejemplo de la calculadora oficial)",
+          "unidad": "USD/hora",
+          "valor": 0.92,
+          "fuente": "fb-pricing-page"
+        },
+        {
+          "id": "precio_gb_mes",
+          "nombre": "Almacenamiento (tamaño comprimido)",
+          "unidad": "USD/GB-mes",
+          "valor": 0.0264,
+          "fuente": "fb-pricing-page"
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "Firebolt gestionado",
+          "componentes": [
+            {
+              "nombre": "Cómputo (nodo-hora)",
+              "formula": "nodos * horas_activas_dia * 30 * precio_nodo_hora"
+            },
+            {
+              "nombre": "Almacenamiento",
+              "formula": "tb_almacenados * 1000 * precio_gb_mes"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "microsoft-fabric",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Región genérica EE. UU. (tarifa por CU/hora citada por agregadores como aproximada; no se ha localizado en esta revisión el desglose oficial por región UE)",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "",
+        "filas": [
+          {
+            "Escenario": "S",
+            "F-SKU estimada": "F4, 8h/día",
+            "Coste capacidad estimado/mes": "≈ 173 USD",
+            "Almacenamiento OneLake estimado/mes": "≈ 23 USD (1 TB)",
+            "Coste mensual estimado": "≈ 196 USD"
+          },
+          {
+            "Escenario": "M",
+            "F-SKU estimada": "F32, 16h/día",
+            "Coste capacidad estimado/mes": "≈ 2.765 USD",
+            "Almacenamiento OneLake estimado/mes": "≈ 460 USD (20 TB)",
+            "Coste mensual estimado": "≈ 3.225 USD"
+          },
+          {
+            "Escenario": "L",
+            "F-SKU estimada": "F128, 24h/día",
+            "Coste capacidad estimado/mes": "≈ 16.589 USD",
+            "Almacenamiento OneLake estimado/mes": "≈ 4.600 USD (200 TB)",
+            "Coste mensual estimado": "≈ 21.189 USD"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 196.0,
+        "max": 196.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 196 USD"
+      },
+      "M": {
+        "min": 3225.0,
+        "max": 3225.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 3.225 USD"
+      },
+      "L": {
+        "min": 21189.0,
+        "max": 21189.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 21.189 USD"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "fab-pricing-3p",
+        "titulo": "Kanerika, «Microsoft Fabric Pricing 2026: F-SKU Costs and Licenses»",
+        "url": "https://kanerika.com/blogs/understanding-microsoft-fabric-pricing/",
+        "consultado": "2026-10-02"
+      },
+      {
+        "id": "fab-docs-licenses",
+        "titulo": "Microsoft Learn, «Understand Microsoft Fabric licenses and capacity»",
+        "url": "https://learn.microsoft.com/en-us/fabric/enterprise/licenses",
+        "consultado": "2026-10-02"
+      },
+      {
+        "id": "fab-docs-onelake-consumption",
+        "titulo": "Microsoft Learn, «OneLake capacity consumption example»",
+        "url": "https://learn.microsoft.com/en-us/fabric/onelake/onelake-capacity-consumption",
+        "consultado": "2026-09-29"
+      }
+    ],
+    "modelo": {
+      "moneda": "USD",
+      "parametros": [
+        {
+          "id": "cu",
+          "nombre": "Capacidad F-SKU elegida (CU): F4, F32 y F128 (estimación del consultor)",
+          "unidad": "CU",
+          "valor": {
+            "S": 4,
+            "M": 32,
+            "L": 128
+          }
+        },
+        {
+          "id": "precio_cu_hora",
+          "nombre": "Pago por uso",
+          "unidad": "USD/CU-hora",
+          "valor": 0.18,
+          "fuente": "fab-pricing-3p"
+        },
+        {
+          "id": "precio_gb_mes",
+          "nombre": "Almacenamiento OneLake",
+          "unidad": "USD/GB-mes",
+          "valor": 0.023,
+          "fuente": "fab-pricing-3p"
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "Pago por uso (capacidad pausada fuera de las horas activas)",
+          "componentes": [
+            {
+              "nombre": "Capacidad (CU-hora)",
+              "formula": "cu * horas_activas_dia * 30 * precio_cu_hora"
+            },
+            {
+              "nombre": "Almacenamiento OneLake",
+              "formula": "tb_almacenados * 1000 * precio_gb_mes"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "motherduck",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "US East (tarifa de referencia de agregadores de la página oficial de precios); región UE eu-central-1 disponible pero sin tarifa diferenciada localizada en esta revisión",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Plan base": "Business (250 USD) + Standard 8h/día",
+            "Cómputo estimado/mes": "≈ 576 USD",
+            "Almacenamiento estimado/mes": "≈ 40 USD (1 TB)",
+            "Coste mensual estimado": "≈ 866 USD"
+          },
+          {
+            "Escenario": "M",
+            "Plan base": "Business (250 USD) + Standard 16h/día",
+            "Cómputo estimado/mes": "≈ 1.152 USD",
+            "Almacenamiento estimado/mes": "≈ 800 USD (20 TB)",
+            "Coste mensual estimado": "≈ 2.202 USD"
+          },
+          {
+            "Escenario": "L",
+            "Plan base": "Business (250 USD) + Jumbo 24h/día",
+            "Cómputo estimado/mes": "≈ 3.456 USD",
+            "Almacenamiento estimado/mes": "≈ 8.000 USD (200 TB)",
+            "Coste mensual estimado": "≈ 11.706 USD"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 866.0,
+        "max": 866.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 866 USD"
+      },
+      "M": {
+        "min": 2202.0,
+        "max": 2202.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 2.202 USD"
+      },
+      "L": {
+        "min": 11706.0,
+        "max": 11706.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 11.706 USD"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "md-pricing-page",
+        "titulo": "MotherDuck Inc., «MotherDuck Pricing»",
+        "url": "https://motherduck.com/product/pricing/",
+        "consultado": "2026-10-02"
+      }
+    ],
+    "modelo": {
+      "moneda": "USD",
+      "parametros": [
+        {
+          "id": "cuota_plan",
+          "nombre": "Cuota base del plan Business (por organización)",
+          "unidad": "USD/mes",
+          "valor": 250,
+          "fuente": "md-pricing-page"
+        },
+        {
+          "id": "precio_hora",
+          "nombre": "Instancia de cómputo: Standard (S y M) y Jumbo (L)",
+          "unidad": "USD/hora",
+          "valor": {
+            "S": 2.4,
+            "M": 2.4,
+            "L": 4.8
+          },
+          "fuente": "md-pricing-page"
+        },
+        {
+          "id": "precio_gb_mes",
+          "nombre": "Almacenamiento",
+          "unidad": "USD/GB-mes",
+          "valor": 0.04,
+          "fuente": "md-pricing-page"
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "Business",
+          "componentes": [
+            {
+              "nombre": "Cuota del plan",
+              "formula": "cuota_plan"
+            },
+            {
+              "nombre": "Cómputo (horas activas)",
+              "formula": "horas_activas_dia * 30 * precio_hora"
+            },
+            {
+              "nombre": "Almacenamiento",
+              "formula": "tb_almacenados * 1000 * precio_gb_mes"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "postgresql-extensiones-analiticas",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "No aplica de forma única — depende del proveedor gestionado elegido (RDS, Cloud SQL, Aurora, Crunchy Bridge, Neon, Timescale Cloud...)",
+    "moneda": "EUR",
+    "tablas": [
+      {
+        "titulo": "",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Infraestructura (estimado/mes)": "100 – 160 €",
+            "Operación (estimado/mes)": "≈ 104 €",
+            "TCO mensual estimado": "≈ 204 – 264 €"
+          },
+          {
+            "Escenario": "M",
+            "Infraestructura (estimado/mes)": "900 – 1.300 €",
+            "Operación (estimado/mes)": "≈ 1.248 €",
+            "TCO mensual estimado": "≈ 2.150 – 2.550 €"
+          },
+          {
+            "Escenario": "L",
+            "Infraestructura (estimado/mes)": "6.500 – 9.500 €",
+            "Operación (estimado/mes)": "≈ 6.240 €",
+            "TCO mensual estimado": "≈ 12.740 – 15.740 €"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 204.0,
+        "max": 264.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 204 – 264 €"
+      },
+      "M": {
+        "min": 2150.0,
+        "max": 2550.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 2.150 – 2.550 €"
+      },
+      "L": {
+        "min": 12740.0,
+        "max": 15740.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 12.740 – 15.740 €"
+      }
+    },
+    "enlaces": [],
+    "modelo": {
+      "moneda": "EUR",
+      "parametros": [
+        {
+          "id": "infraestructura",
+          "nombre": "Infraestructura: cómputo, almacenamiento y red (estimación del consultor)",
+          "unidad": "EUR/mes",
+          "valor": {
+            "S": {
+              "min": 100,
+              "max": 160
+            },
+            "M": {
+              "min": 900,
+              "max": 1300
+            },
+            "L": {
+              "min": 6500,
+              "max": 9500
+            }
+          }
+        },
+        {
+          "id": "fte",
+          "nombre": "Dedicación de operación (estimación del consultor)",
+          "unidad": "FTE",
+          "valor": {
+            "S": 0.1,
+            "M": 0.3,
+            "L": 0.75
+          }
+        },
+        {
+          "id": "tarifa_hora",
+          "nombre": "Tarifa de un perfil SRE/DBA senior (supuesto del consultor)",
+          "unidad": "EUR/h",
+          "valor": 65
+        },
+        {
+          "id": "horas_base",
+          "nombre": "Horas base de operación al mes (las de la tabla de la ficha)",
+          "unidad": "h/mes",
+          "valor": {
+            "S": 16,
+            "M": 64,
+            "L": 128
+          }
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "OSS autogestionado (TCO)",
+          "componentes": [
+            {
+              "nombre": "Infraestructura",
+              "formula": "infraestructura"
+            },
+            {
+              "nombre": "Operación",
+              "formula": "fte * tarifa_hora * horas_base"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "redshift",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "AWS us-east-1 (N. Virginia) — no se ha desglosado en esta revisión una tarifa específica de región UE (p. ej. eu-central-1), que suele tener un recargo variable sobre us-east-1 en AWS.",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "",
+        "filas": [
+          {
+            "Escenario": "S",
+            "RPU-hora estimadas/mes": "≈ 320 (4 RPU × 8h × 10 días activos aprox.)",
+            "Coste cómputo estimado/mes": "≈ 120 USD",
+            "Almacenamiento estimado/mes": "≈ 24 USD (1 TB)",
+            "Coste mensual estimado": "≈ 144 USD"
+          },
+          {
+            "Escenario": "M",
+            "RPU-hora estimadas/mes": "≈ 3.840 (16 RPU × 16h/día)",
+            "Coste cómputo estimado/mes": "≈ 1.440 USD",
+            "Almacenamiento estimado/mes": "≈ 480 USD (20 TB)",
+            "Coste mensual estimado": "≈ 1.920 USD"
+          },
+          {
+            "Escenario": "L",
+            "RPU-hora estimadas/mes": "≈ 43.200 (60 RPU × 24h/día)",
+            "Coste cómputo estimado/mes": "≈ 16.200 USD",
+            "Almacenamiento estimado/mes": "≈ 4.800 USD (200 TB)",
+            "Coste mensual estimado": "≈ 21.000 USD"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 144.0,
+        "max": 144.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 144 USD"
+      },
+      "M": {
+        "min": 1920.0,
+        "max": 1920.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 1.920 USD"
+      },
+      "L": {
+        "min": 21000.0,
+        "max": 21000.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 21.000 USD"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "rs-pricing-serverless",
+        "titulo": "AWS, «Amazon Redshift Serverless pricing»",
+        "url": "https://aws.amazon.com/redshift/pricing/",
+        "consultado": "2026-10-02"
+      }
+    ],
+    "modelo": {
+      "moneda": "USD",
+      "parametros": [
+        {
+          "id": "rpu_horas_mes",
+          "nombre": "RPU-hora al mes (estimación del consultor)",
+          "unidad": "RPU-hora",
+          "valor": {
+            "S": 320,
+            "M": 3840,
+            "L": 43200
+          }
+        },
+        {
+          "id": "precio_rpu_hora",
+          "nombre": "Redshift Serverless",
+          "unidad": "USD/RPU-hora",
+          "valor": 0.375,
+          "fuente": "rs-pricing-serverless"
+        },
+        {
+          "id": "precio_gb_mes",
+          "nombre": "Almacenamiento gestionado",
+          "unidad": "USD/GB-mes",
+          "valor": 0.024,
+          "fuente": "rs-pricing-serverless"
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "Serverless on-demand",
+          "componentes": [
+            {
+              "nombre": "Cómputo (RPU-hora)",
+              "formula": "rpu_horas_mes * precio_rpu_hora"
+            },
+            {
+              "nombre": "Almacenamiento gestionado",
+              "formula": "tb_almacenados * 1000 * precio_gb_mes"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "snowflake",
+    "fecha_revision": "2026-09-29",
+    "region_referencia": "AWS us-east-1 (N. Virginia) — no se ha localizado, en esta revisión, un desglose de precio por crédito específico para una región UE en fuentes accesibles sin registro; se usa us-east-1 como referencia habitual del sector, con la salvedad explícita.",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Créditos estimados/mes": "≈ 60",
+            "Coste cómputo estimado/mes": "≈ 180 USD",
+            "Almacenamiento estimado/mes": "≈ 23 USD (1 TB)",
+            "Coste mensual estimado": "≈ 203 USD"
+          },
+          {
+            "Escenario": "M",
+            "Créditos estimados/mes": "≈ 900",
+            "Coste cómputo estimado/mes": "≈ 2.700 USD",
+            "Almacenamiento estimado/mes": "≈ 460 USD (20 TB)",
+            "Coste mensual estimado": "≈ 3.160 USD"
+          },
+          {
+            "Escenario": "L",
+            "Créditos estimados/mes": "≈ 7.500",
+            "Coste cómputo estimado/mes": "≈ 22.500 USD",
+            "Almacenamiento estimado/mes": "≈ 4.600 USD (200 TB)",
+            "Coste mensual estimado": "≈ 27.100 USD"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 203.0,
+        "max": 203.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 203 USD"
+      },
+      "M": {
+        "min": 3160.0,
+        "max": 3160.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 3.160 USD"
+      },
+      "L": {
+        "min": 27100.0,
+        "max": 27100.0,
+        "moneda": "USD",
+        "origen": "",
+        "texto": "≈ 27.100 USD"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "sf-pricing-page",
+        "titulo": "Snowflake Inc., «Snowflake Pricing»",
+        "url": "https://www.snowflake.com/en/pricing/",
+        "consultado": "2026-09-29"
+      }
+    ],
+    "modelo": {
+      "moneda": "USD",
+      "parametros": [
+        {
+          "id": "creditos_mes",
+          "nombre": "Créditos de cómputo al mes (estimación del consultor)",
+          "unidad": "créditos",
+          "valor": {
+            "S": 60,
+            "M": 900,
+            "L": 7500
+          }
+        },
+        {
+          "id": "precio_credito",
+          "nombre": "Precio por crédito (Enterprise, on-demand)",
+          "unidad": "USD/crédito",
+          "valor": 3,
+          "fuente": "sf-pricing-page"
+        },
+        {
+          "id": "precio_tb_mes",
+          "nombre": "Almacenamiento",
+          "unidad": "USD/TB-mes",
+          "valor": 23,
+          "fuente": "sf-pricing-page"
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "Enterprise on-demand",
+          "componentes": [
+            {
+              "nombre": "Cómputo (créditos)",
+              "formula": "creditos_mes * precio_credito"
+            },
+            {
+              "nombre": "Almacenamiento",
+              "formula": "tb_almacenados * precio_tb_mes"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "starrocks",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "No aplica al self-hosted; no se ha verificado en esta revisión una tarifa pública desglosada de CelerData (oferta gestionada)",
+    "moneda": "EUR",
+    "tablas": [
+      {
+        "titulo": "",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Infraestructura (estimado/mes)": "180 – 260 €",
+            "Operación (estimado/mes)": "≈ 104 €",
+            "TCO mensual estimado": "≈ 284 – 364 €"
+          },
+          {
+            "Escenario": "M",
+            "Infraestructura (estimado/mes)": "1.400 – 1.900 €",
+            "Operación (estimado/mes)": "≈ 1.248 €",
+            "TCO mensual estimado": "≈ 2.650 – 3.150 €"
+          },
+          {
+            "Escenario": "L",
+            "Infraestructura (estimado/mes)": "9.000 – 13.000 €",
+            "Operación (estimado/mes)": "≈ 6.240 €",
+            "TCO mensual estimado": "≈ 15.240 – 19.240 €"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 284.0,
+        "max": 364.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 284 – 364 €"
+      },
+      "M": {
+        "min": 2650.0,
+        "max": 3150.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 2.650 – 3.150 €"
+      },
+      "L": {
+        "min": 15240.0,
+        "max": 19240.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 15.240 – 19.240 €"
+      }
+    },
+    "enlaces": [],
+    "modelo": {
+      "moneda": "EUR",
+      "parametros": [
+        {
+          "id": "infraestructura",
+          "nombre": "Infraestructura: cómputo, almacenamiento y red (estimación del consultor)",
+          "unidad": "EUR/mes",
+          "valor": {
+            "S": {
+              "min": 180,
+              "max": 260
+            },
+            "M": {
+              "min": 1400,
+              "max": 1900
+            },
+            "L": {
+              "min": 9000,
+              "max": 13000
+            }
+          }
+        },
+        {
+          "id": "fte",
+          "nombre": "Dedicación de operación (estimación del consultor)",
+          "unidad": "FTE",
+          "valor": {
+            "S": 0.1,
+            "M": 0.3,
+            "L": 0.75
+          }
+        },
+        {
+          "id": "tarifa_hora",
+          "nombre": "Tarifa de un perfil SRE/DBA senior (supuesto del consultor)",
+          "unidad": "EUR/h",
+          "valor": 65
+        },
+        {
+          "id": "horas_base",
+          "nombre": "Horas base de operación al mes (las de la tabla de la ficha)",
+          "unidad": "h/mes",
+          "valor": {
+            "S": 16,
+            "M": 64,
+            "L": 128
+          }
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "OSS autogestionado (TCO)",
+          "componentes": [
+            {
+              "nombre": "Infraestructura",
+              "formula": "infraestructura"
+            },
+            {
+              "nombre": "Operación",
+              "formula": "fte * tarifa_hora * horas_base"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "trino",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "No aplica al self-hosted; no se ha verificado en esta revisión una tarifa pública desglosada de Starburst Galaxy",
+    "moneda": "EUR",
+    "tablas": [
+      {
+        "titulo": "",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Cómputo estimado/mes": "120 – 180 €",
+            "Operación (estimado/mes)": "≈ 104 €",
+            "TCO mensual estimado": "≈ 224 – 284 €"
+          },
+          {
+            "Escenario": "M",
+            "Cómputo estimado/mes": "900 – 1.300 €",
+            "Operación (estimado/mes)": "≈ 1.248 €",
+            "TCO mensual estimado": "≈ 2.150 – 2.550 €"
+          },
+          {
+            "Escenario": "L",
+            "Cómputo estimado/mes": "6.000 – 9.000 €",
+            "Operación (estimado/mes)": "≈ 6.240 €",
+            "TCO mensual estimado": "≈ 12.240 – 15.240 €"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 224.0,
+        "max": 284.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 224 – 284 €"
+      },
+      "M": {
+        "min": 2150.0,
+        "max": 2550.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 2.150 – 2.550 €"
+      },
+      "L": {
+        "min": 12240.0,
+        "max": 15240.0,
+        "moneda": "EUR",
+        "origen": "",
+        "texto": "≈ 12.240 – 15.240 €"
+      }
+    },
+    "enlaces": [],
+    "modelo": {
+      "moneda": "EUR",
+      "parametros": [
+        {
+          "id": "infraestructura",
+          "nombre": "Cómputo, sin almacenamiento propio (estimación del consultor)",
+          "unidad": "EUR/mes",
+          "valor": {
+            "S": {
+              "min": 120,
+              "max": 180
+            },
+            "M": {
+              "min": 900,
+              "max": 1300
+            },
+            "L": {
+              "min": 6000,
+              "max": 9000
+            }
+          }
+        },
+        {
+          "id": "fte",
+          "nombre": "Dedicación de operación (estimación del consultor)",
+          "unidad": "FTE",
+          "valor": {
+            "S": 0.1,
+            "M": 0.3,
+            "L": 0.75
+          }
+        },
+        {
+          "id": "tarifa_hora",
+          "nombre": "Tarifa de un perfil SRE/DBA senior (supuesto del consultor)",
+          "unidad": "EUR/h",
+          "valor": 65
+        },
+        {
+          "id": "horas_base",
+          "nombre": "Horas base de operación al mes (las de la tabla de la ficha)",
+          "unidad": "h/mes",
+          "valor": {
+            "S": 16,
+            "M": 64,
+            "L": 128
+          }
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "OSS autogestionado (TCO)",
+          "componentes": [
+            {
+              "nombre": "Infraestructura",
+              "formula": "infraestructura"
+            },
+            {
+              "nombre": "Operación",
+              "formula": "fte * tarifa_hora * horas_base"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

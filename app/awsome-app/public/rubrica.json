@@ -1,0 +1,2070 @@
+{
+  "datos": {
+    "categorias": [
+      {
+        "id": "cloud-dwh",
+        "descripcion": "Data warehouse cloud propietario, SaaS, con almacenamiento y cómputo separados de fábrica."
+      },
+      {
+        "id": "cloud-dwh-embebido",
+        "descripcion": "Oferta cloud construida sobre un motor embebido (ver `motor-embebido`), con ejecución híbrida cliente/nube."
+      },
+      {
+        "id": "cloud-dwh-lakehouse",
+        "descripcion": "Plataforma cloud que combina data warehouse y lakehouse sobre un lago de datos unificado propio."
+      },
+      {
+        "id": "real-time-dwh-lakehouse",
+        "descripcion": "Pataforma DWH orientada a real time con posibilidad de conexión con fuentes de datos externas"
+      },
+      {
+        "id": "lakehouse",
+        "descripcion": "Plataforma lakehouse propietaria construida sobre motores y formatos de tabla abiertos."
+      },
+      {
+        "id": "motor-lakehouse-federado",
+        "descripcion": "Motor de consulta orientado explícitamente a acelerar y federar el lakehouse abierto (Iceberg/catálogos externos), sin exigir almacenamiento propio."
+      },
+      {
+        "id": "federacion-consultas",
+        "descripcion": "Motor de consulta puro sin almacenamiento propio, pensado para unir datos de sistemas heterogéneos en una sola consulta."
+      },
+      {
+        "id": "motor-olap",
+        "descripcion": "Motor MPP OLAP de propósito relativamente general (BI, analítica ad hoc), con buen soporte de *joins*."
+      },
+      {
+        "id": "olap-tiempo-real",
+        "descripcion": "Motor OLAP especializado en servir consultas de baja latencia sobre datos que llegan en streaming, típicamente de cara al usuario final."
+      },
+      {
+        "id": "motor-embebido",
+        "descripcion": "Motor analítico *in-process*, sin arquitectura cliente-servidor."
+      },
+      {
+        "id": "motor-batch-etl",
+        "descripcion": "Motor de procesamiento distribuido de propósito general (batch y streaming), usado habitualmente como capa de ETL/ELT."
+      },
+      {
+        "id": "motor-hibrido-extensible",
+        "descripcion": "Motor OLTP relacional al que un ecosistema de extensiones añade capacidades analíticas."
+      }
+    ],
+    "dimensiones": [
+      {
+        "id": "DP-ARQ",
+        "nombre": "Arquitectura",
+        "criterios": 3,
+        "peso": 8,
+        "valores": [
+          {
+            "id": "DP-ARQ-01",
+            "nombre": "Separación almacenamiento/cómputo",
+            "pregunta": "¿Puede el candidato escalar el cómputo de forma independiente del almacenamiento, sin redistribuir los datos?",
+            "tipo": "puntuable",
+            "peso": 3,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Cómputo y almacenamiento acoplados, sin alternativa."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Separación posible pero manual y con downtime al redimensionar."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Separación disponible solo en la oferta gestionada, no en self-hosted."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Separación nativa, redimensionar cómputo no requiere mover datos."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Además, permite múltiples clústeres de cómputo leyendo el mismo almacenamiento en paralelo (multi-cluster)."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Referencia del mercado: separación nativa + multi-cluster + escalado en segundos documentado con evidencia pública."
+                }
+              ]
+            }
+          },
+          {
+            "id": "DP-ARQ-02",
+            "nombre": "Lectura/escritura nativa de formatos de tabla abiertos",
+            "pregunta": "¿Puede leer y/o escribir Iceberg, Delta Lake, Hudi o Paimon directamente, sin ETL intermedio?",
+            "tipo": "puntuable",
+            "peso": 3,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Ningún formato abierto soportado."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Lectura de un formato, experimental o con limitaciones graves (sin *time travel*, sin *schema evolution*)."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Lectura estable de al menos un formato; sin escritura."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Lectura estable de al menos dos formatos y escritura de al menos uno."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Lectura y escritura estables de dos o más formatos, con *time travel* y *schema evolution*."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Lectura y escritura de tres o más formatos, con soporte de catálogos REST externos y sin penalización de rendimiento relevante frente al formato nativo del motor."
+                }
+              ]
+            }
+          },
+          {
+            "id": "DP-ARQ-03",
+            "nombre": "Catálogo externo compatible",
+            "pregunta": "¿Puede registrar y descubrir tablas a través de un catálogo externo estándar (Iceberg REST Catalog, Hive Metastore, AWS Glue, Unity Catalog)?",
+            "tipo": "booleano",
+            "peso": 2,
+            "obligatorio": false
+          }
+        ]
+      },
+      {
+        "id": "DP-CAR",
+        "nombre": "Cargas de trabajo",
+        "criterios": 4,
+        "peso": 8,
+        "valores": [
+          {
+            "id": "DP-CAR-01",
+            "nombre": "BI / SQL ad hoc",
+            "pregunta": "¿Qué nivel de soporte SQL y de rendimiento interactivo ofrece para consultas ad hoc de analistas?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Sin interfaz SQL."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "SQL muy limitado (subconjunto reducido, sin *joins* complejos)."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "SQL estándar pero sin optimizador basado en costes documentado."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "SQL completo con optimizador CBO, adecuado para BI estándar."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "SQL completo + ejecución vectorizada/columnar documentada para baja latencia interactiva."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Referencia del mercado en consultas ad hoc de baja latencia, con adopción a gran escala documentada."
+                }
+              ]
+            }
+          },
+          {
+            "id": "DP-CAR-02",
+            "nombre": "Streaming / tiempo real",
+            "pregunta": "¿Puede ingerir y servir consultas sobre datos que llegan de forma continua, con latencia de segundos o minutos?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Sin ingesta en streaming; solo carga batch."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Ingesta cuasi-continua vía micro-batch externo (p. ej. cada hora), no nativa."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Conector nativo a una cola (Kafka u otra) pero con latencia de minutos."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Ingesta nativa en streaming con latencia de segundos, documentada."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Ingesta en streaming + indexación consultable casi al instante (SLA de latencia p99 publicado)."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Referencia del mercado en analítica de streaming a gran escala, con SLA p99 por debajo de 100 ms documentado en producción."
+                }
+              ]
+            }
+          },
+          {
+            "id": "DP-CAR-03",
+            "nombre": "ML/IA y búsqueda vectorial",
+            "pregunta": "¿Qué soporte nativo ofrece para vectores/embeddings y para ejecutar o invocar modelos de IA sobre los datos?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Sin ningún soporte: ni tipo de dato vectorial ni funciones LLM en SQL."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Solo uno de los dos, y en su nivel mínimo: tipo de dato vector limitado a búsqueda exacta (fuerza bruta), o función LLM únicamente en *preview*/*beta* cerrada."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Uno de los dos en un estado intermedio (índice de búsqueda aproximada — ANN — experimental, o función LLM documentada pero no en disponibilidad general), sin el otro."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Uno de los dos resuelto con solidez (índice ANN estable en GA, o función LLM en GA), y el otro ausente o solo experimental."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Ambos en disponibilidad general y documentados oficialmente: índice ANN estable **y** funciones LLM en SQL en producción."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Referencia del mercado: ambos en GA a escala de producción con evidencia pública de adopción (índice ANN a escala de miles de millones de vectores, funciones LLM ampliamente documentadas), con integración conjunta entre ambos (p. ej. un flujo RAG completo invocable desde SQL)."
+                }
+              ]
+            }
+          },
+          {
+            "id": "DP-CAR-04",
+            "nombre": "OLTP / Lakebase",
+            "pregunta": "¿Ofrece (nativamente o mediante un componente integrado del mismo fabricante) un motor transaccional de baja latencia sobre la misma capa de almacenamiento?",
+            "tipo": "puntuable",
+            "peso": 1,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "No es un caso de uso soportado ni recomendado."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Solo vía integración de terceros no oficial."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Soporta *upserts*/actualizaciones puntuales pero sin garantías transaccionales OLTP."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Ofrece un motor OLTP separado del fabricante, pero requiere ETL explícito hacia el analítico."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Motor OLTP integrado que sincroniza hacia el lakehouse sin ETL explícito (p. ej. Lakebase)."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Motor OLTP y motor analítico comparten la misma capa de almacenamiento sin proceso de sincronización aparte."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "DP-REN",
+        "nombre": "Rendimiento y escalabilidad",
+        "criterios": 3,
+        "peso": 6,
+        "valores": [
+          {
+            "id": "DP-REN-01",
+            "nombre": "Concurrencia y autoescalado",
+            "pregunta": "¿Cómo gestiona picos de concurrencia de usuarios/consultas sin degradar la latencia?",
+            "tipo": "puntuable",
+            "peso": 3,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Sin mecanismo de gestión de concurrencia; contención documentada en cargas moderadas."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Gestión manual (colas, *resource groups*) que requiere ajuste continuo."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Autoescalado vertical de un único clúster."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Autoescalado horizontal (más nodos/réplicas) automático."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Autoescalado horizontal + aislamiento de carga entre grupos de usuarios (multi-cluster o *resource isolation*) sin redistribuir datos."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Referencia del mercado: autoescalado horizontal + aislamiento + evidencia pública de concurrencia sostenida a gran escala (benchmark independiente o caso de producción documentado)."
+                }
+              ]
+            }
+          },
+          {
+            "id": "DP-REN-02",
+            "nombre": "Benchmarks publicados",
+            "pregunta": "¿Existen resultados de TPC-H, TPC-DS, ClickBench u otro benchmark reconocido para este candidato?",
+            "tipo": "informativo",
+            "peso": null,
+            "obligatorio": false
+          },
+          {
+            "id": "DP-REN-03",
+            "nombre": "Escala a cero",
+            "pregunta": "¿Puede el cómputo reducirse a coste cero cuando no hay consultas activas, sin intervención manual?",
+            "tipo": "booleano",
+            "peso": 2,
+            "obligatorio": false
+          }
+        ]
+      },
+      {
+        "id": "DP-INT",
+        "nombre": "Interoperabilidad y lock-in",
+        "criterios": 3,
+        "peso": 6,
+        "valores": [
+          {
+            "id": "DP-INT-01",
+            "nombre": "Dialecto SQL / estándar",
+            "pregunta": "¿Qué grado de adherencia al estándar SQL tiene, frente a extensiones propietarias imprescindibles para uso normal?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Dialecto propio incompatible con SQL estándar en lo básico."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "SQL estándar en lo básico, pero funciones habituales (ventanas, CTE) requieren sintaxis propietaria documentada."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "SQL estándar amplio, con algunas extensiones propietarias opcionales."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "SQL estándar (ANSI) amplio, extensiones propietarias no imprescindibles para casos de uso comunes."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "SQL estándar amplio + compatibilidad de protocolo con otro motor extendido (p. ej. protocolo MySQL/Postgres) documentada."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Referencia del mercado: alta adherencia SQL + interoperabilidad de protocolo documentada + baja fricción migratoria reportada por terceros."
+                }
+              ]
+            }
+          },
+          {
+            "id": "DP-INT-02",
+            "nombre": "Conectores y ecosistema (BI, dbt, drivers)",
+            "pregunta": "¿Qué soporte oficial o mantenido activamente existe para herramientas estándar del ecosistema (dbt, Airflow, JDBC/ODBC, herramientas de BI)?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Sin conectores documentados."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Drivers básicos (JDBC/ODBC) sin más."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Drivers + un adaptador dbt de terceros."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Adaptador dbt oficial/mantenido + drivers + al menos una herramienta BI mayor certificada."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Lo anterior + Airflow/orquestador oficial + varias BI certificadas."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Ecosistema de referencia, con integración oficial documentada en la mayoría de herramientas estándar del mercado."
+                }
+              ]
+            }
+          },
+          {
+            "id": "DP-INT-03",
+            "nombre": "Facilidad de salida de datos",
+            "pregunta": "¿Puede el usuario extraer la totalidad de sus datos en un formato abierto, sin coste de egress prohibitivo ni herramientas propietarias obligatorias?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Solo exportación manual fila a fila o formato propietario cerrado."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "—"
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Exportación a CSV/Parquet pero con coste de egress no documentado o elevado."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Exportación estándar a Parquet/formato abierto documentada, coste de egress publicado."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Además, los datos ya residen en un formato de tabla abierto de forma nativa (no hace falta \"exportar\")."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Los datos residen en formato abierto en el object store del propio cliente (no del proveedor), de modo que cambiar de motor no implica mover datos."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "DP-GOB",
+        "nombre": "Gobierno y seguridad",
+        "criterios": 4,
+        "peso": 7,
+        "valores": [
+          {
+            "id": "DP-GOB-01",
+            "nombre": "RBAC/ABAC y políticas de fila/columna",
+            "pregunta": "¿Qué granularidad de control de acceso ofrece (roles, atributos, fila, columna)?",
+            "tipo": "puntuable",
+            "peso": 3,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Sin control de acceso granular (todo o nada por usuario)."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Permisos a nivel de tabla únicamente."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "RBAC a nivel de tabla y columna."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "RBAC a nivel de tabla, columna y fila (*row policies*), documentado oficialmente."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "RBAC + ABAC (atributos dinámicos) + enmascaramiento dinámico de columnas."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Referencia del mercado: RBAC/ABAC + enmascaramiento + gestión centralizada vía catálogo externo, con evidencia de uso en entornos regulados."
+                }
+              ]
+            }
+          },
+          {
+            "id": "DP-GOB-02",
+            "nombre": "Linaje y auditoría",
+            "pregunta": "¿Registra y expone de forma consultable el linaje de los datos y un log de auditoría de accesos?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Sin logs de auditoría."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Logs técnicos sin interfaz de consulta."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Auditoría de accesos consultable, sin linaje."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Auditoría + linaje básico a nivel de tabla."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Auditoría + linaje a nivel de columna."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Auditoría + linaje de columna integrado con el catálogo externo, consultable vía API documentada."
+                }
+              ]
+            }
+          },
+          {
+            "id": "DP-GOB-03",
+            "nombre": "Certificaciones de seguridad",
+            "pregunta": "¿Qué certificaciones de seguridad/cumplimiento tiene la oferta gestionada (si existe)?",
+            "tipo": "informativo",
+            "peso": null,
+            "obligatorio": false
+          },
+          {
+            "id": "DP-GOB-04",
+            "nombre": "Residencia de datos en la UE",
+            "pregunta": "¿Ofrece el proveedor una región en la UE donde garantiza contractualmente que los datos (incluidos metadatos) no salen de esa región salvo obligación legal?",
+            "tipo": "booleano",
+            "peso": 2,
+            "obligatorio": false
+          }
+        ]
+      },
+      {
+        "id": "DP-DEP",
+        "nombre": "Despliegue y operación",
+        "criterios": 3,
+        "peso": 4,
+        "valores": [
+          {
+            "id": "DP-DEP-01",
+            "nombre": "Modelos de despliegue disponibles",
+            "pregunta": "¿Qué modelos de despliegue ofrece (SaaS, BYOC, self-managed, on-prem, Kubernetes)?",
+            "tipo": "informativo",
+            "peso": null,
+            "obligatorio": false
+          },
+          {
+            "id": "DP-DEP-02",
+            "nombre": "Esfuerzo operativo en self-managed",
+            "pregunta": "Si se despliega en modo self-managed, ¿qué esfuerzo de operación (parcheo, escalado, *backups*, alta disponibilidad) recae en el equipo del cliente?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "No aplica / no existe modo self-managed."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Self-managed posible pero sin herramientas oficiales de automatización (todo manual)."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Existen scripts/Helm charts de la comunidad, no oficiales."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Operador oficial (p. ej. Kubernetes operator) mantenido por el fabricante o una fundación."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Operador oficial + automatización de *backups*/HA documentada."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Operador oficial + automatización completa + documentación de referencia de operación en producción a gran escala."
+                }
+              ]
+            }
+          },
+          {
+            "id": "DP-DEP-03",
+            "nombre": "Operador Kubernetes oficial o soportado",
+            "pregunta": "¿Existe un operador de Kubernetes mantenido oficialmente por el fabricante o por una fundación reconocida (no un fork de la comunidad sin mantenimiento activo)?",
+            "tipo": "booleano",
+            "peso": 2,
+            "obligatorio": false
+          }
+        ]
+      },
+      {
+        "id": "DP-ECO",
+        "nombre": "Ecosistema y madurez",
+        "criterios": 3,
+        "peso": 5,
+        "valores": [
+          {
+            "id": "DP-ECO-01",
+            "nombre": "Comunidad y gobernanza",
+            "pregunta": "¿Qué madurez tiene la comunidad y la gobernanza del proyecto (para OSS) o la base de clientes documentada (para propietario)?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Proyecto sin actividad pública verificable en los últimos 12 meses."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Actividad baja, gobernanza de un único actor sin transparencia."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Actividad regular, gobernanza de una única empresa."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Actividad alta (releases regulares, cientos de contribuidores) bajo gobernanza de una empresa con historial estable."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Proyecto bajo fundación neutral (Apache, Linux Foundation) con gobernanza documentada."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Referencia de su categoría: fundación neutral + comunidad de contribuidores amplia y activa, documentado con métricas públicas (releases, PRs, contribuidores únicos)."
+                }
+              ]
+            }
+          },
+          {
+            "id": "DP-ECO-02",
+            "nombre": "Integraciones con el ecosistema de datos",
+            "pregunta": "¿Qué nivel de integración documentada existe con el resto de la pila (orquestadores, catálogos, observabilidad)?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Ninguna integración documentada."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Conectores/integraciones básicas de plataforma."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Integraciones de plataforma de terceros / comunidad."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Integración oficial/mantenida con al menos una herramienta clave de plataforma."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Múltiples integraciones oficiales con herramientas de plataforma (orquestadores, catálogos, observabilidad)."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Integración oficial y documentada con la mayoría de piezas estándar de la pila de datos moderna."
+                }
+              ]
+            }
+          },
+          {
+            "id": "DP-ECO-03",
+            "nombre": "Disponibilidad de perfiles en el mercado",
+            "pregunta": "¿Existe evidencia pública (ofertas de empleo, encuestas de adopción, encuestas Stack Overflow/similares) de disponibilidad de profesionales con experiencia en este candidato?",
+            "tipo": "informativo",
+            "peso": null,
+            "obligatorio": false
+          }
+        ]
+      },
+      {
+        "id": "DP-LIC",
+        "nombre": "Licencia y modelo de negocio",
+        "criterios": 2,
+        "peso": 4,
+        "valores": [
+          {
+            "id": "DP-LIC-01",
+            "nombre": "Licencia aprobada por OSI",
+            "pregunta": "¿El núcleo del producto se distribuye bajo una licencia aprobada por la Open Source Initiative (no *source-available* ni *open core* con núcleo cerrado)?",
+            "tipo": "booleano",
+            "peso": 2,
+            "obligatorio": false
+          },
+          {
+            "id": "DP-LIC-02",
+            "nombre": "Estabilidad de la licencia",
+            "pregunta": "¿Ha cambiado la licencia del proyecto en los últimos 3 años hacia una más restrictiva (de OSI a *source-available*, o cambios de términos de un *open core*)?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Cambió a una licencia más restrictiva en el último año."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Cambió en los últimos 1-3 años."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Sin cambios en 3 años pero con historial de cambios previos."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Licencia estable, sin cambios documentados, pero el producto es relativamente joven (< 5 años) para tener un historial largo que evaluar."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Licencia estable durante más de 5 años."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Licencia estable durante más de 5 años + compromiso público del fabricante o la fundación de no cambiarla (p. ej. donación a una fundación neutral)."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "DP-COS",
+        "nombre": "Coste",
+        "criterios": 1,
+        "peso": 4,
+        "valores": [
+          {
+            "id": "DP-COS-02",
+            "nombre": "Transparencia del modelo de precios",
+            "pregunta": "¿Publica el fabricante una página de precios completa, o requiere \"contactar con ventas\" para conocer el coste?",
+            "tipo": "puntuable",
+            "peso": 1,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Ningún precio público, ni siquiera de referencia (ni marketplace)."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Solo referencia indirecta (p. ej. listado de marketplace de un hiperescalador) sin página de precios propia."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Página de precios parcial (algunos tiers \"contactar con ventas\")."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Página de precios completa para todos los tiers principales, con fórmula de cálculo explicada."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Lo anterior + calculadora de coste oficial interactiva."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Lo anterior + histórico de precios públicamente auditable (p. ej. changelog de precios)."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "DP-IA",
+        "nombre": "IA y roadmap",
+        "criterios": 3,
+        "peso": 5,
+        "valores": [
+          {
+            "id": "DP-IA-01",
+            "nombre": "Funciones LLM nativas en SQL",
+            "pregunta": "¿Puede invocarse un modelo de lenguaje (resumir, clasificar, traducir, generar texto) directamente desde una sentencia SQL, sin exportar los datos a un servicio externo?",
+            "tipo": "booleano",
+            "peso": 2,
+            "obligatorio": false
+          },
+          {
+            "id": "DP-IA-02",
+            "nombre": "Búsqueda vectorial nativa",
+            "pregunta": "¿Ofrece un tipo de dato o índice vectorial nativo, consultable con SQL, sin desplegar una base de datos vectorial aparte?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Sin soporte vectorial."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Tipo de dato vector pero solo búsqueda exacta (fuerza bruta), sin índice."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Índice aproximado (ANN) experimental."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Índice ANN estable en disponibilidad general."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Índice ANN estable + integración documentada con flujos de *embeddings*/RAG."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Referencia del mercado: índice ANN a escala de miles de millones de vectores con coste/rendimiento publicado."
+                }
+              ]
+            }
+          },
+          {
+            "id": "DP-IA-03",
+            "nombre": "Roadmap público de IA",
+            "pregunta": "¿Publica el fabricante un roadmap público (no solo comunicados de prensa puntuales) de sus capacidades de IA?",
+            "tipo": "informativo",
+            "peso": null,
+            "obligatorio": false
+          }
+        ]
+      }
+    ]
+  },
+  "martech": {
+    "categorias": [
+      {
+        "id": "cdp-packaged",
+        "descripcion": "CDP / plataforma de datos de cliente propietaria y empaquetada: almacena su propia copia del perfil unificado."
+      },
+      {
+        "id": "cdp-composable",
+        "descripcion": "Capa de activación y modelado que opera sobre el data warehouse / lakehouse del cliente (warehouse-native, reverse ETL)."
+      },
+      {
+        "id": "cdp-oss",
+        "descripcion": "CDP / pipeline de datos de cliente con código publicado (open source, open core o source-available)."
+      },
+      {
+        "id": "ma-cloud",
+        "descripcion": "Email marketing / marketing automation / plataforma de engagement en SaaS."
+      },
+      {
+        "id": "ma-oss",
+        "descripcion": "Email marketing / marketing automation de código abierto y autoalojable."
+      },
+      {
+        "id": "email-transporte",
+        "descripcion": "Servicio de envío de email (SMTP/API), sin editor de campañas ni segmentación."
+      }
+    ],
+    "dimensiones": [
+      {
+        "id": "MK-REC",
+        "nombre": "Recogida de datos",
+        "criterios": 2,
+        "peso": 4,
+        "valores": [
+          {
+            "id": "MK-REC-01",
+            "nombre": "SDKs y fuentes de datos",
+            "pregunta": "¿Qué SDKs, APIs y conectores de fuente mantiene oficialmente el candidato (web, móvil, servidor, SaaS, streaming)?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Sin captura propia ni importación."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Solo API HTTP o carga de ficheros (CSV)."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "SDK web y al menos un SDK móvil o servidor, más API."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "SDKs oficiales para web, iOS, Android y ≥3 lenguajes de servidor, más conectores a fuentes SaaS."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Además fuentes de warehouse/streaming (Kafka, Kinesis, Pub/Sub) documentadas en catálogo oficial."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Catálogo oficial con más de 300 fuentes/SDKs mantenidos por el fabricante, incluidos dispositivos OTT/servidor, y esquemas o *tracking plans* validados en ingesta."
+                }
+              ]
+            }
+          },
+          {
+            "id": "MK-REC-02",
+            "nombre": "Recogida server-side y first-party",
+            "pregunta": "¿Ofrece captura server-side y cookies o identificadores first-party servidos desde dominio propio del cliente?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Depende de cookies de terceros."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Solo JavaScript en el cliente."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Envío server-side solo vía API manual."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "SDKs server-side oficiales y proxy first-party documentado."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Además cookies first-party fijadas desde el servidor (dominio propio) y guía de mitigación de restricciones del navegador."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Además colector propio desplegable en la infraestructura del cliente (los datos no transitan por terceros) o tag server-side gestionado."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "MK-ID",
+        "nombre": "Identidad y perfil unificado",
+        "criterios": 3,
+        "peso": 6,
+        "valores": [
+          {
+            "id": "MK-ID-01",
+            "nombre": "Resolución de identidad determinista",
+            "pregunta": "¿Qué control ofrece sobre las reglas de coincidencia exacta y la fusión de perfiles?",
+            "tipo": "puntuable",
+            "peso": 3,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Sin resolución de identidad."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Deduplicación por un único identificador (p. ej. email)."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Regla fija anónimo → usuario tras autenticarse."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Reglas configurables con varios tipos de identificador, prioridades y fusión/separación documentada."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Además grafo de identidad persistente, límites para evitar fusiones erróneas y trazabilidad de cada fusión."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Grafo a escala con identificadores personalizados, multi-dispositivo, auditoría completa y documentación pública del algoritmo."
+                }
+              ]
+            }
+          },
+          {
+            "id": "MK-ID-02",
+            "nombre": "Resolución probabilística / difusa",
+            "pregunta": "¿Ofrece coincidencia difusa o probabilística nativa?",
+            "tipo": "puntuable",
+            "peso": 1,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "No."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Solo mediante un proveedor externo sin integración documentada."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Integración documentada con proveedores de identidad de terceros."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Coincidencia difusa nativa configurable (nombre, dirección, etc.)."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Modelo de coincidencia nativo con umbrales de confianza configurables."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Grafo probabilístico propio con cobertura multi-dispositivo y documentación de precisión y consideraciones de privacidad."
+                }
+              ]
+            }
+          },
+          {
+            "id": "MK-ID-03",
+            "nombre": "Perfil unificado y latencia",
+            "pregunta": "¿Con qué latencia se actualiza y se puede leer el perfil unificado?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "No hay perfil unificado."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Perfil por lotes con actualización de un día o más."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Actualización horaria o por lotes frecuentes."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Actualización en minutos y API de lectura del perfil."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Latencia de segundos documentada y API de baja latencia."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Latencia inferior al segundo documentada, con decisión y activación en línea."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "MK-SEG",
+        "nombre": "Segmentación y audiencias",
+        "criterios": 2,
+        "peso": 4,
+        "valores": [
+          {
+            "id": "MK-SEG-01",
+            "nombre": "Segmentación en tiempo real",
+            "pregunta": "¿Se recalculan los segmentos por evento o en tiempo real?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "No hay segmentación."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Solo listas estáticas."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Segmentos por lotes (diarios)."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Recalculados en minutos o por lotes horarios frecuentes."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Tiempo real (segundos) con condiciones de comportamiento y ventanas temporales."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Tiempo real con secuencias/trayectorias, estimación de tamaño y uso en decisión en línea."
+                }
+              ]
+            }
+          },
+          {
+            "id": "MK-SEG-02",
+            "nombre": "Modos de construcción (no-code y SQL)",
+            "pregunta": "¿Pueden crearse audiencias con constructor visual y con SQL sobre el warehouse?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Solo código a medida."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Solo API."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Constructor no-code básico."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "No-code y SQL."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "No-code y SQL, con audiencias definidas directamente sobre tablas del warehouse sin copiarlas."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Además capa semántica o modelos dbt reutilizables como fuente de audiencias."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "MK-ACT",
+        "nombre": "Activación y canales",
+        "criterios": 3,
+        "peso": 7,
+        "valores": [
+          {
+            "id": "MK-ACT-01",
+            "nombre": "Catálogo de destinos",
+            "pregunta": "¿Cuántos destinos mantiene oficialmente y permite añadir destinos propios?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Sin destinos."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Solo webhook/API genérica."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Menos de 50 destinos oficiales."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Entre 50 y 199 destinos oficiales."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Entre 200 y 499 destinos oficiales."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Más de 500 destinos oficiales y SDK para destinos personalizados."
+                }
+              ]
+            }
+          },
+          {
+            "id": "MK-ACT-02",
+            "nombre": "Canales de mensajería nativos",
+            "pregunta": "¿Qué canales envía de forma nativa (email, SMS, push, WhatsApp, in-app, web)?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Ninguno (solo envía datos a otras herramientas)."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Un solo canal (email)."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Email y un canal más."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Email, SMS y push."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Además WhatsApp, in-app o web."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Seis o más canales con orquestación unificada."
+                }
+              ]
+            }
+          },
+          {
+            "id": "MK-ACT-03",
+            "nombre": "Activación desde el warehouse (reverse ETL)",
+            "pregunta": "¿Puede sincronizar datos desde el warehouse/lakehouse hacia canales y herramientas?",
+            "tipo": "puntuable",
+            "peso": 3,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "No lee del warehouse."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Solo importación por fichero."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Conector por lotes a un warehouse."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Conectores nativos a varios warehouses con sincronización programada."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Sincronización incremental (solo cambios) con mapeo y observabilidad de filas."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Modelo principal de operación, con múltiples warehouses/lakehouses y sincronización casi en tiempo real."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "MK-ORQ",
+        "nombre": "Orquestación y experimentación",
+        "criterios": 2,
+        "peso": 4,
+        "valores": [
+          {
+            "id": "MK-ORQ-01",
+            "nombre": "Journeys",
+            "pregunta": "¿Qué capacidad tiene el orquestador de journeys?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "No hay."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Secuencias lineales (*drip*)."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Flujos con ramas condicionales simples."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Lienzo visual con eventos, esperas, ramas y varios canales."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Además entrada/salida por segmento en tiempo real, reingreso, límites de frecuencia y versionado."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Además decisión asistida por IA, simulación/pruebas previas y escala documentada."
+                }
+              ]
+            }
+          },
+          {
+            "id": "MK-ORQ-02",
+            "nombre": "Experimentación",
+            "pregunta": "¿Qué experimentos permite y cómo mide el efecto incremental?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "No hay."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "A/B manual de un elemento (p. ej. asunto)."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "A/B en un canal con ganador automático."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "A/B y multivariante en journeys y canales."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Además grupos de control/*holdout* y significancia estadística."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Además medición de incrementalidad y optimización automática (p. ej. *bandits*)."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "MK-EML",
+        "nombre": "Email",
+        "criterios": 4,
+        "peso": 9,
+        "valores": [
+          {
+            "id": "MK-EML-01",
+            "nombre": "Editor y plantillas",
+            "pregunta": "¿Qué editor y qué mecanismos de personalización ofrece?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Sin editor."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Solo texto/HTML crudo."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Editor básico."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Editor visual (arrastrar y soltar) + HTML + plantillas + variables."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Además bloques reutilizables, contenido dinámico condicional y previsualización."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Además contenido dinámico basado en datos en tiempo real y control de marca/accesibilidad."
+                }
+              ]
+            }
+          },
+          {
+            "id": "MK-EML-02",
+            "nombre": "Autenticación y herramientas de deliverability",
+            "pregunta": "¿Permite autenticar el dominio propio (SPF, DKIM, DMARC) y qué ayuda ofrece para entregabilidad?",
+            "tipo": "puntuable",
+            "peso": 3,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "No permite autenticación."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Solo dominio compartido del proveedor."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "SPF y DKIM con dominio propio."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "SPF, DKIM y guía de DMARC/alineación, con gestión automática de rebotes y quejas."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Además monitorización de reputación (p. ej. Postmaster Tools), informes DMARC o soporte de BIMI."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Además pruebas de bandeja de entrada (*inbox placement*) o servicio de deliverability documentado."
+                }
+              ]
+            }
+          },
+          {
+            "id": "MK-EML-03",
+            "nombre": "IP dedicada y gestión de reputación",
+            "pregunta": "¿Ofrece IP dedicada y herramientas para gestionar reputación?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "No."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "IP compartida sin control."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "IP compartida con *pools* separados."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "IP dedicada opcional."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "IP dedicada con *warm-up* automatizado y varios *pools*."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Además gestión de reputación documentada (subdominios, limitación por proveedor de buzón, monitorización)."
+                }
+              ]
+            }
+          },
+          {
+            "id": "MK-EML-04",
+            "nombre": "Baja de un clic (RFC 8058)",
+            "pregunta": "¿Documenta el soporte de `List-Unsubscribe` y `List-Unsubscribe-Post` para baja de un clic, requerida por Google y Yahoo a remitentes masivos?",
+            "tipo": "booleano",
+            "peso": 2,
+            "obligatorio": false
+          }
+        ]
+      },
+      {
+        "id": "MK-ARQ",
+        "nombre": "Arquitectura e integración con datos",
+        "criterios": 3,
+        "peso": 8,
+        "valores": [
+          {
+            "id": "MK-ARQ-01",
+            "nombre": "Modelo de datos: copia propia frente a warehouse-native",
+            "pregunta": "¿Puede operar sin mantener una copia persistente propia de los datos del cliente?",
+            "tipo": "puntuable",
+            "peso": 3,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Solo copia propietaria sin acceso al warehouse."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Exportación periódica al warehouse."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Lee del warehouse pero mantiene su propio perfil."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Sincronización bidireccional con el warehouse."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Modo en que perfiles y audiencias se calculan en el warehouse del cliente, con datos maestros en él."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Arquitectura warehouse-native por defecto, sin copia persistente del dato del cliente, multi-warehouse."
+                }
+              ]
+            }
+          },
+          {
+            "id": "MK-ARQ-02",
+            "nombre": "Integración con plataformas de datos (Bloque A)",
+            "pregunta": "¿Se integra de forma nativa con Snowflake, BigQuery, Databricks, Redshift y formatos abiertos?",
+            "tipo": "puntuable",
+            "peso": 3,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Ninguna."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Exportación a ficheros/almacenamiento de objetos."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Conector a un warehouse."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Conectores nativos a Snowflake, BigQuery y Databricks o Redshift."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Además compartición sin copia (*zero-copy*) o lectura de tablas de formato abierto (Iceberg/Delta)."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Además catálogos abiertos y federación con las plataformas del Bloque A."
+                }
+              ]
+            }
+          },
+          {
+            "id": "MK-ARQ-03",
+            "nombre": "APIs y exportabilidad",
+            "pregunta": "¿Es posible extraer todos los datos y configuración con facilidad?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Sin API ni exportación."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Exportación manual (CSV)."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "API REST parcial."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "API completa de perfiles/eventos y exportación programada al almacenamiento del cliente."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Además emisión de eventos en bruto (*streaming*) y exportación masiva sin coste adicional documentado."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Además formatos abiertos (Parquet/Iceberg) y esquema documentado."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "MK-PRI",
+        "nombre": "Privacidad y cumplimiento",
+        "criterios": 5,
+        "peso": 12,
+        "valores": [
+          {
+            "id": "MK-PRI-01",
+            "nombre": "Gestión del consentimiento",
+            "pregunta": "¿Cómo gestiona y propaga el consentimiento?",
+            "tipo": "puntuable",
+            "peso": 3,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Sin soporte."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Campo manual de aceptación."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Marcas de consentimiento que suprimen el envío."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Integración con CMPs y propagación del estado a los destinos."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Además consentimiento por finalidad/canal aplicado en la activación, con registro."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Además aplicación en tiempo real (bloqueo de destinos por finalidad), soporte de marcos como TCF/GPP y registro probatorio."
+                }
+              ]
+            }
+          },
+          {
+            "id": "MK-PRI-02",
+            "nombre": "Supresión y derechos de los interesados",
+            "pregunta": "¿Facilita el derecho de supresión y de acceso?",
+            "tipo": "puntuable",
+            "peso": 3,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "No."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Solo mediante soporte manual."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Borrado por usuario, manual o por API."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "API de supresión y acceso con propagación a destinos."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Además propagación automática, flujo de trabajo y seguimiento."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Además garantía documentada de borrado en almacenes y copias, con plazos y auditoría."
+                }
+              ]
+            }
+          },
+          {
+            "id": "MK-PRI-03",
+            "nombre": "DPA y subencargados publicados",
+            "pregunta": "¿Publica un acuerdo de encargado de tratamiento (DPA) y la lista de subencargados accesibles sin contrato?",
+            "tipo": "booleano",
+            "peso": 3,
+            "obligatorio": false
+          },
+          {
+            "id": "MK-PRI-04",
+            "nombre": "Datos en la UE",
+            "pregunta": "¿Permite mantener los datos del cliente en la UE (región UE del SaaS o despliegue en infraestructura del cliente)?",
+            "tipo": "booleano",
+            "peso": 3,
+            "obligatorio": false
+          },
+          {
+            "id": "MK-PRI-05",
+            "nombre": "Certificaciones",
+            "pregunta": "¿Qué certificaciones de seguridad y privacidad declara (ISO 27001, SOC 2, ENS, etc.)?",
+            "tipo": "informativo",
+            "peso": null,
+            "obligatorio": false
+          }
+        ]
+      },
+      {
+        "id": "MK-IA",
+        "nombre": "IA",
+        "criterios": 3,
+        "peso": 5,
+        "valores": [
+          {
+            "id": "MK-IA-01",
+            "nombre": "IA predictiva",
+            "pregunta": "¿Ofrece modelos predictivos (propensión, abandono, valor de vida) integrados en segmentación y journeys?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "No."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Solo mediante integración externa."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Puntuaciones heurísticas (p. ej. RFM)."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Modelos predictivos nativos sin ciencia de datos."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Además configuración y explicabilidad, y uso directo en segmentos y journeys."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Además modelos propios del cliente y puntuación en tiempo real."
+                }
+              ]
+            }
+          },
+          {
+            "id": "MK-IA-02",
+            "nombre": "IA generativa de contenido",
+            "pregunta": "¿Genera texto o imágenes de campaña dentro del producto?",
+            "tipo": "puntuable",
+            "peso": 1,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "No."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Integración manual con un LLM externo."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Asistente de texto."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Generación de asunto/copy/imagen en el editor."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Además controles de marca y aprobación."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Además personalización a escala por segmento con gobernanza documentada."
+                }
+              ]
+            }
+          },
+          {
+            "id": "MK-IA-03",
+            "nombre": "Agentes y MCP",
+            "pregunta": "¿Ofrece agentes o interfaz para agentes de terceros (por ejemplo, servidor MCP)?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "No."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Solo anuncio o *roadmap*."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Copiloto que responde consultas."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Asistente que ejecuta acciones (crear segmento/campaña)."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Servidor MCP o API oficial para agentes externos."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Agentes autónomos con límites y auditoría, disponibles con carácter general."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "MK-DEP",
+        "nombre": "Despliegue y operación",
+        "criterios": 3,
+        "peso": 4,
+        "valores": [
+          {
+            "id": "MK-DEP-01",
+            "nombre": "Modelos de despliegue",
+            "pregunta": "",
+            "tipo": "informativo",
+            "peso": null,
+            "obligatorio": false
+          },
+          {
+            "id": "MK-DEP-02",
+            "nombre": "Esfuerzo de implantación y operación",
+            "pregunta": "¿Cuánto esfuerzo requiere ponerlo en marcha y mantenerlo?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Desarrollo a medida extenso."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Proyecto de meses, consultoría necesaria."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Semanas de integración con apoyo de servicios."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Autoservicio con guías (días–semanas), o software autoalojado con operación moderada."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Autoservicio con plantillas y plan gratuito o de prueba."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Operativo en horas, sin infraestructura, con plan gratuito autoservicio."
+                }
+              ]
+            }
+          },
+          {
+            "id": "MK-DEP-03",
+            "nombre": "Autoalojable",
+            "pregunta": "¿Puede ejecutarse en infraestructura controlada por el cliente?",
+            "tipo": "booleano",
+            "peso": 2,
+            "obligatorio": false
+          }
+        ]
+      },
+      {
+        "id": "MK-ECO",
+        "nombre": "Ecosistema y madurez",
+        "criterios": 2,
+        "peso": 4,
+        "valores": [
+          {
+            "id": "MK-ECO-01",
+            "nombre": "Comunidad y madurez",
+            "pregunta": "¿Qué madurez y actividad demuestra (releases, contribuidores, base de clientes)?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Abandonado o descontinuado."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Mantenedor único o sin versiones en 6–12 meses."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Actividad esporádica."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Versiones regulares y equipo o comunidad activos."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Comunidad o base de clientes amplia y documentada."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Referencia del mercado, con reconocimiento independiente (analistas) o adopción a gran escala."
+                }
+              ]
+            }
+          },
+          {
+            "id": "MK-ECO-02",
+            "nombre": "Integraciones y marketplace",
+            "pregunta": "¿Tiene ecosistema de integraciones, socios y aplicaciones de terceros?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Ninguno."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Pocas integraciones sueltas."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Integraciones con e-commerce/CRM esenciales."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Integraciones con CRM, e-commerce, BI y dbt."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Marketplace o red de socios establecida."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Ecosistema de referencia con marketplace, certificaciones de socios y miles de aplicaciones."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "MK-LIC",
+        "nombre": "Licencia",
+        "criterios": 2,
+        "peso": 4,
+        "valores": [
+          {
+            "id": "MK-LIC-01",
+            "nombre": "Licencia aprobada por la OSI",
+            "pregunta": "¿El código está bajo una licencia aprobada por la OSI?",
+            "tipo": "booleano",
+            "peso": 2,
+            "obligatorio": false
+          },
+          {
+            "id": "MK-LIC-02",
+            "nombre": "Apertura y riesgo de licencia",
+            "pregunta": "¿Qué apertura ofrece y cuál es el riesgo de cambio o restricción?",
+            "tipo": "puntuable",
+            "peso": 2,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "Propietario, sin salida."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Propietario con condiciones que dificultan la salida."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Propietario con exportación y API."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Source-available u open core con núcleo funcional."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Open source con oferta gestionada y funciones avanzadas restringidas."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Open source (OSI) sin funciones clave restringidas, gobernanza abierta y sin cambios de licencia restrictivos."
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "MK-COS",
+        "nombre": "Coste",
+        "criterios": 1,
+        "peso": 4,
+        "valores": [
+          {
+            "id": "MK-COS-02",
+            "nombre": "Transparencia de precios",
+            "pregunta": "¿Publica precios de lista y unidades de facturación?",
+            "tipo": "puntuable",
+            "peso": 1,
+            "obligatorio": false,
+            "escala": {
+              "niveles": [
+                {
+                  "valor": 0,
+                  "descripcion": "No hay precio."
+                },
+                {
+                  "valor": 1,
+                  "descripcion": "Solo «contactar con ventas»."
+                },
+                {
+                  "valor": 2,
+                  "descripcion": "Referencia pública indirecta (marketplace, analistas)."
+                },
+                {
+                  "valor": 3,
+                  "descripcion": "Precios públicos parciales por tier."
+                },
+                {
+                  "valor": 4,
+                  "descripcion": "Precios de lista completos y unidades definidas."
+                },
+                {
+                  "valor": 5,
+                  "descripcion": "Precios completos, calculadora y plan gratuito."
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

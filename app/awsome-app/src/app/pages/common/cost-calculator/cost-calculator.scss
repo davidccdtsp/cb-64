@@ -1,0 +1,8 @@
+.hint { color: var(--mat-sys-on-surface-variant); font-size: .875rem; margin: .25rem 0 1rem; }
+h4, h5 { margin: 1rem 0 .5rem; }
+.params { display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: .75rem 1rem; }
+.result { border-collapse: collapse; margin-bottom: 1rem; min-width: 18rem; }
+.result caption { text-align: left; font-weight: 600; padding-bottom: .25rem; }
+.result td { padding: .25rem 1rem .25rem 0; }
+.result td:last-child { text-align: right; padding-right: 0; }
+.total td { border-top: 1px solid var(--mat-sys-outline-variant); font-weight: 600; }

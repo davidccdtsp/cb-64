@@ -1,0 +1,100 @@
+<div class="top">
+  <h1>Comparador</h1>
+  <app-config-menu />
+</div>
+
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>Pesos</mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="reset">
+      <button mat-stroked-button type="button" (click)="resetWeights()" title="Devuelve los pesos, la obligatoriedad y el tratamiento de criterios sin puntuación a los de la rúbrica">Restablecer pesos</button>
+    </div>
+    <app-weights-form [form]="weightsForm()" [multiColumn]="true" />
+  </mat-expansion-panel>
+</mat-accordion>
+
+<div class="filters">
+  <mat-form-field>
+    <mat-label>Dominio</mat-label>
+    <mat-select [value]="area()" (selectionChange)="setArea($event.value)">
+      <mat-option value="datos">Datos</mat-option>
+      <mat-option value="martech">Martech</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Categoría</mat-label>
+    <mat-select [value]="category()" (selectionChange)="setCategory($event.value)">
+      <mat-option value="">Todas</mat-option>
+      @for (c of categories(); track c.id) {
+        <mat-option [value]="c.id" [title]="c.description">{{ c.id }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Candidato ({{ compared().length }}/{{ max }})</mat-label>
+    <mat-select #candidate [disabled]="compared().length >= max" (selectionChange)="add($event.value); candidate.value = null">
+      @for (c of available(); track c.id) {
+        <mat-option [value]="c.id">{{ c.name }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Criterio de comparación</mat-label>
+    <mat-select [value]="criterion()" (selectionChange)="criterion.set($event.value)">
+      <mat-option value="">Ninguno</mat-option>
+      @for (g of criteria(); track g.dimension.id) {
+        <mat-optgroup [label]="g.dimension.name">
+          @for (a of g.items; track a.id) {
+            <mat-option [value]="a.id" [title]="a.question">{{ a.name }}</mat-option>
+          }
+        </mat-optgroup>
+      }
+    </mat-select>
+  </mat-form-field>
+  <app-deployment-select />
+  <app-scenario-select />
+</div>
+
+@if (compared().length) {
+  <div class="cards">
+    @for (c of compared(); track c.id) {
+      <app-candidate-mini-card [candidate]="c" (removed)="remove(c.id)" />
+    }
+  </div>
+  @if (criterionName()) {
+    <h2>{{ criterionName() }}</h2>
+    <table class="criterion">
+      <thead><tr><th>Candidato</th><th>Valor</th><th>Descripción</th><th>Confianza</th></tr></thead>
+      <tbody>
+        @for (r of criterionRows(); track r.candidate.id) {
+          <tr>
+            <td>{{ r.candidate.name }}</td>
+            <td>
+              @if (r.calculated) {
+                @let e = cost.monthly(r.candidate.id);
+                {{ e ? (e.mid | eur) + '/mes' : '—' }}
+              } @else if (r.score !== undefined) {
+                {{ r.score | number: '1.0-0' }} / 5
+              } @else if (r.bool !== undefined) {
+                {{ r.bool ? 'Sí' : 'No' }}
+              } @else {
+                {{ r.text ?? '—' }}
+              }
+            </td>
+            <td>{{ r.description ?? '' }}</td>
+            <td>{{ r.reliability ?? '' }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+  @defer (on viewport) {
+    <app-comparison-charts [candidates]="compared()" [dimensions]="dimensions()" [highlight]="highlight()" />
+  } @placeholder {
+    <div style="min-height: 22rem"></div>
+  }
+} @else {
+  <p>Añade hasta {{ max }} candidatos para compararlos.</p>
+}

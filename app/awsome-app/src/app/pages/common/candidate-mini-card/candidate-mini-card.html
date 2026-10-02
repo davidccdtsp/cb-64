@@ -1,0 +1,33 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>{{ candidate().name }}</mat-card-title>
+    <mat-card-subtitle>{{ candidate().category }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="score" [title]="candidate().excludedBy?.join(', ') ?? ''">
+      {{ candidate().totalScore !== undefined ? (candidate().totalScore | number: '1.0-1') : candidate().excludedBy?.length ? 'Excluido' : '—' }}
+    </div>
+    @if (candidate().excludedBy?.length) {
+      <p class="excluded">No cumple: {{ candidate().excludedBy!.join(', ') }}</p>
+    }
+    <dl>
+      <dt>Coste/mes</dt>
+      <dd>
+        @if (cost(); as e) {
+          {{ e.mid | eur }}{{ e.manual ? ' ✎' : '' }}
+        } @else {
+          —
+        }
+      </dd>
+      <dt>Tipo</dt><dd>{{ candidate().type }}</dd>
+      <dt>Licencia</dt><dd>{{ candidate().license }}</dd>
+      <dt>Despliegue</dt><dd>{{ candidate().deployment.join(', ') }}</dd>
+      <dt>Revisión</dt><dd>{{ candidate().lastRevisionDater | date: 'yyyy-MM-dd' }}</dd>
+    </dl>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-icon-button (click)="removed.emit()" aria-label="Eliminar" title="Eliminar">
+      <mat-icon fontSet="material-symbols-outlined">delete</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,25 @@
+<header>
+  <button class="menu-button" type="button" aria-label="Menú" aria-controls="menu" [attr.aria-expanded]="menuOpen()" (click)="menuOpen.set(!menuOpen())">
+    <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+  </button>
+  {{ title() }}
+</header>
+@if (menuOpen()) {
+  <div class="backdrop" (click)="menuOpen.set(false)"></div>
+}
+<aside id="menu" [class.open]="menuOpen()">
+  <h2>{{ title() }}</h2>
+  <nav>
+    @for (item of menu; track item.path) {
+      <a [routerLink]="item.path" [queryParams]="params()" routerLinkActive="active" (click)="menuOpen.set(false)">{{ item.label }}</a>
+    }
+  </nav>
+</aside>
+<main>
+  @if (loaded()) {
+    <router-outlet />
+  } @else {
+    <mat-spinner />
+  }
+</main>
+<footer>© 2026 {{ title() }}</footer>

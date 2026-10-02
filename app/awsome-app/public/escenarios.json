@@ -1,0 +1,309 @@
+{
+  "datos": {
+    "parametros": [
+      {
+        "id": "descripcion",
+        "nombre": "Descripción orientativa",
+        "unidad": "",
+        "valores": {},
+        "textos": {
+          "S": "Equipo de datos único, un producto, BI interno",
+          "M": "Varios equipos de producto, plataforma de datos compartida",
+          "L": "Compañía con múltiples dominios de datos, uso intensivo"
+        }
+      },
+      {
+        "id": "tb_almacenados",
+        "nombre": "TB almacenados (histórico)",
+        "unidad": "TB",
+        "valores": {
+          "S": 1.0,
+          "M": 20.0,
+          "L": 200.0
+        },
+        "textos": {
+          "S": "1 TB",
+          "M": "20 TB",
+          "L": "200 TB"
+        }
+      },
+      {
+        "id": "crecimiento_mensual_pct",
+        "nombre": "Crecimiento mensual del almacenamiento",
+        "unidad": "%",
+        "valores": {
+          "S": 10.0,
+          "M": 15.0,
+          "L": 20.0
+        },
+        "textos": {
+          "S": "10 %",
+          "M": "15 %",
+          "L": "20 %"
+        }
+      },
+      {
+        "id": "tb_escaneados_dia",
+        "nombre": "TB escaneados al día (consultas)",
+        "unidad": "TB",
+        "valores": {
+          "S": 0.05,
+          "M": 1.0,
+          "L": 10.0
+        },
+        "textos": {
+          "S": "0,05 TB (50 GB)",
+          "M": "1 TB",
+          "L": "10 TB"
+        }
+      },
+      {
+        "id": "consultas_dia",
+        "nombre": "Consultas al día",
+        "unidad": "",
+        "valores": {
+          "S": 5000.0,
+          "M": 50000.0,
+          "L": 500000.0
+        },
+        "textos": {
+          "S": "5.000",
+          "M": "50.000",
+          "L": "500.000"
+        }
+      },
+      {
+        "id": "concurrencia_pico",
+        "nombre": "Concurrencia pico (consultas simultáneas)",
+        "unidad": "",
+        "valores": {
+          "S": 10.0,
+          "M": 50.0,
+          "L": 300.0
+        },
+        "textos": {
+          "S": "10",
+          "M": "50",
+          "L": "300"
+        }
+      },
+      {
+        "id": "horas_activas_dia",
+        "nombre": "Horas activas de cómputo al día",
+        "unidad": "h",
+        "valores": {
+          "S": 8.0,
+          "M": 16.0,
+          "L": 24.0
+        },
+        "textos": {
+          "S": "8 h",
+          "M": "16 h",
+          "L": "24 h"
+        }
+      },
+      {
+        "id": "pct_streaming",
+        "nombre": "% de datos ingeridos por streaming (vs. batch)",
+        "unidad": "%",
+        "valores": {
+          "S": 0.0,
+          "M": 10.0,
+          "L": 30.0
+        },
+        "textos": {
+          "S": "0 %",
+          "M": "10 %",
+          "L": "30 %"
+        }
+      },
+      {
+        "id": "usuarios",
+        "nombre": "Nº de usuarios/analistas de la plataforma",
+        "unidad": "",
+        "valores": {
+          "S": 5.0,
+          "M": 40.0,
+          "L": 250.0
+        },
+        "textos": {
+          "S": "5",
+          "M": "40",
+          "L": "250"
+        }
+      },
+      {
+        "id": "retencion_backups_dias",
+        "nombre": "Retención de backups asumida",
+        "unidad": "días",
+        "valores": {
+          "S": 7.0,
+          "M": 14.0,
+          "L": 30.0
+        },
+        "textos": {
+          "S": "7 días",
+          "M": "14 días",
+          "L": "30 días"
+        }
+      }
+    ]
+  },
+  "martech": {
+    "parametros": [
+      {
+        "id": "descripcion",
+        "nombre": "Descripción orientativa",
+        "unidad": "",
+        "valores": {},
+        "textos": {
+          "S": "Comercio o SaaS pequeño, un equipo de marketing",
+          "M": "Comercio/SaaS mediano, varios equipos y canales",
+          "L": "Gran empresa multi-marca"
+        }
+      },
+      {
+        "id": "perfiles",
+        "nombre": "Perfiles identificados (contactos de marketing)",
+        "unidad": "",
+        "valores": {
+          "S": 10000.0,
+          "M": 250000.0,
+          "L": 5000000.0
+        },
+        "textos": {
+          "S": "10.000",
+          "M": "250.000",
+          "L": "5.000.000"
+        }
+      },
+      {
+        "id": "mtu",
+        "nombre": "MTU (usuarios únicos mensuales, incluidos anónimos)",
+        "unidad": "",
+        "valores": {
+          "S": 30000.0,
+          "M": 600000.0,
+          "L": 12000000.0
+        },
+        "textos": {
+          "S": "30.000",
+          "M": "600.000",
+          "L": "12.000.000"
+        }
+      },
+      {
+        "id": "eventos_mes",
+        "nombre": "Eventos de comportamiento al mes",
+        "unidad": "",
+        "valores": {
+          "S": 2000000.0,
+          "M": 50000000.0,
+          "L": 1000000000.0
+        },
+        "textos": {
+          "S": "2 millones",
+          "M": "50 millones",
+          "L": "1.000 millones"
+        }
+      },
+      {
+        "id": "emails_mes",
+        "nombre": "Emails enviados al mes",
+        "unidad": "",
+        "valores": {
+          "S": 50000.0,
+          "M": 2000000.0,
+          "L": 50000000.0
+        },
+        "textos": {
+          "S": "50.000",
+          "M": "2 millones",
+          "L": "50 millones"
+        }
+      },
+      {
+        "id": "sms_mes",
+        "nombre": "SMS al mes (informativo)",
+        "unidad": "",
+        "valores": {
+          "S": 0.0,
+          "M": 20000.0,
+          "L": 500000.0
+        },
+        "textos": {
+          "S": "0",
+          "M": "20.000",
+          "L": "500.000"
+        }
+      },
+      {
+        "id": "usuarios",
+        "nombre": "Usuarios de la herramienta",
+        "unidad": "",
+        "valores": {
+          "S": 3.0,
+          "M": 15.0,
+          "L": 60.0
+        },
+        "textos": {
+          "S": "3",
+          "M": "15",
+          "L": "60"
+        }
+      },
+      {
+        "id": "canales",
+        "nombre": "Canales",
+        "unidad": "",
+        "valores": {},
+        "textos": {
+          "S": "Email",
+          "M": "Email, SMS, push",
+          "L": "Email, SMS, push, WhatsApp, in-app"
+        }
+      },
+      {
+        "id": "journeys",
+        "nombre": "Journeys activos",
+        "unidad": "",
+        "valores": {
+          "S": 5.0,
+          "M": 30.0,
+          "L": 150.0
+        },
+        "textos": {
+          "S": "5",
+          "M": "30",
+          "L": "150"
+        }
+      },
+      {
+        "id": "warehouse_disponible",
+        "nombre": "Warehouse/lakehouse del Bloque A disponible",
+        "unidad": "",
+        "valores": {},
+        "textos": {
+          "S": "No",
+          "M": "Sí",
+          "L": "Sí"
+        }
+      },
+      {
+        "id": "horas_fte_mes",
+        "nombre": "Horas de operación por FTE y mes (OSS autoalojado)",
+        "unidad": "",
+        "valores": {
+          "S": 160.0,
+          "M": 160.0,
+          "L": 160.0
+        },
+        "textos": {
+          "S": "160",
+          "M": "160",
+          "L": "160"
+        }
+      }
+    ]
+  }
+}

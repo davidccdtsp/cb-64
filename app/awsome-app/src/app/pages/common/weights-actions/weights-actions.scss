@@ -1,0 +1,7 @@
+:host { display: block; }
+.actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+.mandatory { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem .75rem; margin-top: .75rem; }
+.label { font-weight: 600; font-size: .875rem; }
+.none { color: var(--mat-sys-on-surface-variant); font-size: .875rem; }
+.callout { display: flex; align-items: flex-start; gap: .5rem; margin: .75rem 0 0; padding: .5rem .75rem; border-radius: 8px; font-size: .875rem; background: var(--mat-sys-tertiary-container); color: var(--mat-sys-on-tertiary-container); }
+.callout mat-icon { flex: none; }

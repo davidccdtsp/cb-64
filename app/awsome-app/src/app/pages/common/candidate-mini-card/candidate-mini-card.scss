@@ -1,0 +1,5 @@
+.score { font-size: 2rem; font-weight: 600; text-align: center; margin-bottom: .5rem; }
+dl { display: grid; grid-template-columns: max-content 1fr; gap: .25rem 1rem; margin: 0; font-size: .875rem; }
+dt { font-weight: 600; }
+dd { margin: 0; }
+.excluded { color: var(--mat-sys-error); margin: 0 0 .5rem; }

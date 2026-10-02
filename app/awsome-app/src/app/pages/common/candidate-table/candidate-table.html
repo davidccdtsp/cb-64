@@ -1,0 +1,58 @@
+<div class="scroll"><table mat-table matSort [dataSource]="rows()" (matSortChange)="sortChange.emit($event)">
+  <ng-container matColumnDef="name">
+    <th mat-header-cell mat-sort-header [disabled]="!sortable()" *matHeaderCellDef>Nombre</th>
+    <td mat-cell *matCellDef="let c">{{ c.name }}</td>
+  </ng-container>
+  <ng-container matColumnDef="category">
+    <th mat-header-cell mat-sort-header [disabled]="!sortable()" *matHeaderCellDef>Categoría</th>
+    <td mat-cell *matCellDef="let c">{{ c.category }}</td>
+  </ng-container>
+  <ng-container matColumnDef="type">
+    <th mat-header-cell mat-sort-header [disabled]="!sortable()" *matHeaderCellDef>Tipo</th>
+    <td mat-cell *matCellDef="let c">{{ c.type }}</td>
+  </ng-container>
+  <ng-container matColumnDef="license">
+    <th mat-header-cell mat-sort-header [disabled]="!sortable()" *matHeaderCellDef>Licencia</th>
+    <td mat-cell *matCellDef="let c">{{ c.license }}</td>
+  </ng-container>
+  <ng-container matColumnDef="lastRevisionDater">
+    <th mat-header-cell mat-sort-header [disabled]="!sortable()" *matHeaderCellDef>Revisión</th>
+    <td mat-cell *matCellDef="let c">{{ c.lastRevisionDater | date: 'yyyy-MM-dd' }}</td>
+  </ng-container>
+  <ng-container matColumnDef="priceModel">
+    <th mat-header-cell *matHeaderCellDef>Modelo de precios</th>
+    <td mat-cell *matCellDef="let c">{{ cost.priceModel(c.id) }}</td>
+  </ng-container>
+  <ng-container matColumnDef="cost">
+    <th mat-header-cell mat-sort-header [disabled]="!sortable()" *matHeaderCellDef>Coste/mes</th>
+    <td mat-cell *matCellDef="let c">
+      @let e = cost.monthly(c.id);
+      @if (e) {
+        <span [title]="e.min !== e.max ? (e.min | eur) + ' – ' + (e.max | eur) : ''">
+          {{ e.mid | eur }}{{ e.manual ? ' ✎' : '' }}
+        </span>
+      } @else {
+        —
+      }
+      @if (editableCost()) {
+        <button mat-icon-button class="edit" aria-label="Editar el coste" title="Editar el coste" (click)="$event.stopPropagation(); editCost.emit(c.id)">
+          <mat-icon fontSet="material-symbols-outlined">edit</mat-icon>
+        </button>
+      }
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="totalScore">
+    <th mat-header-cell mat-sort-header [disabled]="!sortable()" *matHeaderCellDef>Nota</th>
+    <td mat-cell *matCellDef="let c"><span [title]="c.excludedBy?.join(', ') ?? ''">{{ c.totalScore !== undefined ? (c.totalScore | number: '1.0-1') : c.excludedBy?.length ? 'Excluido' : '—' }}</span></td>
+  </ng-container>
+
+  @for (d of dimensions(); track d.id) {
+    <ng-container [matColumnDef]="d.id">
+      <th mat-header-cell *matHeaderCellDef [title]="d.name">{{ d.id.split('-').pop() }}</th>
+      <td mat-cell *matCellDef="let c">{{ c.dimensionScores?.[d.id] !== undefined ? (c.dimensionScores[d.id] | number: '1.0-0') : '—' }}</td>
+    </ng-container>
+  }
+
+  <tr mat-header-row *matHeaderRowDef="columns()"></tr>
+  <tr mat-row *matRowDef="let row; columns: columns()" (click)="select.emit(row)" [style.background-color]="heatOf(row)?.color ?? null" [title]="heatOf(row)?.title ?? null"></tr>
+</table></div>

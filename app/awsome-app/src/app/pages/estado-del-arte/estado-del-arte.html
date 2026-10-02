@@ -1,0 +1,13 @@
+<h1>Estado del arte</h1>
+<mat-tab-group (selectedIndexChange)="select($event)" animationDuration="0">
+  @for (t of tabs; track t.area) {
+    <mat-tab [label]="t.label" />
+  }
+</mat-tab-group>
+@if (loading()) {
+  <mat-spinner diameter="32" />
+} @else if (error()) {
+  <p>No se ha podido cargar el documento.</p>
+} @else {
+  <article class="md" [innerHTML]="html()"></article>
+}

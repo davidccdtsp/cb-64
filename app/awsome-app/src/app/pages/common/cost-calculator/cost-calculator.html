@@ -1,0 +1,65 @@
+@if (calculation(); as calc) {
+  <h4>Calculadora · escenario {{ cost.scenario() }}</h4>
+  <p class="hint">
+    El coste se calcula con el modelo de precios de la ficha. Cambia cualquier valor y se recalcula en toda la
+    aplicación; los cambios se pierden al recargar la página.
+  </p>
+
+  <h5>Supuestos del escenario (comunes a los candidatos de su área)</h5>
+  <div class="params">
+    @for (p of scenarioParams(); track p.param.id) {
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>{{ p.param.name }}{{ p.param.unit ? ' (' + p.param.unit + ')' : '' }}</mat-label>
+        <input matInput type="number" min="0" step="any" [value]="p.min" (change)="setScenarioParam(p.param.id, $any($event.target).value)" />
+        @if (p.overridden) {
+          <button matIconSuffix mat-icon-button type="button" aria-label="Restablecer al valor de la ficha" (click)="setScenarioParam(p.param.id, '')">
+            <mat-icon fontSet="material-symbols-outlined">undo</mat-icon>
+          </button>
+        }
+      </mat-form-field>
+    }
+  </div>
+
+  <h5>Precios y supuestos del candidato ({{ calc.currency }})</h5>
+  <div class="params">
+    @for (p of modelParams(); track p.param.id) {
+      <mat-form-field subscriptSizing="dynamic">
+        <mat-label>{{ p.param.name }}{{ p.param.unit ? ' (' + p.param.unit + ')' : '' }}</mat-label>
+        <input
+          matInput
+          type="number"
+          min="0"
+          step="any"
+          [value]="p.overridden || p.min === p.max ? p.min : ''"
+          [placeholder]="p.min + ' – ' + p.max"
+          [title]="p.param.source ? 'Fuente: ' + p.param.source : 'Supuesto del consultor'"
+          (change)="setModelParam(p.param.id, $any($event.target).value)"
+        />
+        @if (p.overridden) {
+          <button matIconSuffix mat-icon-button type="button" aria-label="Restablecer al valor de la ficha" (click)="setModelParam(p.param.id, '')">
+            <mat-icon fontSet="material-symbols-outlined">undo</mat-icon>
+          </button>
+        }
+      </mat-form-field>
+    }
+  </div>
+
+  <h5>Resultado (€/mes)</h5>
+  @for (v of calc.variants; track $index) {
+    <table class="result">
+      @if (v.name) {
+        <caption>{{ v.name }}</caption>
+      }
+      @for (c of v.components; track c.name) {
+        <tr>
+          <td>{{ c.name }}</td>
+          <td>{{ c.min | eur: calc.currency }}{{ c.max !== c.min ? ' – ' + (c.max | eur: calc.currency) : '' }}</td>
+        </tr>
+      }
+      <tr class="total">
+        <td>Total</td>
+        <td>{{ v.min | eur: calc.currency }}{{ v.max !== v.min ? ' – ' + (v.max | eur: calc.currency) : '' }}</td>
+      </tr>
+    </table>
+  }
+}

@@ -1,0 +1,15 @@
+<p class="hint">
+  Peso de cada dimensión en la puntuación final. Solo importa la proporción entre ellas: la puntuación es la
+  media de las notas de dimensión ponderada por estos pesos.
+</p>
+@for (id of ids(); track id) {
+  <div class="row">
+    <span class="name">{{ data.dimension(id)?.name }}</span>
+    <mat-slider min="0" max="20" step="1" discrete>
+      <input matSliderThumb [formControl]="form().controls[id]" />
+    </mat-slider>
+    <span class="value">{{ form().controls[id].value }}</span>
+  </div>
+} @empty {
+  <p>No hay dimensiones para este dominio.</p>
+}

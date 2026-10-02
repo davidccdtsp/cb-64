@@ -1,0 +1,2883 @@
+[
+  {
+    "candidato": "adobe-journey-optimizer",
+    "fecha_revision": "2026-09-30",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      },
+      "M": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      },
+      "L": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "aj-pricing",
+        "titulo": "Adobe, «Journey Optimizer Product Pricing»",
+        "url": "https://business.adobe.com/products/journey-optimizer/pricing.html",
+        "consultado": "2026-09-30"
+      }
+    ]
+  },
+  {
+    "candidato": "adobe-real-time-cdp",
+    "fecha_revision": "2026-09-30",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      },
+      "M": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      },
+      "L": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "ad-rtcdp-product",
+        "titulo": "Adobe, «Real-Time Customer Data Platform — Product Description»",
+        "url": "https://helpx.adobe.com/legal/product-descriptions/real-time-customer-data-platform.html",
+        "consultado": "2026-09-30"
+      }
+    ]
+  },
+  {
+    "candidato": "amazon-ses",
+    "fecha_revision": "2026-09-30",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "5,00 USD – 8,00 USD",
+            "Coste anual": "60,00 USD – 96,00 USD"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "200 USD – 320 USD",
+            "Coste anual": "2.400 USD – 3.840 USD"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "5.000 USD – 7.200 USD",
+            "Coste anual": "60.000 USD – 86.400 USD"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 5.0,
+        "max": 8.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "5,00 USD – 8,00 USD"
+      },
+      "M": {
+        "min": 200.0,
+        "max": 320.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "200 USD – 320 USD"
+      },
+      "L": {
+        "min": 5000.0,
+        "max": 7200.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "5.000 USD – 7.200 USD"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "ses-pricing",
+        "titulo": "AWS, «Amazon SES Pricing»",
+        "url": "https://aws.amazon.com/ses/pricing/",
+        "consultado": "2026-09-30"
+      }
+    ],
+    "modelo": {
+      "moneda": "USD",
+      "parametros": [
+        {
+          "id": "precio_alacarta",
+          "nombre": "À la carte",
+          "unidad": "USD/1.000 emails",
+          "valor": 0.1,
+          "fuente": "ses-pricing"
+        },
+        {
+          "id": "precio_essentials_1",
+          "nombre": "Essentials, tramo hasta 10 M emails/mes",
+          "unidad": "USD/1.000 emails",
+          "valor": 0.16,
+          "fuente": "ses-pricing"
+        },
+        {
+          "id": "precio_essentials_2",
+          "nombre": "Essentials, tramo de 10 M a 100 M emails/mes",
+          "unidad": "USD/1.000 emails",
+          "valor": 0.14,
+          "fuente": "ses-pricing"
+        },
+        {
+          "id": "limite_tramo_1",
+          "nombre": "Fin del primer tramo",
+          "unidad": "emails/mes",
+          "valor": 10000000,
+          "fuente": "ses-pricing"
+        },
+        {
+          "id": "limite_tramo_2",
+          "nombre": "Fin del segundo tramo",
+          "unidad": "emails/mes",
+          "valor": 100000000,
+          "fuente": "ses-pricing"
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "À la carte",
+          "componentes": [
+            {
+              "nombre": "Emails enviados",
+              "formula": "emails_mes / 1000 * precio_alacarta"
+            }
+          ]
+        },
+        {
+          "nombre": "Essentials",
+          "componentes": [
+            {
+              "nombre": "Emails enviados (por tramos)",
+              "formula": "(min(emails_mes, limite_tramo_1) * precio_essentials_1 + max(0, min(emails_mes, limite_tramo_2) - limite_tramo_1) * precio_essentials_2) / 1000"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "apache-unomi",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "EUR",
+    "tablas": [
+      {
+        "titulo": "2.1 TCO autoalojado (EUR)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Infraestructura (€/mes)": "120 – 250",
+            "Operación (h/mes → €/mes)": "10 h → 650",
+            "TCO mensual": "770 € – 900 €",
+            "TCO anual": "9.240 € – 10.800 €"
+          },
+          {
+            "Escenario": "M",
+            "Infraestructura (€/mes)": "800 – 1.800",
+            "Operación (h/mes → €/mes)": "40 h → 2600",
+            "TCO mensual": "3.400 € – 4.400 €",
+            "TCO anual": "40.800 € – 52.800 €"
+          },
+          {
+            "Escenario": "L",
+            "Infraestructura (€/mes)": "5.000 – 12.000",
+            "Operación (h/mes → €/mes)": "120 h → 7800",
+            "TCO mensual": "12.800 € – 19.800 €",
+            "TCO anual": "153.600 € – 237.600 €"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 770.0,
+        "max": 900.0,
+        "moneda": "EUR",
+        "origen": "2.1 TCO autoalojado (EUR)",
+        "texto": "770 € – 900 €"
+      },
+      "M": {
+        "min": 3400.0,
+        "max": 4400.0,
+        "moneda": "EUR",
+        "origen": "2.1 TCO autoalojado (EUR)",
+        "texto": "3.400 € – 4.400 €"
+      },
+      "L": {
+        "min": 12800.0,
+        "max": 19800.0,
+        "moneda": "EUR",
+        "origen": "2.1 TCO autoalojado (EUR)",
+        "texto": "12.800 € – 19.800 €"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "uo-home",
+        "titulo": "Apache Unomi, «Apache Unomi — Open Source Customer Data Platform»",
+        "url": "https://unomi.apache.org/",
+        "consultado": "2026-10-02"
+      },
+      {
+        "id": "uo-manual-arch",
+        "titulo": "Apache Unomi, «Documentation — Architecture overview»",
+        "url": "https://unomi.apache.org/manual/latest/#_architecture_overview",
+        "consultado": "2026-10-02"
+      }
+    ],
+    "modelo": {
+      "moneda": "EUR",
+      "parametros": [
+        {
+          "id": "infraestructura",
+          "nombre": "Infraestructura (estimación del consultor)",
+          "unidad": "EUR/mes",
+          "valor": {
+            "S": {
+              "min": 120,
+              "max": 250
+            },
+            "M": {
+              "min": 800,
+              "max": 1800
+            },
+            "L": {
+              "min": 5000,
+              "max": 12000
+            }
+          }
+        },
+        {
+          "id": "horas_operacion",
+          "nombre": "Horas de operación al mes (estimación del consultor)",
+          "unidad": "h/mes",
+          "valor": {
+            "S": 10,
+            "M": 40,
+            "L": 120
+          }
+        },
+        {
+          "id": "tarifa_hora",
+          "nombre": "Tarifa de un perfil SRE senior (supuesto del consultor)",
+          "unidad": "EUR/h",
+          "valor": 65
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "OSS autoalojado (TCO)",
+          "componentes": [
+            {
+              "nombre": "Infraestructura",
+              "formula": "infraestructura"
+            },
+            {
+              "nombre": "Operación",
+              "formula": "horas_operacion * tarifa_hora"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "bloomreach",
+    "fecha_revision": "2026-09-30",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      },
+      "M": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      },
+      "L": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "br-pricing",
+        "titulo": "Bloomreach, «Marketing Automation Pricing»",
+        "url": "https://www.bloomreach.com/en/pricing/engagement",
+        "consultado": "2026-09-30"
+      }
+    ]
+  },
+  {
+    "candidato": "braze",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      },
+      "M": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      },
+      "L": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "bz-pricing",
+        "titulo": "Braze, «Pricing»",
+        "url": "https://www.braze.com/pricing",
+        "consultado": "2026-09-30"
+      }
+    ]
+  },
+  {
+    "candidato": "brevo",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "EUR",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (EUR)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": null,
+        "max": null,
+        "moneda": "EUR",
+        "origen": "2.1 Oferta comercial (EUR)",
+        "texto": "N/D"
+      },
+      "M": {
+        "min": null,
+        "max": null,
+        "moneda": "EUR",
+        "origen": "2.1 Oferta comercial (EUR)",
+        "texto": "N/D"
+      },
+      "L": {
+        "min": null,
+        "max": null,
+        "moneda": "EUR",
+        "origen": "2.1 Oferta comercial (EUR)",
+        "texto": "N/D"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "bv-pricing",
+        "titulo": "Brevo, «Pricing»",
+        "url": "https://www.brevo.com/pricing/",
+        "consultado": "2026-10-02"
+      }
+    ]
+  },
+  {
+    "candidato": "census",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      },
+      "M": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      },
+      "L": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "fv-blog-census-joins",
+        "titulo": "Fivetran, «Census joins Fivetran’s consumption-based pricing»",
+        "url": "https://www.fivetran.com/blog/census-joins-fivetrans-consumption-based-pricing",
+        "consultado": "2026-09-30"
+      },
+      {
+        "id": "fv-act-migration-faq",
+        "titulo": "Fivetran Docs, «Census Migration Frequently Asked Questions»",
+        "url": "https://fivetran.com/docs/activations/census-migration-faq",
+        "consultado": "2026-09-30"
+      }
+    ]
+  },
+  {
+    "candidato": "customer-io",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "145 USD",
+            "Coste anual": "1.740 USD"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "2.425 USD",
+            "Coste anual": "29.100 USD"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "50.935 USD",
+            "Coste anual": "611.220 USD"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 145.0,
+        "max": 145.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "145 USD"
+      },
+      "M": {
+        "min": 2425.0,
+        "max": 2425.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "2.425 USD"
+      },
+      "L": {
+        "min": 50935.0,
+        "max": 50935.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "50.935 USD"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "cio-pricing",
+        "titulo": "Customer.io, «Pricing»",
+        "url": "https://customer.io/pricing",
+        "consultado": "2026-10-02"
+      },
+      {
+        "id": "cio-pricing-3p",
+        "titulo": "Costbench, «Customer.io Pricing 2026: 3 Plans from $100–$1,000/month»",
+        "url": "https://costbench.com/software/marketing-automation/customerio/",
+        "consultado": "2026-10-02"
+      }
+    ],
+    "modelo": {
+      "moneda": "USD",
+      "parametros": [
+        {
+          "id": "cuota_essentials",
+          "nombre": "Essentials, cuota base (incluye 5.000 perfiles)",
+          "unidad": "USD/mes",
+          "valor": 100,
+          "fuente": "cio-pricing-3p"
+        },
+        {
+          "id": "perfiles_incluidos",
+          "nombre": "Perfiles incluidos en Essentials",
+          "unidad": "perfiles",
+          "valor": 5000,
+          "fuente": "cio-pricing"
+        },
+        {
+          "id": "precio_perfil",
+          "nombre": "Perfil adicional",
+          "unidad": "USD/perfil-mes",
+          "valor": 0.009,
+          "fuente": "cio-pricing"
+        },
+        {
+          "id": "emails_incluidos",
+          "nombre": "Emails incluidos en Essentials",
+          "unidad": "emails/mes",
+          "valor": 1000000,
+          "fuente": "cio-pricing"
+        },
+        {
+          "id": "precio_emails",
+          "nombre": "Lote adicional de 1.000 emails",
+          "unidad": "USD/1.000 emails",
+          "valor": 0.12,
+          "fuente": "cio-pricing"
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "Essentials",
+          "componentes": [
+            {
+              "nombre": "Cuota base",
+              "formula": "cuota_essentials"
+            },
+            {
+              "nombre": "Perfiles adicionales",
+              "formula": "max(0, perfiles - perfiles_incluidos) * precio_perfil"
+            },
+            {
+              "nombre": "Emails adicionales",
+              "formula": "max(0, emails_mes - emails_incluidos) / 1000 * precio_emails"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "dittofeed",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "75,00 USD",
+            "Coste anual": "900 USD"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "735 USD",
+            "Coste anual": "8.820 USD"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "5.735 USD",
+            "Coste anual": "68.820 USD"
+          }
+        ]
+      },
+      {
+        "titulo": "2.2 TCO autoalojado (EUR)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Infraestructura (€/mes)": "60 – 120",
+            "Operación (h/mes → €/mes)": "6 h → 390",
+            "TCO mensual": "450 € – 510 €",
+            "TCO anual": "5.400 € – 6.120 €"
+          },
+          {
+            "Escenario": "M",
+            "Infraestructura (€/mes)": "400 – 900",
+            "Operación (h/mes → €/mes)": "24 h → 1560",
+            "TCO mensual": "1.960 € – 2.460 €",
+            "TCO anual": "23.520 € – 29.520 €"
+          },
+          {
+            "Escenario": "L",
+            "Infraestructura (€/mes)": "2.500 – 6.000",
+            "Operación (h/mes → €/mes)": "80 h → 5200",
+            "TCO mensual": "7.700 € – 11.200 €",
+            "TCO anual": "92.400 € – 134.400 €"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 75.0,
+        "max": 75.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "75,00 USD"
+      },
+      "M": {
+        "min": 735.0,
+        "max": 735.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "735 USD"
+      },
+      "L": {
+        "min": 5735.0,
+        "max": 5735.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "5.735 USD"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "df-pricing",
+        "titulo": "Dittofeed, «Pricing»",
+        "url": "https://www.dittofeed.com/pricing",
+        "consultado": "2026-10-02"
+      }
+    ],
+    "modelo": {
+      "moneda": "USD",
+      "parametros": [
+        {
+          "id": "cuota_cloud",
+          "nombre": "Cloud Pro, cuota base (incluye 10.000 usuarios únicos)",
+          "unidad": "USD/mes",
+          "valor": 75,
+          "fuente": "df-pricing"
+        },
+        {
+          "id": "usuarios_incluidos",
+          "nombre": "Usuarios únicos incluidos",
+          "unidad": "usuarios",
+          "valor": 10000,
+          "fuente": "df-pricing"
+        },
+        {
+          "id": "precio_tramo_1",
+          "nombre": "Usuario adicional, de 10.000 a 100.000",
+          "unidad": "USD/usuario",
+          "valor": 0.004,
+          "fuente": "df-pricing"
+        },
+        {
+          "id": "precio_tramo_2",
+          "nombre": "Usuario adicional, de 100.000 a 500.000",
+          "unidad": "USD/usuario",
+          "valor": 0.002,
+          "fuente": "df-pricing"
+        },
+        {
+          "id": "precio_tramo_3",
+          "nombre": "Usuario adicional, por encima de 500.000",
+          "unidad": "USD/usuario",
+          "valor": 0.001,
+          "fuente": "df-pricing"
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "Cloud Pro",
+          "componentes": [
+            {
+              "nombre": "Cuota base",
+              "formula": "cuota_cloud"
+            },
+            {
+              "nombre": "Usuarios adicionales (por tramos)",
+              "formula": "max(0, min(perfiles, 100000) - usuarios_incluidos) * precio_tramo_1 + max(0, min(perfiles, 500000) - 100000) * precio_tramo_2 + max(0, perfiles - 500000) * precio_tramo_3"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "hightouch",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      },
+      "M": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      },
+      "L": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "ht-pricing",
+        "titulo": "Hightouch, «Pricing»",
+        "url": "https://hightouch.com/pricing",
+        "consultado": "2026-09-30"
+      },
+      {
+        "id": "ht-docs-ss-pricing",
+        "titulo": "Hightouch Docs, «Self-serve pricing»",
+        "url": "https://hightouch.com/docs/pricing/ss-pricing",
+        "consultado": "2026-09-30"
+      }
+    ]
+  },
+  {
+    "candidato": "hubspot-marketing-hub",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "1.300 USD – 1.390 USD",
+            "Coste anual": "15.600 USD – 16.680 USD"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "6.340 USD – 13.930 USD",
+            "Coste anual": "76.080 USD – 167.160 USD"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "8.365 USD – 253.455 USD",
+            "Coste anual": "100.380 USD – 3.041.460 USD"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 1300.0,
+        "max": 1390.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "1.300 USD – 1.390 USD"
+      },
+      "M": {
+        "min": 6340.0,
+        "max": 13930.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "6.340 USD – 13.930 USD"
+      },
+      "L": {
+        "min": 8365.0,
+        "max": 253455.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "8.365 USD – 253.455 USD"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "hs-pricing",
+        "titulo": "HubSpot, «Marketing Hub pricing»",
+        "url": "https://www.hubspot.com/pricing/marketing",
+        "consultado": "2026-09-30"
+      },
+      {
+        "id": "hs-pricing-pro",
+        "titulo": "HubSpot, «Marketing Hub Professional pricing»",
+        "url": "https://www.hubspot.com/pricing/marketing/professional",
+        "consultado": "2026-10-02"
+      },
+      {
+        "id": "hs-impactplus-pricing",
+        "titulo": "Impact, «HubSpot Pricing: Your Guide to Everything HubSpot Costs»",
+        "url": "https://www.impactplus.com/blog/hubspot-pricing-cost",
+        "consultado": "2026-10-02"
+      }
+    ],
+    "modelo": {
+      "moneda": "USD",
+      "parametros": [
+        {
+          "id": "precio_base",
+          "nombre": "Professional: cuota base mensual (800 pagando al mes, 890 con compromiso anual)",
+          "unidad": "USD/mes",
+          "valor": {
+            "min": 800,
+            "max": 890
+          },
+          "fuente": "hs-pricing-pro"
+        },
+        {
+          "id": "contactos_incluidos",
+          "nombre": "Contactos de marketing incluidos",
+          "unidad": "contactos",
+          "valor": 2000,
+          "fuente": "hs-pricing-pro"
+        },
+        {
+          "id": "asientos_incluidos",
+          "nombre": "Asientos incluidos",
+          "unidad": "asientos",
+          "valor": 3,
+          "fuente": "hs-pricing-pro"
+        },
+        {
+          "id": "precio_asiento",
+          "nombre": "Asiento adicional",
+          "unidad": "USD/asiento-mes",
+          "valor": 45,
+          "fuente": "hs-pricing-pro"
+        },
+        {
+          "id": "paso_contactos",
+          "nombre": "Tamaño del tramo de contactos adicionales",
+          "unidad": "contactos",
+          "valor": 5000,
+          "fuente": "hs-impactplus-pricing"
+        },
+        {
+          "id": "precio_paso",
+          "nombre": "Precio de cada tramo de contactos adicionales",
+          "unidad": "USD/mes",
+          "valor": 250,
+          "fuente": "hs-impactplus-pricing"
+        },
+        {
+          "id": "tope_contactos",
+          "nombre": "Contactos hasta los que se aplica la tarifa por tramos",
+          "unidad": "contactos",
+          "valor": 100000
+        },
+        {
+          "id": "factor_extra",
+          "nombre": "Parte del precio por tramo que se extrapola por encima del tope (0 = ninguna, 1 = sin descuento por volumen)",
+          "valor": {
+            "min": 0,
+            "max": 1
+          }
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "Marketing Hub Professional",
+          "componentes": [
+            {
+              "nombre": "Cuota base",
+              "formula": "precio_base"
+            },
+            {
+              "nombre": "Contactos adicionales (tramos de 5.000)",
+              "formula": "ceil(max(0, min(perfiles, tope_contactos) - contactos_incluidos) / paso_contactos) * precio_paso"
+            },
+            {
+              "nombre": "Contactos por encima del tope (extrapolación)",
+              "formula": "max(0, perfiles - tope_contactos) / paso_contactos * precio_paso * factor_extra"
+            },
+            {
+              "nombre": "Asientos adicionales",
+              "formula": "max(0, usuarios - asientos_incluidos) * precio_asiento"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "jitsu",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "99,00 USD",
+            "Coste anual": "1.188 USD"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "2.019 USD",
+            "Coste anual": "24.228 USD"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "40.019 USD",
+            "Coste anual": "480.228 USD"
+          }
+        ]
+      },
+      {
+        "titulo": "2.2 TCO autoalojado (EUR)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Infraestructura (€/mes)": "80 – 150",
+            "Operación (h/mes → €/mes)": "6 h → 390",
+            "TCO mensual": "470 € – 540 €",
+            "TCO anual": "5.640 € – 6.480 €"
+          },
+          {
+            "Escenario": "M",
+            "Infraestructura (€/mes)": "500 – 1.200",
+            "Operación (h/mes → €/mes)": "24 h → 1560",
+            "TCO mensual": "2.060 € – 2.760 €",
+            "TCO anual": "24.720 € – 33.120 €"
+          },
+          {
+            "Escenario": "L",
+            "Infraestructura (€/mes)": "3.500 – 8.000",
+            "Operación (h/mes → €/mes)": "80 h → 5200",
+            "TCO mensual": "8.700 € – 13.200 €",
+            "TCO anual": "104.400 € – 158.400 €"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 99.0,
+        "max": 99.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "99,00 USD"
+      },
+      "M": {
+        "min": 2019.0,
+        "max": 2019.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "2.019 USD"
+      },
+      "L": {
+        "min": 40019.0,
+        "max": 40019.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "40.019 USD"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "jt-pricing",
+        "titulo": "Jitsu, «Pricing»",
+        "url": "https://jitsu.com/pricing",
+        "consultado": "2026-10-02"
+      }
+    ],
+    "modelo": {
+      "moneda": "USD",
+      "parametros": [
+        {
+          "id": "cuota_business",
+          "nombre": "Business, cuota base (incluye 2 M de eventos activos)",
+          "unidad": "USD/mes",
+          "valor": 99,
+          "fuente": "jt-pricing"
+        },
+        {
+          "id": "eventos_incluidos",
+          "nombre": "Eventos activos incluidos",
+          "unidad": "eventos/mes",
+          "valor": 2000000,
+          "fuente": "jt-pricing"
+        },
+        {
+          "id": "precio_millon",
+          "nombre": "Millón de eventos activos adicional",
+          "unidad": "USD/millón",
+          "valor": 40,
+          "fuente": "jt-pricing"
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "Business",
+          "componentes": [
+            {
+              "nombre": "Cuota base",
+              "formula": "cuota_business"
+            },
+            {
+              "nombre": "Eventos activos adicionales",
+              "formula": "max(0, eventos_mes - eventos_incluidos) / 1000000 * precio_millon"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "keila",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "EUR",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (EUR)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "64,00 €",
+            "Coste anual": "768 €"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "256,00 € – 1.749 €",
+            "Coste anual": "3.072 € – 20.992 €"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "256,00 € – 42.709 €",
+            "Coste anual": "3.072 € – 512.512 €"
+          }
+        ]
+      },
+      {
+        "titulo": "2.2 TCO autoalojado (EUR)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Infraestructura (€/mes)": "30 – 60",
+            "Operación (h/mes → €/mes)": "4 h → 260",
+            "TCO mensual": "290 € – 320 €",
+            "TCO anual": "3.480 € – 3.840 €"
+          },
+          {
+            "Escenario": "M",
+            "Infraestructura (€/mes)": "150 – 350",
+            "Operación (h/mes → €/mes)": "12 h → 780",
+            "TCO mensual": "930 € – 1.130 €",
+            "TCO anual": "11.160 € – 13.560 €"
+          },
+          {
+            "Escenario": "L",
+            "Infraestructura (€/mes)": "800 – 1.800",
+            "Operación (h/mes → €/mes)": "40 h → 2600",
+            "TCO mensual": "3.400 € – 4.400 €",
+            "TCO anual": "40.800 € – 52.800 €"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 64.0,
+        "max": 64.0,
+        "moneda": "EUR",
+        "origen": "2.1 Oferta comercial (EUR)",
+        "texto": "64,00 €"
+      },
+      "M": {
+        "min": 256.0,
+        "max": 1749.0,
+        "moneda": "EUR",
+        "origen": "2.1 Oferta comercial (EUR)",
+        "texto": "256,00 € – 1.749 €"
+      },
+      "L": {
+        "min": 256.0,
+        "max": 42709.0,
+        "moneda": "EUR",
+        "origen": "2.1 Oferta comercial (EUR)",
+        "texto": "256,00 € – 42.709 €"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "kl-pricing",
+        "titulo": "Keila, «Pricing»",
+        "url": "https://www.keila.io/pricing",
+        "consultado": "2026-10-02"
+      }
+    ],
+    "modelo": {
+      "moneda": "EUR",
+      "parametros": [
+        {
+          "id": "p2000",
+          "nombre": "Plan XS (2.000 emails)",
+          "unidad": "EUR/mes",
+          "valor": 8,
+          "fuente": "kl-pricing"
+        },
+        {
+          "id": "p5000",
+          "nombre": "Plan S (5.000 emails)",
+          "unidad": "EUR/mes",
+          "valor": 16,
+          "fuente": "kl-pricing"
+        },
+        {
+          "id": "p15000",
+          "nombre": "Plan M (15.000 emails)",
+          "unidad": "EUR/mes",
+          "valor": 32,
+          "fuente": "kl-pricing"
+        },
+        {
+          "id": "p50000",
+          "nombre": "Plan L (50.000 emails)",
+          "unidad": "EUR/mes",
+          "valor": 64,
+          "fuente": "kl-pricing"
+        },
+        {
+          "id": "p100000",
+          "nombre": "Plan XL (100.000 emails)",
+          "unidad": "EUR/mes",
+          "valor": 128,
+          "fuente": "kl-pricing"
+        },
+        {
+          "id": "p250000",
+          "nombre": "Plan XXL (250.000 emails)",
+          "unidad": "EUR/mes",
+          "valor": 256,
+          "fuente": "kl-pricing"
+        },
+        {
+          "id": "factor_extra",
+          "nombre": "Parte del precio marginal del último tramo que se extrapola por encima de 250.000 emails (0 = ninguna, 1 = sin descuento por volumen)",
+          "valor": {
+            "min": 0,
+            "max": 1
+          }
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "Keila Cloud",
+          "componentes": [
+            {
+              "nombre": "Plan (interpolación entre los planes publicados)",
+              "formula": "p2000 + (p5000 - p2000) * max(0, min(1, (emails_mes - 2000) / 3000)) + (p15000 - p5000) * max(0, min(1, (emails_mes - 5000) / 10000)) + (p50000 - p15000) * max(0, min(1, (emails_mes - 15000) / 35000)) + (p100000 - p50000) * max(0, min(1, (emails_mes - 50000) / 50000)) + (p250000 - p100000) * max(0, min(1, (emails_mes - 100000) / 150000))"
+            },
+            {
+              "nombre": "Emails por encima de 250.000 (extrapolación)",
+              "formula": "max(0, emails_mes - 250000) * (p250000 - p100000) / 150000 * factor_extra"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "klaviyo",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "150 USD",
+            "Coste anual": "1.800 USD"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "720 USD – 3.280 USD",
+            "Coste anual": "8.640 USD – 39.360 USD"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "720 USD – 64.080 USD",
+            "Coste anual": "8.640 USD – 768.960 USD"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 150.0,
+        "max": 150.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "150 USD"
+      },
+      "M": {
+        "min": 720.0,
+        "max": 3280.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "720 USD – 3.280 USD"
+      },
+      "L": {
+        "min": 720.0,
+        "max": 64080.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "720 USD – 64.080 USD"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "kv-pricing",
+        "titulo": "Klaviyo, «Pricing»",
+        "url": "https://www.klaviyo.com/pricing",
+        "consultado": "2026-09-30"
+      },
+      {
+        "id": "kv-etester-pricing",
+        "titulo": "EmailToolTester, «Klaviyo Pricing 2026»",
+        "url": "https://www.emailtooltester.com/en/reviews/klaviyo/pricing/",
+        "consultado": "2026-10-02"
+      },
+      {
+        "id": "kv-usecarly-pricing",
+        "titulo": "Carly, «Klaviyo Pricing in 2026: What Active-Profile Billing Actually Costs»",
+        "url": "https://www.usecarly.com/blog/klaviyo-pricing/",
+        "consultado": "2026-10-02"
+      }
+    ],
+    "modelo": {
+      "moneda": "USD",
+      "parametros": [
+        {
+          "id": "p500",
+          "nombre": "Plan Email, hasta 500 perfiles activos",
+          "unidad": "USD/mes",
+          "valor": 20,
+          "fuente": "kv-etester-pricing"
+        },
+        {
+          "id": "p5000",
+          "nombre": "Plan Email, 5.000 perfiles activos",
+          "unidad": "USD/mes",
+          "valor": 100,
+          "fuente": "kv-usecarly-pricing"
+        },
+        {
+          "id": "p10000",
+          "nombre": "Plan Email, 10.000 perfiles activos",
+          "unidad": "USD/mes",
+          "valor": 150,
+          "fuente": "kv-usecarly-pricing"
+        },
+        {
+          "id": "p25000",
+          "nombre": "Plan Email, 25.000 perfiles activos",
+          "unidad": "USD/mes",
+          "valor": 400,
+          "fuente": "kv-usecarly-pricing"
+        },
+        {
+          "id": "p50000",
+          "nombre": "Plan Email, 50.000 perfiles activos",
+          "unidad": "USD/mes",
+          "valor": 720,
+          "fuente": "kv-etester-pricing"
+        },
+        {
+          "id": "factor_extra",
+          "nombre": "Parte del precio del último tramo que se extrapola por encima de 50.000 perfiles (0 = ninguna, 1 = sin descuento por volumen)",
+          "valor": {
+            "min": 0,
+            "max": 1
+          }
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "Plan Email",
+          "componentes": [
+            {
+              "nombre": "Perfiles activos (interpolación entre los tramos publicados)",
+              "formula": "p500 + (p5000 - p500) * max(0, min(perfiles, 5000) - 500) / 4500 + (p10000 - p5000) * max(0, min(perfiles, 10000) - 5000) / 5000 + (p25000 - p10000) * max(0, min(perfiles, 25000) - 10000) / 15000 + (p50000 - p25000) * max(0, min(perfiles, 50000) - 25000) / 25000"
+            },
+            {
+              "nombre": "Perfiles por encima de 50.000 (extrapolación)",
+              "formula": "max(0, perfiles - 50000) * (p50000 - p25000) / 25000 * factor_extra"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "listmonk",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "EUR",
+    "tablas": [
+      {
+        "titulo": "2.1 TCO autoalojado (EUR)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Infraestructura (€/mes)": "30 – 60",
+            "Operación (h/mes → €/mes)": "4 h → 260",
+            "TCO mensual": "290 € – 320 €",
+            "TCO anual": "3.480 € – 3.840 €"
+          },
+          {
+            "Escenario": "M",
+            "Infraestructura (€/mes)": "150 – 350",
+            "Operación (h/mes → €/mes)": "12 h → 780",
+            "TCO mensual": "930 € – 1.130 €",
+            "TCO anual": "11.160 € – 13.560 €"
+          },
+          {
+            "Escenario": "L",
+            "Infraestructura (€/mes)": "800 – 1.800",
+            "Operación (h/mes → €/mes)": "40 h → 2600",
+            "TCO mensual": "3.400 € – 4.400 €",
+            "TCO anual": "40.800 € – 52.800 €"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 290.0,
+        "max": 320.0,
+        "moneda": "EUR",
+        "origen": "2.1 TCO autoalojado (EUR)",
+        "texto": "290 € – 320 €"
+      },
+      "M": {
+        "min": 930.0,
+        "max": 1130.0,
+        "moneda": "EUR",
+        "origen": "2.1 TCO autoalojado (EUR)",
+        "texto": "930 € – 1.130 €"
+      },
+      "L": {
+        "min": 3400.0,
+        "max": 4400.0,
+        "moneda": "EUR",
+        "origen": "2.1 TCO autoalojado (EUR)",
+        "texto": "3.400 € – 4.400 €"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "lm-gh",
+        "titulo": "listmonk (GitHub), «knadh/listmonk»",
+        "url": "https://github.com/knadh/listmonk",
+        "consultado": "2026-10-02"
+      }
+    ],
+    "modelo": {
+      "moneda": "EUR",
+      "parametros": [
+        {
+          "id": "infraestructura",
+          "nombre": "Infraestructura (estimación del consultor)",
+          "unidad": "EUR/mes",
+          "valor": {
+            "S": {
+              "min": 30,
+              "max": 60
+            },
+            "M": {
+              "min": 150,
+              "max": 350
+            },
+            "L": {
+              "min": 800,
+              "max": 1800
+            }
+          }
+        },
+        {
+          "id": "horas_operacion",
+          "nombre": "Horas de operación al mes (estimación del consultor)",
+          "unidad": "h/mes",
+          "valor": {
+            "S": 4,
+            "M": 12,
+            "L": 40
+          }
+        },
+        {
+          "id": "tarifa_hora",
+          "nombre": "Tarifa de un perfil SRE senior (supuesto del consultor)",
+          "unidad": "EUR/h",
+          "valor": 65
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "OSS autoalojado (TCO)",
+          "componentes": [
+            {
+              "nombre": "Infraestructura",
+              "formula": "infraestructura"
+            },
+            {
+              "nombre": "Operación",
+              "formula": "horas_operacion * tarifa_hora"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "mailchimp",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "135 USD – 350 USD",
+            "Coste anual": "1.620 USD – 4.200 USD"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "450 USD – 2.375 USD",
+            "Coste anual": "5.400 USD – 28.500 USD"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "450 USD – 39.425 USD",
+            "Coste anual": "5.400 USD – 473.100 USD"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 135.0,
+        "max": 350.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "135 USD – 350 USD"
+      },
+      "M": {
+        "min": 450.0,
+        "max": 2375.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "450 USD – 2.375 USD"
+      },
+      "L": {
+        "min": 450.0,
+        "max": 39425.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "450 USD – 39.425 USD"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "mc-pricing",
+        "titulo": "Mailchimp, «Pricing — Marketing»",
+        "url": "https://mailchimp.com/pricing/marketing/",
+        "consultado": "2026-09-30"
+      },
+      {
+        "id": "mc-groupmail-pricing",
+        "titulo": "GroupMail, «Mailchimp Pricing 2026: What You Pay at Every Tier»",
+        "url": "https://blog.groupmail.io/mailchimp-pricing-2026/",
+        "consultado": "2026-10-02"
+      },
+      {
+        "id": "mc-evs-pricing",
+        "titulo": "Email Vendor Selection, «Mailchimp Pricing 2026: Is it too expensive?»",
+        "url": "https://www.emailvendorselection.com/mailchimp-pricing/",
+        "consultado": "2026-10-02"
+      }
+    ],
+    "modelo": {
+      "moneda": "USD",
+      "parametros": [
+        {
+          "id": "s500",
+          "nombre": "Standard, hasta 500 contactos",
+          "unidad": "USD/mes",
+          "valor": 20,
+          "fuente": "mc-groupmail-pricing"
+        },
+        {
+          "id": "s5000",
+          "nombre": "Standard, 5.000 contactos",
+          "unidad": "USD/mes",
+          "valor": 100,
+          "fuente": "mc-groupmail-pricing"
+        },
+        {
+          "id": "s10000",
+          "nombre": "Standard, 10.000 contactos",
+          "unidad": "USD/mes",
+          "valor": 135,
+          "fuente": "mc-groupmail-pricing"
+        },
+        {
+          "id": "s25000",
+          "nombre": "Standard, 25.000 contactos",
+          "unidad": "USD/mes",
+          "valor": 310,
+          "fuente": "mc-groupmail-pricing"
+        },
+        {
+          "id": "s50000",
+          "nombre": "Standard, 50.000 contactos",
+          "unidad": "USD/mes",
+          "valor": 450,
+          "fuente": "mc-groupmail-pricing"
+        },
+        {
+          "id": "r10000",
+          "nombre": "Premium, hasta 10.000 contactos",
+          "unidad": "USD/mes",
+          "valor": 350,
+          "fuente": "mc-groupmail-pricing"
+        },
+        {
+          "id": "r25000",
+          "nombre": "Premium, 25.000 contactos",
+          "unidad": "USD/mes",
+          "valor": 620,
+          "fuente": "mc-groupmail-pricing"
+        },
+        {
+          "id": "r50000",
+          "nombre": "Premium, 50.000 contactos",
+          "unidad": "USD/mes",
+          "valor": 815,
+          "fuente": "mc-groupmail-pricing"
+        },
+        {
+          "id": "factor_extra",
+          "nombre": "Parte del precio del último tramo que se extrapola por encima de 50.000 contactos (0 = ninguna, 1 = sin descuento por volumen)",
+          "valor": {
+            "min": 0,
+            "max": 1
+          }
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "Standard",
+          "componentes": [
+            {
+              "nombre": "Contactos (interpolación entre los tramos publicados)",
+              "formula": "s500 + (s5000 - s500) * max(0, min(perfiles, 5000) - 500) / 4500 + (s10000 - s5000) * max(0, min(perfiles, 10000) - 5000) / 5000 + (s25000 - s10000) * max(0, min(perfiles, 25000) - 10000) / 15000 + (s50000 - s25000) * max(0, min(perfiles, 50000) - 25000) / 25000"
+            },
+            {
+              "nombre": "Contactos por encima de 50.000 (extrapolación)",
+              "formula": "max(0, perfiles - 50000) * (s50000 - s25000) / 25000 * factor_extra"
+            }
+          ]
+        },
+        {
+          "nombre": "Premium",
+          "componentes": [
+            {
+              "nombre": "Contactos (interpolación entre los tramos publicados)",
+              "formula": "r10000 + (r25000 - r10000) * max(0, min(perfiles, 25000) - 10000) / 15000 + (r50000 - r25000) * max(0, min(perfiles, 50000) - 25000) / 25000"
+            },
+            {
+              "nombre": "Contactos por encima de 50.000 (extrapolación)",
+              "formula": "max(0, perfiles - 50000) * (r50000 - r25000) / 25000 * factor_extra"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "mautic",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "EUR",
+    "tablas": [
+      {
+        "titulo": "2.1 TCO autoalojado (EUR)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Infraestructura (€/mes)": "60 – 120",
+            "Operación (h/mes → €/mes)": "8 h → 520",
+            "TCO mensual": "580 € – 640 €",
+            "TCO anual": "6.960 € – 7.680 €"
+          },
+          {
+            "Escenario": "M",
+            "Infraestructura (€/mes)": "400 – 900",
+            "Operación (h/mes → €/mes)": "30 h → 1950",
+            "TCO mensual": "2.350 € – 2.850 €",
+            "TCO anual": "28.200 € – 34.200 €"
+          },
+          {
+            "Escenario": "L",
+            "Infraestructura (€/mes)": "2.500 – 6.000",
+            "Operación (h/mes → €/mes)": "100 h → 6500",
+            "TCO mensual": "9.000 € – 12.500 €",
+            "TCO anual": "108.000 € – 150.000 €"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 580.0,
+        "max": 640.0,
+        "moneda": "EUR",
+        "origen": "2.1 TCO autoalojado (EUR)",
+        "texto": "580 € – 640 €"
+      },
+      "M": {
+        "min": 2350.0,
+        "max": 2850.0,
+        "moneda": "EUR",
+        "origen": "2.1 TCO autoalojado (EUR)",
+        "texto": "2.350 € – 2.850 €"
+      },
+      "L": {
+        "min": 9000.0,
+        "max": 12500.0,
+        "moneda": "EUR",
+        "origen": "2.1 TCO autoalojado (EUR)",
+        "texto": "9.000 € – 12.500 €"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "mt-hosting",
+        "titulo": "Mautic, «Mautic Hosting»",
+        "url": "https://mautic.org/start-using-mautic/mautic-hosting/",
+        "consultado": "2026-10-02"
+      },
+      {
+        "id": "mt-gh",
+        "titulo": "Mautic (GitHub), «mautic/mautic»",
+        "url": "https://github.com/mautic/mautic",
+        "consultado": "2026-10-02"
+      }
+    ],
+    "modelo": {
+      "moneda": "EUR",
+      "parametros": [
+        {
+          "id": "infraestructura",
+          "nombre": "Infraestructura (estimación del consultor)",
+          "unidad": "EUR/mes",
+          "valor": {
+            "S": {
+              "min": 60,
+              "max": 120
+            },
+            "M": {
+              "min": 400,
+              "max": 900
+            },
+            "L": {
+              "min": 2500,
+              "max": 6000
+            }
+          }
+        },
+        {
+          "id": "horas_operacion",
+          "nombre": "Horas de operación al mes (estimación del consultor)",
+          "unidad": "h/mes",
+          "valor": {
+            "S": 8,
+            "M": 30,
+            "L": 100
+          }
+        },
+        {
+          "id": "tarifa_hora",
+          "nombre": "Tarifa de un perfil SRE senior (supuesto del consultor)",
+          "unidad": "EUR/h",
+          "valor": 65
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "OSS autoalojado (TCO)",
+          "componentes": [
+            {
+              "nombre": "Infraestructura",
+              "formula": "infraestructura"
+            },
+            {
+              "nombre": "Operación",
+              "formula": "horas_operacion * tarifa_hora"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "mparticle",
+    "fecha_revision": "2026-09-30",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      },
+      "M": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      },
+      "L": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "mp-cdpcom",
+        "titulo": "CDP.com, «What Is mParticle? CDP Features, Pricing, and Alternatives»",
+        "url": "https://cdp.com/articles/what-is-mparticle/",
+        "consultado": "2026-09-30"
+      }
+    ]
+  },
+  {
+    "candidato": "postmark",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "66,00 USD – 87,00 USD",
+            "Coste anual": "792 USD – 1.044 USD"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "2.406 USD – 3.597 USD",
+            "Coste anual": "28.872 USD – 43.164 USD"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "60.006 USD – 89.997 USD",
+            "Coste anual": "720.072 USD – 1.079.964 USD"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 66.0,
+        "max": 87.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "66,00 USD – 87,00 USD"
+      },
+      "M": {
+        "min": 2406.0,
+        "max": 3597.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "2.406 USD – 3.597 USD"
+      },
+      "L": {
+        "min": 60006.0,
+        "max": 89997.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "60.006 USD – 89.997 USD"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "pm-pricing",
+        "titulo": "Postmark, «Pricing»",
+        "url": "https://postmarkapp.com/pricing",
+        "consultado": "2026-10-02"
+      }
+    ],
+    "modelo": {
+      "moneda": "USD",
+      "parametros": [
+        {
+          "id": "incluidos",
+          "nombre": "Emails incluidos en cada plan",
+          "unidad": "emails/mes",
+          "valor": 10000,
+          "fuente": "pm-pricing"
+        },
+        {
+          "id": "cuota_basic",
+          "nombre": "Basic, cuota base",
+          "unidad": "USD/mes",
+          "valor": 15,
+          "fuente": "pm-pricing"
+        },
+        {
+          "id": "extra_basic",
+          "nombre": "Basic, email adicional",
+          "unidad": "USD/1.000 emails",
+          "valor": 1.8,
+          "fuente": "pm-pricing"
+        },
+        {
+          "id": "cuota_pro",
+          "nombre": "Pro, cuota base",
+          "unidad": "USD/mes",
+          "valor": 16.5,
+          "fuente": "pm-pricing"
+        },
+        {
+          "id": "extra_pro",
+          "nombre": "Pro, email adicional",
+          "unidad": "USD/1.000 emails",
+          "valor": 1.3,
+          "fuente": "pm-pricing"
+        },
+        {
+          "id": "cuota_platform",
+          "nombre": "Platform, cuota base",
+          "unidad": "USD/mes",
+          "valor": 18,
+          "fuente": "pm-pricing"
+        },
+        {
+          "id": "extra_platform",
+          "nombre": "Platform, email adicional",
+          "unidad": "USD/1.000 emails",
+          "valor": 1.2,
+          "fuente": "pm-pricing"
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "Basic",
+          "componentes": [
+            {
+              "nombre": "Cuota y emails adicionales",
+              "formula": "cuota_basic + max(0, emails_mes - incluidos) / 1000 * extra_basic"
+            }
+          ]
+        },
+        {
+          "nombre": "Pro",
+          "componentes": [
+            {
+              "nombre": "Cuota y emails adicionales",
+              "formula": "cuota_pro + max(0, emails_mes - incluidos) / 1000 * extra_pro"
+            }
+          ]
+        },
+        {
+          "nombre": "Platform",
+          "componentes": [
+            {
+              "nombre": "Cuota y emails adicionales",
+              "formula": "cuota_platform + max(0, emails_mes - incluidos) / 1000 * extra_platform"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "rudderstack",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          }
+        ]
+      },
+      {
+        "titulo": "2.2 TCO autoalojado (EUR)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Infraestructura (€/mes)": "100 – 200",
+            "Operación (h/mes → €/mes)": "8 h → 520",
+            "TCO mensual": "620 € – 720 €",
+            "TCO anual": "7.440 € – 8.640 €"
+          },
+          {
+            "Escenario": "M",
+            "Infraestructura (€/mes)": "700 – 1.500",
+            "Operación (h/mes → €/mes)": "30 h → 1950",
+            "TCO mensual": "2.650 € – 3.450 €",
+            "TCO anual": "31.800 € – 41.400 €"
+          },
+          {
+            "Escenario": "L",
+            "Infraestructura (€/mes)": "4.500 – 10.000",
+            "Operación (h/mes → €/mes)": "100 h → 6500",
+            "TCO mensual": "11.000 € – 16.500 €",
+            "TCO anual": "132.000 € – 198.000 €"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 620.0,
+        "max": 720.0,
+        "moneda": "EUR",
+        "origen": "2.2 TCO autoalojado (EUR)",
+        "texto": "620 € – 720 €"
+      },
+      "M": {
+        "min": 2650.0,
+        "max": 3450.0,
+        "moneda": "EUR",
+        "origen": "2.2 TCO autoalojado (EUR)",
+        "texto": "2.650 € – 3.450 €"
+      },
+      "L": {
+        "min": 11000.0,
+        "max": 16500.0,
+        "moneda": "EUR",
+        "origen": "2.2 TCO autoalojado (EUR)",
+        "texto": "11.000 € – 16.500 €"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "rud-pricing",
+        "titulo": "RudderStack, «Pricing»",
+        "url": "https://www.rudderstack.com/pricing/",
+        "consultado": "2026-10-02"
+      }
+    ],
+    "modelo": {
+      "moneda": "EUR",
+      "parametros": [
+        {
+          "id": "infraestructura",
+          "nombre": "Infraestructura (estimación del consultor)",
+          "unidad": "EUR/mes",
+          "valor": {
+            "S": {
+              "min": 100,
+              "max": 200
+            },
+            "M": {
+              "min": 700,
+              "max": 1500
+            },
+            "L": {
+              "min": 4500,
+              "max": 10000
+            }
+          }
+        },
+        {
+          "id": "horas_operacion",
+          "nombre": "Horas de operación al mes (estimación del consultor)",
+          "unidad": "h/mes",
+          "valor": {
+            "S": 8,
+            "M": 30,
+            "L": 100
+          }
+        },
+        {
+          "id": "tarifa_hora",
+          "nombre": "Tarifa de un perfil SRE senior (supuesto del consultor)",
+          "unidad": "EUR/h",
+          "valor": 65
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "OSS autoalojado (TCO)",
+          "componentes": [
+            {
+              "nombre": "Infraestructura",
+              "formula": "infraestructura"
+            },
+            {
+              "nombre": "Operación",
+              "formula": "horas_operacion * tarifa_hora"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "salesforce-data-cloud",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "200 USD – 350 USD",
+            "Coste anual": "2.400 USD – 4.200 USD"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "5.000 USD – 8.750 USD",
+            "Coste anual": "60.000 USD – 105.000 USD"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "100.000 USD – 175.000 USD",
+            "Coste anual": "1.200.000 USD – 2.100.000 USD"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 200.0,
+        "max": 350.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "200 USD – 350 USD"
+      },
+      "M": {
+        "min": 5000.0,
+        "max": 8750.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "5.000 USD – 8.750 USD"
+      },
+      "L": {
+        "min": 100000.0,
+        "max": 175000.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "100.000 USD – 175.000 USD"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "sf-dc-pricing",
+        "titulo": "Salesforce, «Data 360 Pricing»",
+        "url": "https://www.salesforce.com/data/pricing/",
+        "consultado": "2026-10-02"
+      },
+      {
+        "id": "sf-rate-sheet",
+        "titulo": "Salesforce, «Data Cloud Platform Services Rate Sheet»",
+        "url": "https://www.salesforce.com/en-us/wp-content/uploads/sites/4/documents/platform/data-cloud-platform-services-rate-sheet-dc-9-04.pdf",
+        "consultado": "2026-09-30"
+      },
+      {
+        "id": "sf-mavlers-pricing",
+        "titulo": "Mavlers, «Salesforce Data Cloud Pricing Explained (2026 Guide)»",
+        "url": "https://www.mavlers.com/blog/salesforce-data-cloud-pricing-explained/",
+        "consultado": "2026-09-30"
+      }
+    ],
+    "modelo": {
+      "moneda": "USD",
+      "parametros": [
+        {
+          "id": "precio_perfiles",
+          "nombre": "Profiles",
+          "unidad": "USD/1.000 perfiles al año",
+          "valor": 240,
+          "fuente": "sf-dc-pricing"
+        },
+        {
+          "id": "precio_perfiles_ent",
+          "nombre": "Enterprise Profiles",
+          "unidad": "USD/1.000 perfiles al año",
+          "valor": 420,
+          "fuente": "sf-dc-pricing"
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "Profiles",
+          "componentes": [
+            {
+              "nombre": "Perfiles (cuota anual / 12)",
+              "formula": "perfiles / 1000 * precio_perfiles / 12"
+            }
+          ]
+        },
+        {
+          "nombre": "Enterprise Profiles",
+          "componentes": [
+            {
+              "nombre": "Perfiles (cuota anual / 12)",
+              "formula": "perfiles / 1000 * precio_perfiles_ent / 12"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "salesforce-marketing-cloud",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "2.000 USD",
+            "Coste anual": "24.000 USD"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "30.000 USD",
+            "Coste anual": "360.000 USD"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "30.000 USD – 300.000 USD",
+            "Coste anual": "360.000 USD – 3.600.000 USD"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 2000.0,
+        "max": 2000.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "2.000 USD"
+      },
+      "M": {
+        "min": 30000.0,
+        "max": 30000.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "30.000 USD"
+      },
+      "L": {
+        "min": 30000.0,
+        "max": 300000.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "30.000 USD – 300.000 USD"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "sm-pricing",
+        "titulo": "Salesforce, «Marketing Cloud Engagement Pricing»",
+        "url": "https://www.salesforce.com/marketing/engagement/pricing/",
+        "consultado": "2026-09-30"
+      }
+    ],
+    "modelo": {
+      "moneda": "USD",
+      "parametros": [
+        {
+          "id": "precio_pro",
+          "nombre": "Pro+ (hasta 15.000 contactos)",
+          "unidad": "USD/mes",
+          "valor": 2000,
+          "fuente": "sm-pricing"
+        },
+        {
+          "id": "precio_corp",
+          "nombre": "Corporate+ (hasta 45.000 contactos)",
+          "unidad": "USD/mes",
+          "valor": 5500,
+          "fuente": "sm-pricing"
+        },
+        {
+          "id": "precio_ent",
+          "nombre": "Enterprise+ (hasta 500.000 contactos)",
+          "unidad": "USD/mes",
+          "valor": 30000,
+          "fuente": "sm-pricing"
+        },
+        {
+          "id": "tope_pro",
+          "nombre": "Contactos incluidos en Pro+",
+          "unidad": "contactos",
+          "valor": 15000,
+          "fuente": "sm-pricing"
+        },
+        {
+          "id": "tope_corp",
+          "nombre": "Contactos incluidos en Corporate+",
+          "unidad": "contactos",
+          "valor": 45000,
+          "fuente": "sm-pricing"
+        },
+        {
+          "id": "tope_ent",
+          "nombre": "Contactos incluidos en Enterprise+",
+          "unidad": "contactos",
+          "valor": 500000,
+          "fuente": "sm-pricing"
+        },
+        {
+          "id": "factor_extra",
+          "nombre": "Parte del precio de Enterprise+ por contacto que se extrapola por encima del tope (0 = ninguna, 1 = sin descuento por volumen)",
+          "valor": {
+            "min": 0,
+            "max": 1
+          }
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "Edición según contactos",
+          "componentes": [
+            {
+              "nombre": "Edición (Pro+, Corporate+ o Enterprise+)",
+              "formula": "precio_pro + (precio_corp - precio_pro) * ceil(min(1, max(0, perfiles - tope_pro) / 1000000)) + (precio_ent - precio_corp) * ceil(min(1, max(0, perfiles - tope_corp) / 1000000))"
+            },
+            {
+              "nombre": "Contactos por encima del tope de Enterprise+ (extrapolación)",
+              "formula": "max(0, perfiles - tope_ent) * precio_ent / tope_ent * factor_extra"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "candidato": "sendgrid",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "19,95 USD – 89,95 USD",
+            "Coste anual": "239,40 USD – 1.079,40 USD"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "799 USD – 1.099 USD",
+            "Coste anual": "9.588 USD – 13.188 USD"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 19.95,
+        "max": 89.95,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "19,95 USD – 89,95 USD"
+      },
+      "M": {
+        "min": 799.0,
+        "max": 1099.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "799 USD – 1.099 USD"
+      },
+      "L": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "sgd-pricing",
+        "titulo": "Twilio, «Twilio SendGrid Email API pricing»",
+        "url": "https://www.twilio.com/en-us/products/email-api/pricing",
+        "consultado": "2026-10-02"
+      },
+      {
+        "id": "sgd-pricing-3p",
+        "titulo": "Spendflo, «SendGrid Pricing: Plans, Features, and Best Deals Explained»",
+        "url": "https://www.spendflo.com/blog/sendgrid-pricing-guide",
+        "consultado": "2026-10-02"
+      },
+      {
+        "id": "sgd-trial",
+        "titulo": "SendGrid Support, «Overview of 60-Day Free Trial Plans»",
+        "url": "https://support.sendgrid.com/hc/en-us/articles/35270136965403-Twilio-SendGrid-Trial-Account-Plan",
+        "consultado": "2026-09-30"
+      }
+    ]
+  },
+  {
+    "candidato": "snowplow",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      },
+      "M": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      },
+      "L": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "sp-pricing",
+        "titulo": "Snowplow, «Pricing»",
+        "url": "https://snowplow.io/pricing",
+        "consultado": "2026-09-30"
+      },
+      {
+        "id": "sp-docs-slula-faq",
+        "titulo": "Snowplow Docs, «FAQ: Snowplow Limited Use License Agreement (SLULA)»",
+        "url": "https://docs.snowplow.io/docs/resources/limited-use-license-faq/",
+        "consultado": "2026-09-30"
+      }
+    ]
+  },
+  {
+    "candidato": "tealium",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      },
+      "M": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      },
+      "L": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "tl-pricing",
+        "titulo": "Tealium, «Tealium Pricing»",
+        "url": "https://tealium.com/tealium-pricing/",
+        "consultado": "2026-09-30"
+      },
+      {
+        "id": "tl-aws-marketplace",
+        "titulo": "AWS Marketplace, «Tealium Event and Audience Data Hub»",
+        "url": "https://aws.amazon.com/marketplace/pp/prodview-qafd6co4nw45g",
+        "consultado": "2026-09-30"
+      }
+    ]
+  },
+  {
+    "candidato": "treasure-data",
+    "fecha_revision": "2026-09-30",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "N/D",
+            "Coste anual": "N/D"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      },
+      "M": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      },
+      "L": {
+        "min": null,
+        "max": null,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "N/D"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "td-aws-ai-suites",
+        "titulo": "AWS Marketplace, «Treasure AI Suites»",
+        "url": "https://aws.amazon.com/marketplace/pp/prodview-2okdekfzpigfo",
+        "consultado": "2026-09-30"
+      }
+    ]
+  },
+  {
+    "candidato": "twilio-segment",
+    "fecha_revision": "2026-10-02",
+    "region_referencia": "Lista global sin desglose por región UE en la página oficial revisada",
+    "moneda": "USD",
+    "tablas": [
+      {
+        "titulo": "2.1 Oferta comercial (USD)",
+        "filas": [
+          {
+            "Escenario": "S",
+            "Coste mensual": "355 USD",
+            "Coste anual": "4.260 USD"
+          },
+          {
+            "Escenario": "M",
+            "Coste mensual": "6.125 USD",
+            "Coste anual": "73.500 USD"
+          },
+          {
+            "Escenario": "L",
+            "Coste mensual": "120.125 USD",
+            "Coste anual": "1.441.500 USD"
+          }
+        ]
+      }
+    ],
+    "totales": {
+      "S": {
+        "min": 355.0,
+        "max": 355.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "355 USD"
+      },
+      "M": {
+        "min": 6125.0,
+        "max": 6125.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "6.125 USD"
+      },
+      "L": {
+        "min": 120125.0,
+        "max": 120125.0,
+        "moneda": "USD",
+        "origen": "2.1 Oferta comercial (USD)",
+        "texto": "120.125 USD"
+      }
+    },
+    "enlaces": [
+      {
+        "id": "sg-pricing-connections",
+        "titulo": "Twilio, «Connections pricing»",
+        "url": "https://www.twilio.com/en-us/products/connections/pricing",
+        "consultado": "2026-10-02"
+      },
+      {
+        "id": "sg-pricing-cdp",
+        "titulo": "Twilio, «Customer Data Platform Pricing»",
+        "url": "https://www.twilio.com/en-us/pricing/customer-data",
+        "consultado": "2026-09-30"
+      }
+    ],
+    "modelo": {
+      "moneda": "USD",
+      "parametros": [
+        {
+          "id": "cuota_team",
+          "nombre": "Team, cuota base (incluye 10.000 MTU)",
+          "unidad": "USD/mes",
+          "valor": 120,
+          "fuente": "sg-pricing-connections"
+        },
+        {
+          "id": "mtu_incluidos",
+          "nombre": "MTU incluidos",
+          "unidad": "MTU",
+          "valor": 10000,
+          "fuente": "sg-pricing-connections"
+        },
+        {
+          "id": "precio_tramo_1",
+          "nombre": "MTU adicional, de 10.000 a 25.000",
+          "unidad": "USD/MTU",
+          "valor": 0.012,
+          "fuente": "sg-pricing-connections"
+        },
+        {
+          "id": "precio_tramo_2",
+          "nombre": "MTU adicional, de 25.000 a 100.000",
+          "unidad": "USD/MTU",
+          "valor": 0.011,
+          "fuente": "sg-pricing-connections"
+        },
+        {
+          "id": "precio_tramo_3",
+          "nombre": "MTU adicional, por encima de 100.000",
+          "unidad": "USD/MTU",
+          "valor": 0.01,
+          "fuente": "sg-pricing-connections"
+        }
+      ],
+      "variantes": [
+        {
+          "nombre": "Connections, plan Team",
+          "componentes": [
+            {
+              "nombre": "Cuota base",
+              "formula": "cuota_team"
+            },
+            {
+              "nombre": "MTU adicionales (por tramos)",
+              "formula": "max(0, min(mtu, 25000) - mtu_incluidos) * precio_tramo_1 + max(0, min(mtu, 100000) - 25000) * precio_tramo_2 + max(0, mtu - 100000) * precio_tramo_3"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

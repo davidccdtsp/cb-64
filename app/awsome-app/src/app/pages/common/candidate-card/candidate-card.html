@@ -1,0 +1,154 @@
+<mat-card>
+  <mat-card-content>
+    <div class="top">
+      <div class="info">
+        <mat-card-header>
+          <mat-card-title>{{ candidate().name }}</mat-card-title>
+          <mat-card-subtitle>{{ candidate().category }}</mat-card-subtitle>
+        </mat-card-header>
+        <dl>
+          <dt>Tipo</dt>
+          <dd>{{ candidate().type }}</dd>
+          <dt>Licencia</dt>
+          <dd>{{ candidate().license }}</dd>
+          <dt>Despliegue</dt>
+          <dd>{{ candidate().deployment.join(', ') }}</dd>
+          <dt>Revisión</dt>
+          <dd>{{ candidate().lastRevisionDater | date: 'yyyy-MM-dd' }}</dd>
+        </dl>
+      </div>
+      <div class="summary">
+        <div class="total" [title]="scored()?.excludedBy?.join(', ') ?? ''">
+          <span class="value">{{ scored()?.totalScore !== undefined ? (scored()!.totalScore | number: '1.0-1') : scored()?.excludedBy?.length ? 'Excluido' : '—' }}</span>
+          <span class="caption">Puntuación total (0-100)</span>
+        </div>
+        @if (scored()?.excludedBy?.length) {
+          <p class="excluded">No cumple: {{ scored()!.excludedBy!.join(', ') }}</p>
+        }
+        @if (hasDimensionScores()) {
+          @defer (on viewport) {
+            <app-candidate-radar [dimensions]="dimensions()" [scores]="scored()!.dimensionScores!" />
+          } @placeholder {
+            <div class="radar-placeholder"></div>
+          }
+        }
+      </div>
+    </div>
+    <mat-accordion multi>
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Puntuaciones</mat-panel-title>
+        </mat-expansion-panel-header>
+        @if (rows().length) {
+          <table mat-table [dataSource]="rows()">
+            <ng-container matColumnDef="group">
+              <td mat-cell *matCellDef="let g" colspan="5" class="group">{{ g.group }}</td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef>Atributo</th>
+              <td mat-cell *matCellDef="let s">
+                <strong>{{ s.name }}</strong>
+                @if (s.question) {
+                  <div class="question">{{ s.question }}</div>
+                }
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="score">
+              <th mat-header-cell *matHeaderCellDef>Nota</th>
+              <td mat-cell *matCellDef="let s">
+                @if (s.value !== undefined) {
+                  <mat-icon
+                    fontSet="material-symbols-outlined"
+                    [class]="s.value ? 'si' : 'no'"
+                    [attr.aria-label]="s.value ? 'Sí' : 'No'"
+                    >{{ s.value ? 'check' : 'close' }}</mat-icon
+                  >
+                } @else {
+                  <span class="nota">{{ s.score }}</span>
+                }
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="reliability">
+              <th mat-header-cell *matHeaderCellDef>Confianza</th>
+              <td mat-cell *matCellDef="let s">{{ s.reliability }}</td>
+            </ng-container>
+            <ng-container matColumnDef="description">
+              <th mat-header-cell *matHeaderCellDef>Significado</th>
+              <td mat-cell *matCellDef="let s">{{ s.description ?? s.text }}</td>
+            </ng-container>
+            <ng-container matColumnDef="urls">
+              <th mat-header-cell *matHeaderCellDef>Enlaces</th>
+              <td mat-cell *matCellDef="let s">
+                @for (url of s.urls; track url; let i = $index) {
+                  <a
+                    [href]="url"
+                    target="_blank"
+                    rel="noopener"
+                    [title]="url"
+                    [attr.aria-label]="'Fuente ' + (i + 1)"
+                  >
+                    <mat-icon fontSet="material-symbols-outlined">link</mat-icon>
+                  </a>
+                }
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="columns"></tr>
+            <tr mat-row *matRowDef="let g; columns: ['group']; when: isGroup"></tr>
+            <tr mat-row *matRowDef="let row; columns: columns" [class.sin-fuentes]="!row.urls.length"></tr>
+          </table>
+        } @else {
+          <p>Sin puntuaciones.</p>
+        }
+      </mat-expansion-panel>
+
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Costes</mat-panel-title>
+        </mat-expansion-panel-header>
+        @if (hasModel()) {
+          <app-cost-calculator [candidateId]="candidate().id" />
+        } @else {
+          <h4>Coste total mensual</h4>
+          <app-cost-total-editor [candidateId]="candidate().id" />
+        }
+        @if (costs(); as c) {
+          @if (c.tables.length) {
+            <p class="question">{{ c.referenceRegion }} · Moneda: {{ c.currency }}</p>
+            @for (t of c.tables; track $index) {
+              @if (t.title) {
+                <h4>{{ t.title }}</h4>
+              }
+              <table mat-table [dataSource]="t.rows">
+                @for (col of t.columns; track col) {
+                  <ng-container [matColumnDef]="col">
+                    <th mat-header-cell *matHeaderCellDef>{{ col }}</th>
+                    <td mat-cell *matCellDef="let row">{{ row[col] }}</td>
+                  </ng-container>
+                }
+                <tr mat-header-row *matHeaderRowDef="t.columns"></tr>
+                <tr mat-row *matRowDef="let row; columns: t.columns"></tr>
+              </table>
+            }
+          } @else {
+            <p>Sin costes disponibles.</p>
+          }
+        } @else {
+          <p>Sin costes disponibles.</p>
+        }
+        @if (costs()?.links?.length) {
+          <h4>Fuentes de costes</h4>
+          <ul class="links">
+            @for (l of costs()!.links; track l.id) {
+              <li>
+                <a [href]="l.url" target="_blank" rel="noopener noreferrer">{{ l.title }}</a>
+                @if (l.consulted) {
+                  <span class="consulted"> · consultado {{ l.consulted }}</span>
+                }
+              </li>
+            }
+          </ul>
+        }
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card-content>
+</mat-card>
