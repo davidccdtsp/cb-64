@@ -18,6 +18,11 @@ export class WeightsDialog {
   private readonly domain = inject<Domain>(MAT_DIALOG_DATA);
   protected readonly form = this.scoring.weightsForm(this.domain);
 
+  /** Vuelve a los valores de la rúbrica (JSON); hay que guardar para aplicarlos. */
+  protected restoreDefaults(): void {
+    this.scoring.setWeightsFormDefaults(this.form);
+  }
+
   protected save(): void {
     this.scoring.applyForm(this.domain, this.form);
     this.dialogRef.close();

@@ -18,6 +18,11 @@ export class DimensionWeightsDialog {
   private readonly domain = inject<Domain>(MAT_DIALOG_DATA);
   protected readonly form = this.scoring.dimensionWeightsForm(this.domain);
 
+  /** Vuelve a los valores de la rúbrica (JSON); hay que guardar para aplicarlos. */
+  protected restoreDefaults(): void {
+    this.scoring.setDimensionWeightsFormDefaults(this.form);
+  }
+
   protected save(): void {
     this.scoring.applyDimensionWeights(this.domain, this.form);
     this.dialogRef.close();

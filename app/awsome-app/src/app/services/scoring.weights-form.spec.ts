@@ -19,6 +19,8 @@ describe('ScoringService.weightsForm', () => {
             // lecturas reactivas, como las del DataService real
             dimensions: () => [{ id: 'd1', name: 'D1', numOfCriteria: 1, weight: 1 }],
             attributes: () => new Map([['d1', attrs()]]),
+            defaultAttribute: (id: string) => (id === 'a1' ? { weight: 1, mandatory: false } : undefined),
+            defaultDimensionWeight: (id: string) => (id === 'd1' ? 1 : undefined),
             updateAttributes: (u: Attribute[]) => attrs.update((list) => list.map((a) => u.find((x) => x.id === a.id) ?? a)),
           },
         },
@@ -44,5 +46,30 @@ describe('ScoringService.weightsForm', () => {
     scoring.formsEpoch.update((n) => n + 1);
     expect(form()).not.toBe(first);
     expect(form().controls.weights.controls['a1'].controls.weight.value).toBe(3); // con los valores actuales
+  });
+
+  it('«Restablecer» lleva los formularios a los valores de la rúbrica, no a los ya guardados', () => {
+    const scoring = TestBed.inject(ScoringService);
+    // el usuario guarda otros valores: el formulario que se abre después parte de ellos
+    const saved = scoring.weightsForm(Domain.data);
+    saved.controls.weights.controls['a1'].patchValue({ weight: 3, mandatory: true });
+    saved.controls.missing.setValue('mean');
+    saved.controls.missing.markAsDirty();
+    scoring.applyForm(Domain.data, saved);
+    expect(attrs()[0]).toMatchObject({ weight: 3, mandatory: true });
+
+    const form = scoring.weightsForm(Domain.data);
+    expect(form.controls.weights.controls['a1'].controls.weight.value).toBe(3);
+    scoring.setWeightsFormDefaults(form);
+    expect(form.getRawValue().weights['a1']).toEqual({ id: 'a1', weight: 1, mandatory: false });
+    expect(form.controls.missing.value).toBe('exclude');
+    scoring.applyForm(Domain.data, form); // al guardar se aplican
+    expect(attrs()[0]).toMatchObject({ weight: 1, mandatory: false });
+    expect(scoring.missingScore()).toBeUndefined();
+
+    const dims = scoring.dimensionWeightsForm(Domain.data);
+    dims.controls['d1'].setValue(2);
+    scoring.setDimensionWeightsFormDefaults(dims);
+    expect(dims.controls['d1'].value).toBe(1);
   });
 });

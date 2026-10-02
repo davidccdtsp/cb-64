@@ -96,6 +96,14 @@ export class ScoringService {
   private readonly _requiredDeployments = signal<string[]>([]);
   readonly requiredDeployments = this._requiredDeployments.asReadonly();
 
+  /** Lleva el formulario de pesos de dimensión a los valores de la rúbrica (JSON); no aplica nada hasta guardar. */
+  setDimensionWeightsFormDefaults(form: DimensionWeightsForm): void {
+    for (const [id, control] of Object.entries(form.controls)) {
+      const weight = this.data.defaultDimensionWeight(id);
+      if (weight !== undefined) control.setValue(weight);
+    }
+  }
+
   setRequiredDeployments(values: string[]): void {
     this._requiredDeployments.set([...values]);
   }
@@ -319,6 +327,16 @@ export class ScoringService {
   setMandatory(domain: Domain, id: string, mandatory: boolean): void {
     const a = this.attributesOf(domain).find((x) => x.id === id);
     if (a) this.data.updateAttributes([{ ...a, mandatory }]);
+  }
+
+  /** Lleva el formulario a los valores de la rúbrica (JSON), no a los que tenía al abrirse; no aplica nada hasta guardar. */
+  setWeightsFormDefaults(form: WeightsForm): void {
+    for (const [id, group] of Object.entries(form.controls.weights.controls)) {
+      const d = this.data.defaultAttribute(id);
+      if (d) group.patchValue({ weight: d.weight, mandatory: d.mandatory });
+    }
+    form.controls.missing.setValue('exclude');
+    form.controls.missing.markAsDirty(); // `applyForm` solo aplica el tratamiento de criterios sin puntuación si se ha tocado
   }
 
   /** Aplica los valores del formulario de pesos a los atributos del dominio y los guarda en DataService. */
